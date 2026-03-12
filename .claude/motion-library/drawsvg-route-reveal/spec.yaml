@@ -1,0 +1,21 @@
+version: '1'
+type: tween
+id: drawsvg-route-reveal
+target:
+  selector: '[data-motion="drawsvg-route-reveal"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: load
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- drawsvg
+config:
+  root: '[data-motion="drawsvg-route-reveal"]'
+  items: '[data-motion="drawsvg-route-reveal"] [data-motion-item]'
+  target: '[data-motion="drawsvg-route-reveal"] [data-motion-target]'
+  path: '[data-motion="drawsvg-route-reveal"] [data-motion-path]'

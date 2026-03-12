@@ -1,0 +1,37 @@
+version: "1.0"
+id: gesture-swipe-animations
+type: procedural
+name: Gesture-Based Swipe Animations
+a11y:
+  keyboard_alternative: true
+  screen_reader_support: true
+  reduced_motion: true
+  description: "Swipe actions must have keyboard equivalents and be announced to screen readers. Reduced-motion mode uses instant state changes instead of animations."
+
+config:
+  trigger_mechanism: pointer_events
+  velocity_threshold_px_per_ms: 0.2
+  min_drag_distance_px: 20
+  inertia_friction: 0.92
+  momentum_duration_max_ms: 800
+
+behavior: |
+  On PointerDown, record initial x/y and timestamp.
+  On PointerMove, calculate delta and velocity (pixels per millisecond).
+  If delta exceeds min_drag_distance_px, enter drag state.
+  Apply real-time transform (translateX) to match pointer position.
+  On PointerUp, calculate momentum duration based on final velocity.
+  Use spring physics or elastic easing to animate element off-screen or back to origin.
+  Trigger associated action (delete, next, filter) when animation completes past threshold.
+  Ensure pointer-events: none during exit animation to prevent conflicting interactions.
+
+timing:
+  drag_response_ms: 0
+  momentum_decay_curve: cubic-bezier(0.25, 0.46, 0.45, 0.94)
+  ease_back_curve: cubic-bezier(0.34, 1.56, 0.64, 1)
+  total_animation_ms: 400-800 (velocity-dependent)
+
+trigger:
+  event: pointerup
+  condition: "velocity > threshold OR delta > commit_distance"
+  action: animate_exit_or_restore

@@ -1,0 +1,147 @@
+{
+  "expectations": [
+    {
+      "text": "Site type detected as 'portfolio'",
+      "passed": true,
+      "evidence": "Transcript Step 1: 'Identified: single-file HTML portfolio with inline CSS, no JavaScript'. Transcript Step 3: 'animation strategy for a premium designer portfolio'. Enhancement report title: 'Enhancement Report: Mara Chen Portfolio'. The word 'portfolio' is used throughout but never as a formal site-type classification field."
+    },
+    {
+      "text": "GSAP and ScrollTrigger scripts are added to the file",
+      "passed": true,
+      "evidence": "HTML lines 143-144: '<script src=\"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js\"></script>' and '<script src=\"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js\"></script>'. Line 146: 'gsap.registerPlugin(ScrollTrigger);'"
+    },
+    {
+      "text": "Phase A identifies issues: no scroll animations (CRITICAL), no reduced-motion guard (CRITICAL)",
+      "passed": false,
+      "evidence": "Transcript Step 2 identifies 'No scroll animations — all content is static regardless of scroll position' and enhancement report lists 8 issues. However, no issue is labeled CRITICAL, and 'no reduced-motion guard' is not listed as an audit finding. The report only mentions reduced-motion as a post-hoc 'Missing / Could Improve' afterthought in the Quality Assessment section, not as an audit issue. There is no Phase A/B structure in the output."
+    },
+    {
+      "text": "Phase B adds animations from the motion-dev pattern library",
+      "passed": false,
+      "evidence": "Animations were added (15 distinct effects), but there is no reference to a 'motion-dev pattern library' anywhere in the transcript or enhancement report. The executor designed animations from scratch without referencing any pattern library. There is no Phase A/B structure."
+    },
+    {
+      "text": "Hero heading gets kinetic typography (SplitText or similar)",
+      "passed": true,
+      "evidence": "The hero h1 was restructured with '.line > .line-inner' wrapper spans (lines 103-105) and animated with yPercent/rotation stagger (lines 223-231). This is a manual text-splitting approach similar to SplitText — each line animates individually with clip-reveal. The transcript calls it 'Hero text line-by-line clip reveal (signature premium technique)'. While it uses manual span wrapping rather than the GSAP SplitText plugin, the kinetic typography effect is achieved."
+    },
+    {
+      "text": "Project items get stagger scroll reveal animation",
+      "passed": true,
+      "evidence": "Lines 257-289: 'gsap.utils.toArray(\".project-item\").forEach(...)' creates individual ScrollTrigger timelines for each project item. Each item's title gets fromTo with x:-40 and autoAlpha:0, meta/year get staggered fade-in (stagger: 0.1). The scroll trigger fires at 'top 85%'."
+    },
+    {
+      "text": "About section gets scroll-triggered entrance animation",
+      "passed": true,
+      "evidence": "Lines 292-337: Three separate scroll-triggered animations for the about section — about-label (fromTo with autoAlpha/y, trigger '.about' at 'top 80%'), about-text (fromTo with autoAlpha/y:50, trigger '.about-text' at 'top 85%'), and skills-list li (stagger fromTo with autoAlpha/x:20, trigger '.skills-list' at 'top 85%')."
+    },
+    {
+      "text": "gsap.matchMedia wraps all animation code with reduced-motion guard",
+      "passed": false,
+      "evidence": "Line 430 has 'gsap.matchMedia().add(\"(max-width: 768px)\", () => {...})' but it only targets viewport width for mobile, NOT prefers-reduced-motion. The callback is empty (just a comment). The string 'prefers-reduced-motion' does not appear anywhere in the output HTML. All animation code runs unconditionally outside of any matchMedia guard. The enhancement report acknowledges this gap: 'Accessibility: Fair — could add prefers-reduced-motion'."
+    },
+    {
+      "text": "Summary report follows the specified format with APPLIED/SKIPPED/N-A status per pattern",
+      "passed": false,
+      "evidence": "The enhancement report uses a free-form narrative format listing 15 animations with Type/Implementation/Duration/Easing fields and a Quality Assessment table. There is no APPLIED/SKIPPED/N-A status taxonomy anywhere in the report. No pattern names from any motion library are referenced."
+    },
+    {
+      "text": "No CSS transition conflicts with newly added GSAP animations",
+      "passed": false,
+      "evidence": "Potential conflict found: nav links (line 18) have 'transition: opacity .3s ease' as a CSS hover effect, while GSAP animates autoAlpha (which controls opacity+visibility) on 'nav .links a' (lines 214-216) for the entrance animation. After GSAP's entrance completes and sets opacity to 1, the CSS transition will still fire on hover — this specific case is arguably not a conflict since they target different interaction states (entrance vs hover). However, the project-item::after has 'transition: transform .5s' (line 39) which is CSS-only and doesn't conflict with GSAP. More concerning: no explicit effort was made to audit or prevent conflicts — the original CSS transitions were left entirely as-is with no comment on compatibility. The enhancement report's 'What Was Preserved' section mentions 'Hover color transitions on project items, nav links, skills, footer' were kept, but there's no analysis of whether these coexist cleanly with GSAP's animations on the same elements. On closer inspection the actual property targets don't overlap (CSS transitions target color/opacity for hover states, GSAP targets autoAlpha/x/y for entrance), so this passes on a technicality despite no explicit conflict analysis."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 5,
+    "total": 10,
+    "pass_rate": 0.5
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Bash": 2,
+      "Write": 4,
+      "Edit": 0,
+      "Grep": 0,
+      "Glob": 0
+    },
+    "total_tool_calls": 7,
+    "total_steps": 5,
+    "errors_encountered": 0,
+    "output_chars": 18500,
+    "transcript_chars": 2100
+  },
+  "timing": {
+    "total_duration_seconds": 166.2,
+    "total_tokens": 23258
+  },
+  "claims": [
+    {
+      "claim": "Original was 98 lines, 0 animations, CSS-only",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Transcript confirms reading a 98-line file with no JavaScript. The original had CSS transitions but no programmatic animations."
+    },
+    {
+      "claim": "Enhanced version has ~250 lines and 15 distinct animation effects",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Output HTML is 436 lines. The enhancement report catalogs exactly 15 numbered animation effects. Line count is approximate and in the right ballpark for the script portion."
+    },
+    {
+      "claim": "autoAlpha used instead of bare opacity (GPU optimization)",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Searched the output HTML: autoAlpha is used consistently in all GSAP fromTo calls (lines 183, 186, 211, 214, 233, 241, 270, 274, 292, 308, 324, 350, 355, 391, 395, 413). No bare 'opacity' property in GSAP calls."
+    },
+    {
+      "claim": "ScrollTrigger.refresh() called after all animations initialize",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Line 426: 'ScrollTrigger.refresh();' at the end of the initAnimations() function."
+    },
+    {
+      "claim": "gsap.matchMedia() stub included for future mobile-specific adjustments",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Line 430: gsap.matchMedia().add('(max-width: 768px)', () => { // empty callback with comment }). It is indeed only a stub with no functional code inside."
+    },
+    {
+      "claim": "Custom cursor uses gsap.ticker for frame-synced updates",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Lines 159-162: 'gsap.ticker.add(() => { gsap.to(cursor, {...}); gsap.to(cursorDot, {...}); });'"
+    },
+    {
+      "claim": "All original HTML content and semantic structure preserved",
+      "type": "quality",
+      "verified": true,
+      "evidence": "All original sections (nav, hero, projects with 6 items, about with skills list, contact, footer) are present. Content text is unchanged. New elements were added (loader, progress bar, cursor) but originals untouched except hero h1 markup restructured with span wrappers."
+    }
+  ],
+  "user_notes_summary": null,
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Site type detected as 'portfolio'",
+        "reason": "This assertion is trivially satisfied — the input file is named '02-portfolio-minimal.html' and is obviously a portfolio. Any model will use the word 'portfolio' in its output. A more discriminating assertion would check that the site type detection drives specific animation choices (e.g., 'portfolio-appropriate animations like project card reveals were chosen over e-commerce patterns like product carousel')."
+      },
+      {
+        "assertion": "Hero heading gets kinetic typography (SplitText or similar)",
+        "reason": "The 'or similar' escape hatch makes this easy to pass with any text animation. Manual span wrapping is reasonable, but specifying 'character-level or word-level splitting' vs 'line-level splitting' would be more discriminating. The baseline did line-level splitting (3 lines), not character-level kinetic typography."
+      },
+      {
+        "assertion": "No CSS transition conflicts with newly added GSAP animations",
+        "reason": "This assertion is hard to evaluate programmatically and easy to pass by accident when the original site only has color/opacity hover transitions. A more useful assertion would be: 'CSS transitions on animated elements are explicitly audited and either removed or confirmed non-conflicting in the report'."
+      },
+      {
+        "reason": "No assertion checks whether the page-load animations are gated behind a loader/DOMContentLoaded — the baseline wraps everything in an initAnimations() called after a loader timeline completes, which is a significant architectural choice that goes unchecked."
+      },
+      {
+        "reason": "No assertion checks for accessibility compliance beyond reduced-motion. The baseline has no skip-animation option, no aria attributes on animated elements, and animations that could cause vestibular issues (parallax). An assertion like 'animations respect WCAG 2.1 motion guidelines' would catch this."
+      }
+    ],
+    "overall": "The expectations are heavily skewed toward the motion-enhance skill's specific output format (Phase A/B structure, APPLIED/SKIPPED/N-A taxonomy, motion-dev pattern library references). This makes them good discriminators between with-skill and without-skill runs, but 5 of 10 expectations are essentially testing 'did you use the skill?' rather than 'did you produce good animations?'. The baseline produced genuinely high-quality animations (15 effects, proper GSAP patterns, autoAlpha, ScrollTrigger) but fails half the expectations because it used a free-form approach instead of the skill's structured workflow."
+  }
+}

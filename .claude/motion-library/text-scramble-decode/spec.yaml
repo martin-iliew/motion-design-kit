@@ -1,0 +1,12 @@
+version: "1"
+type: procedural
+id: "text-scramble-decode"
+description: "Characters cycle through random glyphs from a pool before each position resolves to its final value. Driven by a requestAnimationFrame loop, not a tween — the speed parameter controls what fraction of characters resolve per frame."
+config:
+  chars: "!<>-_\\/[]{}—=+*^?#@$%&ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+  speed: 0.28              # frame-fraction: probability per frame that a scrambling char resolves (not a time token)
+  fps: 30                  # target frame rate cap — 30 fps is imperceptible from 60 for this effect
+  trigger: load            # load | scroll | hover
+behavior: "Each character is assigned a random start and end frame. Before start frame, the original character shows. Between start and end, a random glyph from the chars pool is shown (replaced each frame with probability = speed). After end frame, the final character locks in. The RAF loop increments a global frame counter; all chars are resolved when complete === queue.length."
+a11y:
+  reduced_motion: instant-final   # skip animation, set textContent to final string immediately

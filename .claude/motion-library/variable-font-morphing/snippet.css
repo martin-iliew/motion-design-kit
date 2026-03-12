@@ -1,0 +1,64 @@
+/* Variable Font Morphing Animation */
+
+@supports (font-variation-settings: normal) {
+  /* Assume variable font is loaded */
+  .morphing-heading {
+    font-family: "Inter Var", sans-serif;
+    font-variation-settings: "wght" 400, "wdth" 100;
+    transition: font-variation-settings 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .morphing-heading:hover {
+    font-variation-settings: "wght" 700, "wdth" 110;
+  }
+
+  /* Keyframe animation for continuous morphing */
+  @keyframes morphWeight {
+    0% {
+      font-variation-settings: "wght" 400, "wdth" 100;
+    }
+    50% {
+      font-variation-settings: "wght" 550, "wdth" 105;
+    }
+    100% {
+      font-variation-settings: "wght" 700, "wdth" 110;
+    }
+  }
+
+  .morphing-title {
+    font-family: "Inter Var", sans-serif;
+    animation: morphWeight 2s ease-in-out infinite alternate;
+  }
+
+  /* Scroll-triggered morphing with CSS scroll-driven animations */
+  @supports (animation-timeline: view()) {
+    .scroll-morph {
+      font-family: "Inter Var", sans-serif;
+      font-variation-settings: "wght" 400, "wdth" 100;
+      animation: scrollMorphing linear;
+      animation-timeline: view();
+    }
+
+    @keyframes scrollMorphing {
+      0% {
+        font-variation-settings: "wght" 400, "wdth" 100;
+      }
+      100% {
+        font-variation-settings: "wght" 700, "wdth" 115;
+      }
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .morphing-heading,
+    .morphing-title,
+    .scroll-morph {
+      transition: none;
+      animation: none;
+      font-variation-settings: "wght" 700, "wdth" 110;
+    }
+  }
+}

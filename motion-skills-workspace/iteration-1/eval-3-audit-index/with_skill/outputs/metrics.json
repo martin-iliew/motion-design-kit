@@ -1,0 +1,26 @@
+{
+  "tool_calls": {
+    "Read": 3,
+    "Glob": 1,
+    "Bash": 2,
+    "Write": 3
+  },
+  "total_tool_calls": 9,
+  "files_read": 3,
+  "files_created": 3,
+  "errors_encountered": 0,
+  "audit_summary": {
+    "critical": 7,
+    "warning": 9,
+    "info": 4,
+    "total_issues": 20
+  },
+  "file_stats": {
+    "input_file": "index.html",
+    "input_lines": 980,
+    "animations_found": 0,
+    "gsap_scripts_found": 0,
+    "css_transitions_found": 0,
+    "css_keyframes_found": 0
+  }
+}

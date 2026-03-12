@@ -1,0 +1,25 @@
+version: '1'
+type: procedural
+id: responsive-curved-path-scroll
+target:
+  selector: '[data-motion="responsive-curved-path-scroll"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: scroll
+  scroll_start: top 85%
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- scrolltrigger
+- motionpath
+config:
+  root: '[data-motion="responsive-curved-path-scroll"]'
+  items: '[data-motion="responsive-curved-path-scroll"] [data-motion-item]'
+  target: '[data-motion="responsive-curved-path-scroll"] [data-motion-target]'
+  path: '[data-motion="responsive-curved-path-scroll"] [data-motion-path]'
+behavior: Responsive Curved Path Scroll is a GSAP pattern for hero, section surfaces
+  that moves an accent or media element along a defined path.

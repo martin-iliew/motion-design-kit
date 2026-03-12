@@ -1,0 +1,79 @@
+{
+  "eval_id": 1,
+  "eval_name": "portfolio-motion-dev",
+  "prompt": "Add GSAP animations to this portfolio site. It's a minimal designer portfolio — should feel subtle and premium, not flashy. Make it scroll-responsive with kinetic typography on the hero heading.",
+  "assertions": [
+    {
+      "id": "a1-duplicate-file",
+      "text": "Output file is a duplicate (not the original) — original 02-portfolio-minimal.html is untouched",
+      "type": "structural",
+      "check": "programmatic"
+    },
+    {
+      "id": "a1-gsap-cdn",
+      "text": "GSAP core + ScrollTrigger CDN scripts are included via <script> tags",
+      "type": "structural",
+      "check": "programmatic"
+    },
+    {
+      "id": "a1-splittext",
+      "text": "SplitText plugin is loaded from cdn.jsdelivr.net and registered",
+      "type": "structural",
+      "check": "programmatic"
+    },
+    {
+      "id": "a1-hero-timeline",
+      "text": "Hero has a GSAP timeline with 4+ chained .fromTo or .from calls",
+      "type": "quality",
+      "check": "manual"
+    },
+    {
+      "id": "a1-matchmedia",
+      "text": "gsap.matchMedia wraps animation code with prefers-reduced-motion guard",
+      "type": "accessibility",
+      "check": "programmatic"
+    },
+    {
+      "id": "a1-autoalpha",
+      "text": "autoAlpha is used instead of bare opacity in gsap.from/fromTo calls",
+      "type": "quality",
+      "check": "programmatic"
+    },
+    {
+      "id": "a1-scroll-reveals",
+      "text": "ScrollTrigger scroll reveals cover projects, about, and contact sections",
+      "type": "completeness",
+      "check": "manual"
+    },
+    {
+      "id": "a1-interactive",
+      "text": "At least one interactive effect exists (magnetic, spring hover, or tilt)",
+      "type": "quality",
+      "check": "manual"
+    },
+    {
+      "id": "a1-no-transition-conflict",
+      "text": "No CSS transition conflicts with GSAP-owned properties",
+      "type": "correctness",
+      "check": "programmatic"
+    },
+    {
+      "id": "a1-token-comments",
+      "text": "Token comments are present (e.g. // token: base, // token: entrance)",
+      "type": "quality",
+      "check": "programmatic"
+    },
+    {
+      "id": "a1-register-plugin",
+      "text": "gsap.registerPlugin() is called for all used plugins",
+      "type": "correctness",
+      "check": "programmatic"
+    },
+    {
+      "id": "a1-scrolltrigger-refresh",
+      "text": "ScrollTrigger.refresh() is called on window load event",
+      "type": "correctness",
+      "check": "programmatic"
+    }
+  ]
+}

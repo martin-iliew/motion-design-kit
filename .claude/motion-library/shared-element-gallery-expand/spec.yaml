@@ -1,0 +1,21 @@
+version: '1'
+type: tween
+id: shared-element-gallery-expand
+target:
+  selector: '[data-motion="shared-element-gallery-expand"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: drag
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- flip
+config:
+  root: '[data-motion="shared-element-gallery-expand"]'
+  items: '[data-motion="shared-element-gallery-expand"] [data-motion-item]'
+  target: '[data-motion="shared-element-gallery-expand"] [data-motion-target]'
+  path: '[data-motion="shared-element-gallery-expand"] [data-motion-path]'

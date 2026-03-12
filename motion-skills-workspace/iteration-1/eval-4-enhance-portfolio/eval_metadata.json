@@ -1,0 +1,67 @@
+{
+  "eval_id": 4,
+  "eval_name": "enhance-portfolio",
+  "prompt": "Enhance this portfolio site — audit it for animation issues and add missing animations. It's a designer portfolio so it should feel premium.",
+  "assertions": [
+    {
+      "id": "a4-site-type",
+      "text": "Site type detected as 'portfolio'",
+      "type": "quality",
+      "check": "manual"
+    },
+    {
+      "id": "a4-gsap-added",
+      "text": "GSAP and ScrollTrigger scripts are added to the file",
+      "type": "structural",
+      "check": "programmatic"
+    },
+    {
+      "id": "a4-phase-a",
+      "text": "Phase A identifies issues: no scroll animations (CRITICAL), no reduced-motion guard (CRITICAL)",
+      "type": "quality",
+      "check": "manual"
+    },
+    {
+      "id": "a4-phase-b",
+      "text": "Phase B adds animations from the motion-dev pattern library",
+      "type": "completeness",
+      "check": "manual"
+    },
+    {
+      "id": "a4-hero-kinetic",
+      "text": "Hero heading gets kinetic typography (SplitText or similar)",
+      "type": "quality",
+      "check": "manual"
+    },
+    {
+      "id": "a4-project-stagger",
+      "text": "Project items get stagger scroll reveal animation",
+      "type": "completeness",
+      "check": "manual"
+    },
+    {
+      "id": "a4-about-reveal",
+      "text": "About section gets scroll-triggered entrance animation",
+      "type": "completeness",
+      "check": "manual"
+    },
+    {
+      "id": "a4-matchmedia",
+      "text": "gsap.matchMedia wraps all animation code with reduced-motion guard",
+      "type": "accessibility",
+      "check": "programmatic"
+    },
+    {
+      "id": "a4-summary-report",
+      "text": "Summary report follows the specified format with APPLIED/SKIPPED/N-A status per pattern",
+      "type": "structural",
+      "check": "manual"
+    },
+    {
+      "id": "a4-no-conflicts",
+      "text": "No CSS transition conflicts with newly added GSAP animations",
+      "type": "correctness",
+      "check": "programmatic"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+# Motion Spec: parallax-layer-scroll
+# IR Note: This spec represents a single-layer example. In practice, instantiate
+# one entry per depth tier. The to.y value is runtime-computed:
+# y = depth_ratio × scroll_distance (e.g. depth_ratio × 120px at full progress).
+# Stack translators must use ScrollTrigger onUpdate + gsap.set() per layer.
+version: "1"
+type: tween
+id: "parallax-layer-scroll"
+target:
+  selector: ".layer[data-depth]"
+  type: group
+from:
+  y: 0   # starting position — layers rest at natural position
+to:
+  y: "<computed>"   # runtime: depth_ratio × 120px (e.g. 0.1→12px, 0.25→30px, 0.5→60px, 0.75→90px)
+timing:
+  duration_raw: null   # scrub-based — scroll position drives progress, not a fixed duration
+  easing: scrub        # linear — required for scroll-linked animations
+trigger:
+  type: scroll
+  scroll_scrub: 1.5    # smooth scrub, 1.5s lag
+  scroll_start: "top top"
+  scroll_end: "bottom top"
+a11y:
+  reduced_motion: skip   # purely decorative depth effect — no motion fallback needed
+config:
+  # Depth system configuration — applied per layer via data-depth attribute
+  depth_attribute: "data-depth"
+  depth_range: [0.1, 0.75]      # min and max depth ratios across the layer stack
+  max_travel_px: 120            # total px movement at depth_ratio = 1.0
+  # Per-layer travel = max_travel_px × depth_ratio
+  # Example tiers: sky=0.1→12px, mountains=0.25→30px, midground=0.5→60px, foreground=0.75→90px
+  force3D: true                 # always use 3D matrix for GPU compositor promotion

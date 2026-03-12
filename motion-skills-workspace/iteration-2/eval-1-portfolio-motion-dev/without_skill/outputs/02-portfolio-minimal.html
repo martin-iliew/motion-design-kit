@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MARA CHEN — Designer & Art Director</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      *{margin:0;padding:0;box-sizing:border-box}
+      :root{--bg:#f5f0eb;--text:#1a1a1a;--accent:#ff3d00;--muted:#999;--mono:'JetBrains Mono',monospace;--sans:'Space Grotesk',system-ui,sans-serif}
+      ::selection{background:var(--accent);color:#fff}
+      body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden}
+      .container{max-width:1400px;margin:0 auto;padding:0 clamp(24px,4vw,80px)}
+      nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:24px clamp(24px,4vw,80px);display:flex;justify-content:space-between;align-items:center;mix-blend-mode:difference;color:#fff}
+      nav a{color:inherit;text-decoration:none;font-size:14px;font-family:var(--mono)}
+      nav .name{font-weight:700;font-size:16px;letter-spacing:.05em;text-transform:uppercase}
+      nav .links{display:flex;gap:32px}
+      nav .links a{opacity:.6;transition:opacity .3s ease}
+      nav .links a:hover{opacity:1}
+      .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:80px;padding-top:120px}
+      .hero h1{font-size:clamp(4rem,12vw,14rem);font-weight:700;line-height:.9;letter-spacing:-.04em;text-transform:uppercase}
+      .hero h1 .accent{color:var(--accent)}
+      .hero .subtitle{margin-top:40px;font-family:var(--mono);font-size:14px;color:var(--muted);max-width:400px;line-height:1.6}
+      .projects{padding:160px 0}
+      .projects-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:80px;border-bottom:1px solid rgba(0,0,0,.1);padding-bottom:20px}
+      .projects-header h2{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted)}
+      .projects-header span{font-family:var(--mono);font-size:12px;color:var(--muted)}
+      .project-item{border-bottom:1px solid rgba(0,0,0,.08);padding:40px 0;display:grid;grid-template-columns:1fr auto auto;gap:40px;align-items:baseline;text-decoration:none;color:inherit}
+      .project-item:hover .project-title{color:var(--accent)}
+      .project-title{font-size:clamp(2rem,5vw,4.5rem);font-weight:700;letter-spacing:-.03em}
+      .project-meta,.project-year{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
+      .about{padding:160px 0;border-top:1px solid rgba(0,0,0,.1)}
+      .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:120px}
+      .about-label{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:40px}
+      .about-text{font-size:clamp(1.5rem,3vw,2.5rem);font-weight:300;line-height:1.4;letter-spacing:-.01em}
+      .about-text strong{font-weight:700}
+      .skills-list{list-style:none;font-family:var(--mono);font-size:14px;line-height:2.2;color:var(--muted)}
+      .skills-list li{transition:color .2s ease}
+      .skills-list li:hover{color:var(--text)}
+      .contact{padding:200px 0 100px;border-top:1px solid rgba(0,0,0,.1);text-align:center}
+      .contact-label{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:40px}
+      .contact-email{font-size:clamp(2rem,6vw,6rem);font-weight:700;letter-spacing:-.03em;text-decoration:none;color:var(--text);transition:color .3s ease;display:inline-block;border-bottom:4px solid transparent}
+      .contact-email:hover{color:var(--accent);border-bottom-color:var(--accent)}
+      footer{padding:40px clamp(24px,4vw,80px);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;color:var(--muted);border-top:1px solid rgba(0,0,0,.05)}
+      footer a{color:inherit;text-decoration:none;transition:color .2s}
+      footer a:hover{color:var(--text)}
+      footer .social{display:flex;gap:24px}
+
+      /* Hero kinetic typography — each line wrapped in .hero-line with overflow hidden */
+      .hero-line{overflow:hidden;display:block}
+      .hero-line-inner{display:block;will-change:transform}
+
+      /* Project items — initial hidden state handled by GSAP */
+      .project-item{will-change:transform,opacity}
+
+      @media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:60px}.project-item{grid-template-columns:1fr;gap:8px}nav .links{display:none}}
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="#" class="name">Mara Chen</a>
+      <div class="links">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+    <main>
+      <section class="hero container" id="hero">
+        <h1>
+          <span class="hero-line"><span class="hero-line-inner">Design</span></span>
+          <span class="hero-line"><span class="hero-line-inner"><span class="accent">&</span> Art</span></span>
+          <span class="hero-line"><span class="hero-line-inner">Direction</span></span>
+        </h1>
+        <p class="subtitle">Independent designer based in Berlin. Specializing in brand identity, editorial, and digital experiences since 2019.</p>
+      </section>
+      <section class="projects container" id="work">
+        <div class="projects-header"><h2>Selected Works</h2><span>(06)</span></div>
+        <a href="#" class="project-item hoverable"><span class="project-title">Void Gallery</span><span class="project-meta">Brand Identity</span><span class="project-year">2026</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Terraform</span><span class="project-meta">Web Experience</span><span class="project-year">2025</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Mono Journal</span><span class="project-meta">Editorial Design</span><span class="project-year">2025</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Noctis</span><span class="project-meta">Visual Identity</span><span class="project-year">2024</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Drift Studio</span><span class="project-meta">Art Direction</span><span class="project-year">2023</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Sonder Press</span><span class="project-meta">Brand System</span><span class="project-year">2022</span></a>
+      </section>
+      <section class="about container" id="about">
+        <div class="about-grid">
+          <div>
+            <p class="about-label">About</p>
+            <p class="about-text">I'm a <strong>designer and art director</strong> obsessed with the intersection of typography, space, and meaning. I believe in reduction — stripping away until only the essential remains.</p>
+          </div>
+          <div>
+            <p class="about-label">Capabilities</p>
+            <ul class="skills-list">
+              <li>Brand Identity</li><li>Art Direction</li><li>Typography</li><li>Editorial Design</li><li>Web Design</li><li>Motion Graphics</li><li>Packaging</li><li>Environmental Graphics</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="contact container" id="contact">
+        <p class="contact-label">Get in Touch</p>
+        <a href="mailto:hello@marachen.design" class="contact-email hoverable">hello@marachen.design</a>
+      </section>
+    </main>
+    <footer>
+      <span>© 2026 Mara Chen</span>
+      <div class="social"><a href="#" class="hoverable">Instagram</a><a href="#" class="hoverable">Dribbble</a><a href="#" class="hoverable">LinkedIn</a><a href="#" class="hoverable">Read.cv</a></div>
+    </footer>
+
+    <!-- GSAP Core + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      // ——————————————————————————————
+      // 1. NAV — fade in on load
+      // ——————————————————————————————
+      gsap.from("nav", {
+        opacity: 0,
+        y: -20,
+        duration: 0.8,
+        delay: 0.2,
+        ease: "power2.out"
+      });
+
+      // ——————————————————————————————
+      // 2. HERO — Kinetic typography reveal
+      //    Each line slides up from below with stagger
+      //    + subtle scroll-driven parallax
+      // ——————————————————————————————
+      const heroTl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+      heroTl
+        .from(".hero-line-inner", {
+          yPercent: 110,
+          rotation: 3,
+          duration: 1.2,
+          stagger: 0.12
+        })
+        .from(".hero .subtitle", {
+          opacity: 0,
+          y: 30,
+          duration: 0.9,
+          ease: "power3.out"
+        }, "-=0.4");
+
+      // Scroll-driven parallax: hero heading moves up as user scrolls
+      gsap.to(".hero h1", {
+        yPercent: -15,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+
+      // Subtitle fades out on scroll
+      gsap.to(".hero .subtitle", {
+        opacity: 0,
+        y: -40,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero",
+          start: "60% top",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+
+      // ——————————————————————————————
+      // 3. PROJECTS HEADER — reveal on scroll
+      // ——————————————————————————————
+      gsap.from(".projects-header", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".projects-header",
+          start: "top 85%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      // ——————————————————————————————
+      // 4. PROJECT ITEMS — staggered scroll reveal
+      //    Each item slides up with a slight horizontal offset
+      // ——————————————————————————————
+      gsap.utils.toArray(".project-item").forEach((item, i) => {
+        gsap.from(item, {
+          opacity: 0,
+          y: 60,
+          x: i % 2 === 0 ? -20 : 20,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: item,
+            start: "top 88%",
+            toggleActions: "play none none none"
+          }
+        });
+      });
+
+      // Project item hover — subtle scale on title
+      gsap.utils.toArray(".project-item").forEach((item) => {
+        const title = item.querySelector(".project-title");
+
+        item.addEventListener("mouseenter", () => {
+          gsap.to(title, {
+            x: 16,
+            duration: 0.4,
+            ease: "power2.out"
+          });
+        });
+
+        item.addEventListener("mouseleave", () => {
+          gsap.to(title, {
+            x: 0,
+            duration: 0.4,
+            ease: "power2.out"
+          });
+        });
+      });
+
+      // ——————————————————————————————
+      // 5. ABOUT SECTION — reveal
+      // ——————————————————————————————
+      gsap.from(".about-label", {
+        opacity: 0,
+        y: 20,
+        duration: 0.6,
+        ease: "power3.out",
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: ".about",
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      gsap.from(".about-text", {
+        opacity: 0,
+        y: 40,
+        duration: 0.9,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".about-text",
+          start: "top 85%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      // Skills list — stagger each item
+      gsap.from(".skills-list li", {
+        opacity: 0,
+        x: -20,
+        duration: 0.5,
+        stagger: 0.07,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".skills-list",
+          start: "top 85%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      // ——————————————————————————————
+      // 6. CONTACT SECTION — reveal
+      // ——————————————————————————————
+      const contactTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".contact",
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      contactTl
+        .from(".contact-label", {
+          opacity: 0,
+          y: 20,
+          duration: 0.6,
+          ease: "power3.out"
+        })
+        .from(".contact-email", {
+          opacity: 0,
+          y: 50,
+          duration: 0.9,
+          ease: "power3.out"
+        }, "-=0.3");
+
+      // ——————————————————————————————
+      // 7. FOOTER — simple fade in
+      // ——————————————————————————————
+      gsap.from("footer", {
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "footer",
+          start: "top 95%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      gsap.from("footer .social a", {
+        opacity: 0,
+        y: 10,
+        stagger: 0.08,
+        duration: 0.4,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "footer",
+          start: "top 95%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      // ——————————————————————————————
+      // 8. KINETIC TYPOGRAPHY — scroll-driven letter spacing
+      //    on hero heading for a premium feel
+      // ——————————————————————————————
+      gsap.to(".hero h1", {
+        letterSpacing: "0.02em",
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+
+      // Refresh ScrollTrigger after everything is loaded
+      window.addEventListener("load", () => {
+        ScrollTrigger.refresh();
+      });
+    </script>
+  </body>
+</html>

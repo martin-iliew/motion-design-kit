@@ -1,0 +1,65 @@
+{
+  "expectations": [
+    {
+      "text": "Site type detected as 'portfolio'",
+      "passed": true,
+      "evidence": "Transcript references 'designer portfolio' and report title is 'Enhancement Report — 02-portfolio-minimal.html'. The site type is recognized contextually as a portfolio throughout, though no explicit 'site type: portfolio' label is stated."
+    },
+    {
+      "text": "GSAP and ScrollTrigger scripts are added",
+      "passed": true,
+      "evidence": "HTML lines 151-152: GSAP 3.12.5 and ScrollTrigger loaded via CDN. Line 154: gsap.registerPlugin(ScrollTrigger). Report section '1. GSAP + ScrollTrigger Integration' confirms this."
+    },
+    {
+      "text": "Phase A identifies issues: no scroll animations (CRITICAL), no reduced-motion guard (CRITICAL)",
+      "passed": false,
+      "evidence": "The enhancement report audit table lists 'No scroll-based reveal animations on any section' as 'High' severity and 'No prefers-reduced-motion consideration' as 'Medium' severity. Neither is labeled 'CRITICAL'. There is no formal 'Phase A' structure — the audit is freeform, not following the expected skill phases."
+    },
+    {
+      "text": "Phase B adds animations from motion-dev pattern library",
+      "passed": false,
+      "evidence": "Animations were added but not from any pattern library. No reference to motion-dev, motion library, catalog.yaml, scores.yaml, or any pattern names from the library. The output uses ad-hoc GSAP code, not library patterns."
+    },
+    {
+      "text": "Hero heading gets kinetic typography (SplitText)",
+      "passed": false,
+      "evidence": "No SplitText plugin loaded or used. Grep for 'SplitText' returned zero matches. Hero uses manual .line/.line-inner wrappers with yPercent clip-reveal instead of GSAP SplitText for kinetic typography."
+    },
+    {
+      "text": "Project items get stagger scroll reveal",
+      "passed": true,
+      "evidence": "HTML lines 275-305: gsap.utils.toArray('.project-item').forEach creates per-item ScrollTrigger timelines with staggered title/meta/year reveals. Report section '4. Project Items — Scroll Reveal + Hover Upgrades' confirms choreographed scroll reveal."
+    },
+    {
+      "text": "About section gets scroll-triggered entrance",
+      "passed": true,
+      "evidence": "HTML lines 310-347: Three separate ScrollTrigger animations for .about-label, .about-text, and .skills-list li with autoAlpha/y reveals. Report section '5. About Section' confirms scroll-triggered entrance."
+    },
+    {
+      "text": "gsap.matchMedia wraps all animation code",
+      "passed": false,
+      "evidence": "gsap.matchMedia is NOT used. Instead, window.matchMedia('(prefers-reduced-motion: reduce)').matches is used with a simple if/else block (lines 159-458). The expectation requires gsap.matchMedia() which provides proper GSAP-integrated responsive breakpoints and cleanup, not the native browser API."
+    },
+    {
+      "text": "Reduced-motion fallback uses clearProps or sets elements to visible state",
+      "passed": false,
+      "evidence": "Grep for 'clearProps' and 'visible' returned zero matches in the HTML. The reduced-motion guard simply skips all JS animations (if !prefersReduced wraps everything). Elements using autoAlpha start with visibility:hidden from GSAP's initial state — if animations are skipped, those elements may remain invisible. No clearProps or explicit visible-state fallback is provided."
+    },
+    {
+      "text": "Summary report follows the specified format with APPLIED/SKIPPED/N-A status per pattern",
+      "passed": false,
+      "evidence": "Grep for 'APPLIED', 'SKIPPED', 'N-A', 'N/A' returned zero matches across all output files. The enhancement report uses a freeform narrative format with numbered sections, not the expected structured format with per-pattern status labels."
+    },
+    {
+      "text": "No CSS transition conflicts with newly added GSAP animations",
+      "passed": false,
+      "evidence": "Multiple CSS transitions exist on elements that also receive GSAP animations. For example: .project-title has CSS 'transition: color .4s, transform .4s' but GSAP also animates it with autoAlpha and x transforms (line 292-296). Nav .links a has 'transition: opacity .3s' but GSAP uses autoAlpha (opacity+visibility) on the same elements (lines 204-211). The prefers-reduced-motion CSS sets transition-duration to 0.01ms, but in normal mode these CSS transitions can conflict with GSAP-driven properties."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 7,
+    "total": 11,
+    "pass_rate": 0.36
+  }
+}

@@ -1,0 +1,64 @@
+# Press down: button compress (mousedown)
+version: "1"
+type: tween
+id: "spring-button-press"
+target:
+  selector: ".btn-spring"
+  type: element
+from:
+  scale: 1
+to:
+  scale: 0.92
+timing:
+  duration_raw: 0.12      # ~micro, below micro=0.15; nearest: micro
+  easing: exit            # power2.in — nearest to exit=power3.in
+trigger:
+  type: click
+a11y:
+  reduced_motion: skip
+---
+# Release spring-back (mouseup / keyup)
+version: "1"
+type: tween
+id: "spring-button-release"
+target:
+  selector: ".btn-spring"
+  type: element
+from:
+  scale: 0.92
+to:
+  scale: 1
+timing:
+  duration: fast          # 0.5s — between fast=0.3 and base=0.6; nearest: fast
+  easing: spring          # back.out default token = back.out(1.7)
+  easing_raw: "cubic-bezier(0.34, 1.56, 0.64, 1)"  # back.out(2.5) approximation — overshoot tuned stronger than default spring
+trigger:
+  type: click
+a11y:
+  reduced_motion: skip
+---
+# Secondary: staggered list spring-in (Example 5)
+version: "1"
+type: tween
+id: "spring-list-entrance"
+target:
+  selector: ".list-item"
+  type: group
+from:
+  opacity: 0
+  scale: 0.85
+  y: 20
+to:
+  opacity: 1
+  scale: 1
+  y: 0
+timing:
+  duration: base          # 0.6s — resolves via motion-tokens.md
+  easing: spring          # back.out(1.7) = default spring token
+stagger:
+  tier: medium            # each: 0.07s — between tight=0.06 and medium=0.08; nearest: medium
+  from: start
+trigger:
+  type: load
+a11y:
+  reduced_motion: instant-final

@@ -1,0 +1,21 @@
+version: '1'
+type: tween
+id: horizontal-loop-carousel
+target:
+  selector: '[data-motion="horizontal-loop-carousel"]'
+  type: group
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: drag
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- draggable
+config:
+  root: '[data-motion="horizontal-loop-carousel"]'
+  items: '[data-motion="horizontal-loop-carousel"] [data-motion-item]'
+  target: '[data-motion="horizontal-loop-carousel"] [data-motion-target]'
+  path: '[data-motion="horizontal-loop-carousel"] [data-motion-path]'

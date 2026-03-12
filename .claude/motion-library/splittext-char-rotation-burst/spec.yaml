@@ -1,0 +1,21 @@
+version: '1'
+type: tween
+id: splittext-char-rotation-burst
+target:
+  selector: '[data-motion="splittext-char-rotation-burst"]'
+  type: group
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: load
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- splittext
+config:
+  root: '[data-motion="splittext-char-rotation-burst"]'
+  items: '[data-motion="splittext-char-rotation-burst"] [data-motion-item]'
+  target: '[data-motion="splittext-char-rotation-burst"] [data-motion-target]'
+  path: '[data-motion="splittext-char-rotation-burst"] [data-motion-path]'

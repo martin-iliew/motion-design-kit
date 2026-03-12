@@ -1,0 +1,36 @@
+version: "1"
+type: procedural
+id: "cursor-follower-tracking"
+description: "Dot and ring DOM elements track mouse position continuously via gsap.quickTo(). Dot follows immediately (duration 0.15s), ring lags behind (duration 0.5s) — the timing asymmetry creates the characteristic elastic trail."
+config:
+  dot_duration: 0.15       # seconds — snap response (token: micro)
+  ring_duration: 0.5       # seconds — trailing lag (token: ~fast)
+  dot_size: 8              # px diameter
+  ring_size: 40            # px diameter
+  ring_hover_size: 60      # px diameter on hover
+  ring_link_size: 80       # px diameter on link hover
+behavior: "On every mousemove event, quickTo setters update dot x/y (duration 0.15s) and ring x/y (duration 0.5s) independently. On mouseenter of interactive elements, ring class toggles to expand state. On mousedown, ring scales to 0.75; on mouseup, springs back with elastic easing."
+a11y:
+  reduced_motion: skip     # purely decorative — hide and skip via gsap.matchMedia
+
+---
+
+version: "1"
+type: tween
+id: "cursor-hover-expand"
+description: "Ring expands when cursor enters interactive elements. Fully translatable sub-animation of the cursor system."
+target:
+  selector: ".c-cursor--ring"
+  type: element
+from:
+  scale: 1
+to:
+  scale: 1.5               # approximation — CSS class handles actual size change
+timing:
+  duration: micro          # 0.15s
+  easing: entrance
+trigger:
+  type: hover
+  event_target: "a, button, [data-cursor]"
+a11y:
+  reduced_motion: skip

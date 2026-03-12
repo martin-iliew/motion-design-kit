@@ -1,0 +1,45 @@
+version: "1"
+id: gradient-text-flow
+name: Gradient Text Flow
+type: tween
+category: typography
+framework: CSS
+description: Animated gradient background flowing through text with continuous or scroll-triggered motion
+
+# Accessibility notes
+a11y: |
+  Respects prefers-reduced-motion media query to disable animation for users who request reduced motion.
+  Text remains readable at all stages of the animation.
+  Sufficient color contrast maintained between text and animated gradient background.
+  Animation is purely decorative and does not convey essential information.
+
+# Timing specification for continuous gradient flow
+timing:
+  duration: "3s"
+  delay: "0s"
+  easing: "linear"
+  iteration: "infinite"
+
+# Gradient animation from-to states
+from:
+  backgroundPosition: "0% 0%"
+  backgroundSize: "200% 100%"
+
+to:
+  backgroundPosition: "100% 0%"
+  backgroundSize: "200% 100%"
+
+# Animation trigger configuration
+trigger:
+  type: "continuous"
+  options:
+    onScroll: false
+    onHover: false
+    onLoad: true
+
+# Alternative scroll-triggered variant
+scrollVariant:
+  trigger: scroll-enter
+  startsAt: "0%"
+  endsAt: "100%"
+  scrub: false

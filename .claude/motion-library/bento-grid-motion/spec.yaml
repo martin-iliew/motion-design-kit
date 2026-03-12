@@ -1,0 +1,41 @@
+# Enter: card hover lift (CSS-driven)
+version: "1"
+type: tween
+id: "bento-card-hover-enter"
+target:
+  selector: ".bento-card"
+  type: element
+from:
+  y: 0
+  scale: 1.0
+to:
+  y: -6
+  scale: 1.015
+timing:
+  duration_raw: 0.22      # ~micro, between micro=0.15 and fast=0.3; nearest: micro
+  easing: spring          # cubic-bezier(0.34, 1.56, 0.64, 1) = spring token
+trigger:
+  type: hover
+a11y:
+  reduced_motion: skip
+---
+# Exit: card hover release (CSS-driven, base transition rule)
+version: "1"
+type: tween
+id: "bento-card-hover-exit"
+target:
+  selector: ".bento-card"
+  type: element
+from:
+  y: -6
+  scale: 1.015
+to:
+  y: 0
+  scale: 1.0
+timing:
+  duration_raw: 0.35      # fast, between fast=0.3 and base=0.6; nearest: fast
+  easing: transition      # cubic-bezier(0.25, 0.46, 0.45, 0.94) — nearest: transition=power2.inOut
+trigger:
+  type: hover
+a11y:
+  reduced_motion: skip

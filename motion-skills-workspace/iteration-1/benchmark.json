@@ -1,0 +1,269 @@
+{
+  "metadata": {
+    "skill_name": "motion-design-kit",
+    "skill_path": "c:\\Users\\Martin\\Desktop\\Weband\\Repositories\\claude-skills\\.claude\\skills",
+    "executor_model": "claude-opus-4-6",
+    "analyzer_model": "claude-opus-4-6",
+    "timestamp": "2026-03-12T00:00:00Z",
+    "evals_run": [1, 2, 3, 4],
+    "evals_defined": [1, 2, 3, 4, 5, 6],
+    "pending_evals": [5, 6],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "eval_name": "portfolio-motion-dev",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.92,
+        "passed": 11,
+        "failed": 1,
+        "total": 12,
+        "time_seconds": 213.7,
+        "tokens": 56112,
+        "tool_calls": 15,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Output file is a duplicate (not the original)", "passed": true, "evidence": "02-portfolio-minimal-animated.html created; original untouched"},
+        {"text": "GSAP core + ScrollTrigger CDN scripts included", "passed": true, "evidence": "Three CDN scripts present (gsap, ScrollTrigger, SplitText)"},
+        {"text": "SplitText plugin loaded from cdn.jsdelivr.net and registered", "passed": true, "evidence": "SplitText CDN script and gsap.registerPlugin(SplitText) present"},
+        {"text": "Hero timeline has 4+ chained .fromTo or .from calls", "passed": false, "evidence": "Only 2 chained calls on hero timeline (.from split.words + .fromTo subtitle)"},
+        {"text": "gsap.matchMedia wraps animation code with prefers-reduced-motion guard", "passed": true, "evidence": "All code inside mm.add with prefers-reduced-motion: no-preference"},
+        {"text": "autoAlpha used instead of bare opacity", "passed": true, "evidence": "All fade animations use autoAlpha, zero bare opacity calls"},
+        {"text": "ScrollTrigger covers projects, about, and contact sections", "passed": true, "evidence": "ScrollTrigger reveals on all three sections confirmed"},
+        {"text": "At least one interactive effect (magnetic, spring hover, or tilt)", "passed": true, "evidence": "Magnetic cursor pull on nav/footer, custom cursor follower, spring hover on project items"},
+        {"text": "No CSS transition conflicts with GSAP-owned properties", "passed": true, "evidence": "4 CSS transition conflicts explicitly removed"},
+        {"text": "Token comments present (// token: base, etc.)", "passed": true, "evidence": "Token comments found throughout animation values"},
+        {"text": "gsap.registerPlugin() called for all used plugins", "passed": true, "evidence": "gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin) present"},
+        {"text": "ScrollTrigger.refresh() called on window load", "passed": true, "evidence": "window.addEventListener('load', () => ScrollTrigger.refresh()) present"}
+      ]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "portfolio-motion-dev",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.58,
+        "passed": 7,
+        "failed": 5,
+        "total": 12,
+        "time_seconds": 156.8,
+        "tokens": 21963,
+        "tool_calls": 6,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Output file is a duplicate (not the original)", "passed": true, "evidence": "Separate file created; original untouched"},
+        {"text": "GSAP core + ScrollTrigger CDN scripts included", "passed": true, "evidence": "GSAP 3.12.5 + ScrollTrigger CDN present"},
+        {"text": "SplitText plugin loaded from cdn.jsdelivr.net and registered", "passed": false, "evidence": "Not loaded; custom utility functions used instead"},
+        {"text": "Hero timeline has 4+ chained .fromTo or .from calls", "passed": false, "evidence": "Only 2 chained .to() calls on hero timeline"},
+        {"text": "gsap.matchMedia wraps animation code with prefers-reduced-motion guard", "passed": false, "evidence": "Used browser-native window.matchMedia as post-hoc kill switch instead of gsap.matchMedia()"},
+        {"text": "autoAlpha used instead of bare opacity", "passed": true, "evidence": "autoAlpha used consistently throughout"},
+        {"text": "ScrollTrigger covers projects, about, and contact sections", "passed": true, "evidence": "All three sections have ScrollTrigger reveals"},
+        {"text": "At least one interactive effect (magnetic, spring hover, or tilt)", "passed": true, "evidence": "Magnetic hover on contact email"},
+        {"text": "No CSS transition conflicts with GSAP-owned properties", "passed": false, "evidence": "nav .links a has transition: opacity .3s ease conflicting with GSAP autoAlpha"},
+        {"text": "Token comments present (// token: base, etc.)", "passed": false, "evidence": "No token comments; only section header comments"},
+        {"text": "gsap.registerPlugin() called for all used plugins", "passed": true, "evidence": "gsap.registerPlugin(ScrollTrigger) present"},
+        {"text": "ScrollTrigger.refresh() called on window load", "passed": true, "evidence": "ScrollTrigger.refresh() on load event present"}
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "wellness-motion-dev",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 12,
+        "failed": 0,
+        "total": 12,
+        "time_seconds": 218.5,
+        "tokens": 59367,
+        "tool_calls": 12,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Output file is a duplicate, original untouched", "passed": true, "evidence": "12-health-wellness-animated.html created; original intact"},
+        {"text": "GSAP and ScrollTrigger CDN scripts included", "passed": true, "evidence": "Three CDN scripts: gsap@3.14, ScrollTrigger, SplitText"},
+        {"text": "Motion personality is subtle — durations bias toward base/slow (0.6-1.0s)", "passed": true, "evidence": "Primary durations 0.7-1.2s, firmly in base/slow range"},
+        {"text": "Easing uses entrance (power2.out) or transition (power2.inOut), NOT spring or elastic", "passed": true, "evidence": "Every easing is power2.out or power2.in; zero spring/elastic/bounce"},
+        {"text": "Hero parallax with yPercent and scrub:true, desktop-only", "passed": true, "evidence": "yPercent: -8 with scrub: 1.5, gated by !isTouch"},
+        {"text": "Ritual cards have staggered scroll reveal", "passed": true, "evidence": "3 reveal-cards in #rituals with delay: i * 0.13"},
+        {"text": "Product cards have staggered scroll reveal", "passed": true, "evidence": "4 reveal-cards in #products with same stagger pattern"},
+        {"text": "Journal section has scroll-triggered entrance", "passed": true, "evidence": "Section heading reveals and 3 card staggered reveals"},
+        {"text": "gsap.matchMedia wraps all animation code", "passed": true, "evidence": "All code inside mm.add(prefers-reduced-motion: no-preference) with reduce fallback"},
+        {"text": "autoAlpha used instead of bare opacity", "passed": true, "evidence": "Zero bare opacity; all fades use autoAlpha"},
+        {"text": "No layout-triggering properties animated", "passed": true, "evidence": "Only transform-based properties: y, yPercent, scale, x, autoAlpha"},
+        {"text": "Token comments present in animation values", "passed": true, "evidence": "29 // token: comments across all animation values"}
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "wellness-motion-dev",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.83,
+        "passed": 10,
+        "failed": 2,
+        "total": 12,
+        "time_seconds": 180.8,
+        "tokens": 28046,
+        "tool_calls": 6,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Output file is a duplicate, original untouched", "passed": true, "evidence": "Separate file created; original intact"},
+        {"text": "GSAP and ScrollTrigger CDN scripts included", "passed": true, "evidence": "GSAP 3.12.5 + ScrollTrigger CDN present"},
+        {"text": "Motion personality is subtle — durations bias toward base/slow (0.6-1.0s)", "passed": true, "evidence": "Durations 0.6-1.4s in base/slow range"},
+        {"text": "Easing uses entrance (power2.out) or transition (power2.inOut), NOT spring or elastic", "passed": true, "evidence": "Primarily power2.out/power1.inOut; back.out(1.2) on CTA technically passes"},
+        {"text": "Hero parallax with yPercent and scrub:true, desktop-only", "passed": false, "evidence": "Uses y: -50 instead of yPercent; scrub: 1.2 not scrub: true"},
+        {"text": "Ritual cards have staggered scroll reveal", "passed": true, "evidence": "3-card stagger with 0.15s apart"},
+        {"text": "Product cards have staggered scroll reveal", "passed": true, "evidence": "4-card stagger with 0.12s apart"},
+        {"text": "Journal section has scroll-triggered entrance", "passed": true, "evidence": "Heading reveals + 3-card stagger"},
+        {"text": "gsap.matchMedia wraps all animation code", "passed": true, "evidence": "matchMedia with reduced-motion support"},
+        {"text": "autoAlpha used instead of bare opacity", "passed": true, "evidence": "36 instances of autoAlpha, zero bare opacity"},
+        {"text": "No layout-triggering properties animated", "passed": true, "evidence": "Only transform-based properties animated"},
+        {"text": "Token comments present in animation values", "passed": false, "evidence": "Section comments only; no inline token annotations"}
+      ]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "audit-index-page",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": 152.1,
+        "tokens": 39853,
+        "tool_calls": 9,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Structured audit report table with Issue/Severity/Fix columns", "passed": true, "evidence": "20-row table with #, Issue, Severity, Location, Fix columns"},
+        {"text": "All 5 audit dimensions evaluated", "passed": true, "evidence": "DEPENDENCIES, MODERNITY, PERFORMANCE, CONFLICT, CONSISTENCY each with verdicts"},
+        {"text": "CRITICAL issues identified for no-GSAP, no-scroll, no-reduced-motion", "passed": true, "evidence": "All three flagged as CRITICAL"},
+        {"text": "Summary count line with CRITICAL/WARNING/INFO", "passed": true, "evidence": "7 critical, 9 warnings, 4 info"},
+        {"text": "Before/After fix patches for CRITICAL and WARNING items", "passed": true, "evidence": "7 patches covering all CRITICALs and 2 key WARNINGs"},
+        {"text": "Why explanation for each fix", "passed": true, "evidence": "All 7 patches include Why sentence"},
+        {"text": "Identifies no animation JS despite animation-related classes", "passed": true, "evidence": "Explicitly called out with 19+ class names listed"}
+      ]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "audit-index-page",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.14,
+        "passed": 1,
+        "failed": 6,
+        "total": 7,
+        "time_seconds": 119.4,
+        "tokens": 32196,
+        "tool_calls": 6,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Structured audit report table with Issue/Severity/Fix columns", "passed": false, "evidence": "Prose sections with inline severity, no unified table"},
+        {"text": "All 5 audit dimensions evaluated", "passed": false, "evidence": "Covers performance and consistency but not named 5 dimensions"},
+        {"text": "CRITICAL issues identified for no-GSAP, no-scroll, no-reduced-motion", "passed": false, "evidence": "No-GSAP and no-scroll are CRITICAL but reduced-motion labeled High"},
+        {"text": "Summary count line with CRITICAL/WARNING/INFO", "passed": false, "evidence": "No summary line; different severity tier names used"},
+        {"text": "Before/After fix patches for CRITICAL and WARNING items", "passed": false, "evidence": "Descriptive bullet points, no code diffs"},
+        {"text": "Why explanation for each fix", "passed": false, "evidence": "No explicit Why sentences"},
+        {"text": "Identifies no animation JS despite animation-related classes", "passed": true, "evidence": "Thoroughly documented with 19+ elements listed"}
+      ]
+    },
+    {
+      "eval_id": 4,
+      "eval_name": "enhance-portfolio",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 10,
+        "failed": 0,
+        "total": 10,
+        "time_seconds": 238.7,
+        "tokens": 77252,
+        "tool_calls": 23,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Site type detected as portfolio", "passed": true, "evidence": "Confirmed in transcript, report, and metrics.json"},
+        {"text": "GSAP and ScrollTrigger scripts added", "passed": true, "evidence": "Three CDN scripts plus Lenis, all version-pinned"},
+        {"text": "Phase A identifies CRITICAL issues", "passed": true, "evidence": "Zero scroll animations and no reduced-motion guard flagged CRITICAL"},
+        {"text": "Phase B adds pattern library animations", "passed": true, "evidence": "15 new animations from 6 named patterns"},
+        {"text": "Hero kinetic typography (SplitText)", "passed": true, "evidence": "SplitText with word-level stagger and line masking"},
+        {"text": "Project items stagger scroll reveal", "passed": true, "evidence": "Individual ScrollTrigger reveals with 0.09s stagger"},
+        {"text": "About section scroll-triggered entrance", "passed": true, "evidence": "Four separate ScrollTrigger reveals"},
+        {"text": "gsap.matchMedia reduced-motion guard", "passed": true, "evidence": "All code wrapped with clearProps fallback and Lenis destroy"},
+        {"text": "Summary report APPLIED/SKIPPED/N-A format", "passed": true, "evidence": "Structured format with status per pattern"},
+        {"text": "No CSS transition conflicts", "passed": true, "evidence": "Conflicting transitions removed with comments"}
+      ]
+    },
+    {
+      "eval_id": 4,
+      "eval_name": "enhance-portfolio",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.50,
+        "passed": 5,
+        "failed": 5,
+        "total": 10,
+        "time_seconds": 166.2,
+        "tokens": 23258,
+        "tool_calls": 7,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Site type detected as portfolio", "passed": true, "evidence": "Portfolio referenced throughout transcript and report"},
+        {"text": "GSAP and ScrollTrigger scripts added", "passed": true, "evidence": "GSAP 3.12.5 + ScrollTrigger CDN present"},
+        {"text": "Phase A identifies CRITICAL issues", "passed": false, "evidence": "No Phase A/B structure; issues not labeled CRITICAL"},
+        {"text": "Phase B adds pattern library animations", "passed": false, "evidence": "No pattern library references; animations designed from scratch"},
+        {"text": "Hero kinetic typography (SplitText)", "passed": true, "evidence": "Manual span wrapping with line-level clip-reveal"},
+        {"text": "Project items stagger scroll reveal", "passed": true, "evidence": "Individual ScrollTrigger per project item"},
+        {"text": "About section scroll-triggered entrance", "passed": true, "evidence": "Three separate scroll-triggered animations"},
+        {"text": "gsap.matchMedia reduced-motion guard", "passed": false, "evidence": "matchMedia used only for viewport width; prefers-reduced-motion absent"},
+        {"text": "Summary report APPLIED/SKIPPED/N-A format", "passed": false, "evidence": "Free-form narrative report; no structured status taxonomy"},
+        {"text": "No CSS transition conflicts", "passed": false, "evidence": "No explicit conflict analysis performed"}
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 0.98, "stddev": 0.04, "min": 0.92, "max": 1.0},
+      "time_seconds": {"mean": 205.8, "stddev": 37.0, "min": 152.1, "max": 238.7},
+      "tokens": {"mean": 58146, "stddev": 15334, "min": 39853, "max": 77252}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 0.51, "stddev": 0.29, "min": 0.14, "max": 0.83},
+      "time_seconds": {"mean": 155.8, "stddev": 25.7, "min": 119.4, "max": 180.8},
+      "tokens": {"mean": 26366, "stddev": 4724, "min": 21963, "max": 32196}
+    },
+    "delta": {
+      "pass_rate": "+0.47",
+      "time_seconds": "+50.0",
+      "tokens": "+31780"
+    }
+  },
+  "notes": [
+    "Iteration 1 benchmark covers evals 1-4. Evals 5-6 are defined in evals/evals.json but are still pending execution.",
+    "With-skill pass rate: 98% avg vs baseline 51% avg (+47% improvement)",
+    "Biggest delta on motion-audit (100% vs 14%) — skill enforces structured output format that baseline omits entirely",
+    "motion-enhance with-skill added reduced-motion guard; baseline OMITTED it entirely — critical accessibility gap",
+    "Token comments (// token: base) consistently fail in baseline — this is a skill-unique feature that never occurs organically",
+    "Hero timeline 4+ chained calls still failed even with-skill in eval 1 — worth tightening the hero timeline generation template",
+    "With-skill uses ~2.2x more tokens (58K vs 26K avg) and ~32% more time (206s vs 156s avg) — expected cost of systematic workflow",
+    "Baseline eval 2 (wellness) scored surprisingly well (83%) — the brief was specific enough that general knowledge produced good results",
+    "back.out(1.2) in baseline eval 2 technically passed the easing assertion but violates the subtle personality spirit"
+  ]
+}

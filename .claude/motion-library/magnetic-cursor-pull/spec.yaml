@@ -1,0 +1,40 @@
+version: "1"
+type: procedural
+id: "magnetic-cursor-pull"
+description: "Interactive elements attract the cursor within a defined radius. On mousemove inside the element, x/y translate toward the cursor scaled by a strength multiplier. On mouseleave, elements spring back to origin."
+config:
+  strength: 0.4                                    # attraction multiplier (0–1)
+  max_distance: 80                                 # px radius of magnetic field
+  approach_duration: 0.4                           # seconds — follow speed (token: fast)
+  approach_easing: "cubic-bezier(0, 0, 0.1, 1)"   # token: impact
+  return_duration: 0.7                             # seconds — snap-back (token: ~base)
+  return_easing: "cubic-bezier(0.34, 1.56, 0.64, 1)" # token: elastic (approximation)
+  inner_parallax_ratio: 0.5                        # inner element moves at half the outer rate
+behavior: "On mousemove within maxDist radius, element and inner child translate toward cursor (dx * strength, dy * strength) with overwrite: auto. On mouseleave, both tween back to x:0, y:0 with elastic easing. All logic scoped to gsap.matchMedia for reduced-motion."
+a11y:
+  reduced_motion: skip
+
+---
+
+version: "1"
+type: tween
+id: "magnetic-cursor-return"
+description: "The snap-back portion of the magnetic effect — fully translatable."
+target:
+  selector: "[data-magnetic]"
+  type: element
+from:
+  x: "<dynamic>"   # computed from mousemove offset at time of mouseleave
+  y: "<dynamic>"
+to:
+  x: 0
+  y: 0
+timing:
+  duration: base       # 0.7s — nearest token
+  easing: elastic
+  easing_raw: "cubic-bezier(0.34, 1.56, 0.64, 1)"  # elastic approximation
+trigger:
+  type: hover          # fires on mouseleave
+  event_target: "[data-magnetic]"
+a11y:
+  reduced_motion: skip

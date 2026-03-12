@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MARA CHEN — Designer & Art Director</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      *{margin:0;padding:0;box-sizing:border-box}
+      :root{--bg:#f5f0eb;--text:#1a1a1a;--accent:#ff3d00;--muted:#999;--mono:'JetBrains Mono',monospace;--sans:'Space Grotesk',system-ui,sans-serif}
+      ::selection{background:var(--accent);color:#fff}
+      body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden}
+      .container{max-width:1400px;margin:0 auto;padding:0 clamp(24px,4vw,80px)}
+      nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:24px clamp(24px,4vw,80px);display:flex;justify-content:space-between;align-items:center;mix-blend-mode:difference;color:#fff}
+      nav a{color:inherit;text-decoration:none;font-size:14px;font-family:var(--mono)}
+      nav .name{font-weight:700;font-size:16px;letter-spacing:.05em;text-transform:uppercase}
+      nav .links{display:flex;gap:32px}
+      /* Removed CSS transition on nav links — GSAP owns hover via magnetic pull */
+      nav .links a{opacity:.6}
+      nav .links a:hover{opacity:1}
+      .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:80px;padding-top:120px}
+      .hero h1{font-size:clamp(4rem,12vw,14rem);font-weight:700;line-height:.9;letter-spacing:-.04em;text-transform:uppercase}
+      .hero h1 .accent{color:var(--accent)}
+      .hero .subtitle{margin-top:40px;font-family:var(--mono);font-size:14px;color:var(--muted);max-width:400px;line-height:1.6}
+      .projects{padding:160px 0}
+      .projects-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:80px;border-bottom:1px solid rgba(0,0,0,.1);padding-bottom:20px}
+      .projects-header h2{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted)}
+      .projects-header span{font-family:var(--mono);font-size:12px;color:var(--muted)}
+      /* Removed CSS transition on project-item hover — GSAP owns transform via spring physics */
+      .project-item{border-bottom:1px solid rgba(0,0,0,.08);padding:40px 0;display:grid;grid-template-columns:1fr auto auto;gap:40px;align-items:baseline;text-decoration:none;color:inherit}
+      .project-item .project-title{transition:color 0.3s ease}
+      .project-item:hover .project-title{color:var(--accent)}
+      .project-title{font-size:clamp(2rem,5vw,4.5rem);font-weight:700;letter-spacing:-.03em}
+      .project-meta,.project-year{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
+      .about{padding:160px 0;border-top:1px solid rgba(0,0,0,.1)}
+      .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:120px}
+      .about-label{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:40px}
+      .about-text{font-size:clamp(1.5rem,3vw,2.5rem);font-weight:300;line-height:1.4;letter-spacing:-.01em}
+      .about-text strong{font-weight:700}
+      .skills-list{list-style:none;font-family:var(--mono);font-size:14px;line-height:2.2;color:var(--muted)}
+      /* Removed CSS transition on skills-list li — GSAP owns via scroll reveal */
+      .skills-list li:hover{color:var(--text)}
+      .contact{padding:200px 0 100px;border-top:1px solid rgba(0,0,0,.1);text-align:center}
+      .contact-label{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:40px}
+      /* Removed CSS transition on contact-email — no GSAP conflict but keeping color transition since GSAP doesn't own it */
+      .contact-email{font-size:clamp(2rem,6vw,6rem);font-weight:700;letter-spacing:-.03em;text-decoration:none;color:var(--text);display:inline-block;border-bottom:4px solid transparent;transition:color 0.3s ease, border-bottom-color 0.3s ease}
+      .contact-email:hover{color:var(--accent);border-bottom-color:var(--accent)}
+      footer{padding:40px clamp(24px,4vw,80px);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;color:var(--muted);border-top:1px solid rgba(0,0,0,.05)}
+      /* Removed CSS transition on footer links — GSAP owns hover via magnetic pull */
+      footer a{color:inherit;text-decoration:none}
+      footer a:hover{color:var(--text)}
+      footer .social{display:flex;gap:24px}
+      @media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:60px}.project-item{grid-template-columns:1fr;gap:8px}nav .links{display:none}}
+
+      /* Custom cursor styles — Pattern 14 */
+      .cursor-dot, .cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        mix-blend-mode: difference;
+      }
+      .cursor-dot {
+        width: 8px;
+        height: 8px;
+        background: #fff;
+        border-radius: 50%;
+      }
+      .cursor-ring {
+        width: 40px;
+        height: 40px;
+        border: 1.5px solid #fff;
+        border-radius: 50%;
+        opacity: 0.5;
+      }
+
+      /* Hide custom cursor on touch/reduced-motion */
+      @media (pointer: coarse), (prefers-reduced-motion: reduce) {
+        .cursor-dot, .cursor-ring { display: none !important; }
+        * { cursor: auto !important; }
+      }
+
+      /* Hide default cursor on fine pointer devices (restored in reduced-motion) */
+      @media (hover: hover) and (pointer: fine) {
+        *, a, button { cursor: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Custom cursor elements — Pattern 14 -->
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
+
+    <nav>
+      <a href="#" class="name">Mara Chen</a>
+      <div class="links">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+    <main>
+      <section class="hero container" id="hero">
+        <h1>Design<br /><span class="accent">&</span> Art<br />Direction</h1>
+        <p class="subtitle">Independent designer based in Berlin. Specializing in brand identity, editorial, and digital experiences since 2019.</p>
+      </section>
+      <section class="projects container" id="work">
+        <div class="projects-header"><h2>Selected Works</h2><span>(06)</span></div>
+        <a href="#" class="project-item hoverable"><span class="project-title">Void Gallery</span><span class="project-meta">Brand Identity</span><span class="project-year">2026</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Terraform</span><span class="project-meta">Web Experience</span><span class="project-year">2025</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Mono Journal</span><span class="project-meta">Editorial Design</span><span class="project-year">2025</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Noctis</span><span class="project-meta">Visual Identity</span><span class="project-year">2024</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Drift Studio</span><span class="project-meta">Art Direction</span><span class="project-year">2023</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Sonder Press</span><span class="project-meta">Brand System</span><span class="project-year">2022</span></a>
+      </section>
+      <section class="about container" id="about">
+        <div class="about-grid">
+          <div>
+            <p class="about-label">About</p>
+            <p class="about-text">I'm a <strong>designer and art director</strong> obsessed with the intersection of typography, space, and meaning. I believe in reduction — stripping away until only the essential remains.</p>
+          </div>
+          <div>
+            <p class="about-label">Capabilities</p>
+            <ul class="skills-list">
+              <li>Brand Identity</li><li>Art Direction</li><li>Typography</li><li>Editorial Design</li><li>Web Design</li><li>Motion Graphics</li><li>Packaging</li><li>Environmental Graphics</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="contact container" id="contact">
+        <p class="contact-label">Get in Touch</p>
+        <a href="mailto:hello@marachen.design" class="contact-email hoverable">hello@marachen.design</a>
+      </section>
+    </main>
+    <footer>
+      <span>&copy; 2026 Mara Chen</span>
+      <div class="social"><a href="#" class="hoverable">Instagram</a><a href="#" class="hoverable">Dribbble</a><a href="#" class="hoverable">LinkedIn</a><a href="#" class="hoverable">Read.cv</a></div>
+    </footer>
+
+    <!-- Lenis Smooth Scroll (trending 9/10, portfolio standard) -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+    <!-- GSAP Core + Plugins (pinned version, all free since 3.13) -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/SplitText.min.js"></script>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger, SplitText);
+
+      // ─── Lenis Smooth Scroll — Pattern: lenis-smooth-scroll (trending 9/10) ───
+      const lenis = new Lenis({
+        duration: 1.2,       // momentum duration — butter-smooth, not sluggish
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // exponential ease-out
+        touchMultiplier: 2,
+      });
+
+      // Sync Lenis → GSAP ScrollTrigger
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0); // Lenis owns smoothing — disable GSAP's
+
+      // ─── gsap.matchMedia() — all animations gated ───
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+
+        // ─── Pattern 1 — Hero Entrance Timeline (kinetic-typography-splittext, score 8) ───
+        const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } }); // token: impact
+
+        // SplitText on hero h1 — word-level stagger with line masking
+        const heroSplit = new SplitText(".hero h1", {
+          type: "lines,words",
+          mask: "lines",     // words slide up from below the clipping line
+          autoSplit: true,   // re-splits on resize / font load
+          aria: true,        // preserves accessibility
+        });
+
+        heroTl
+          .fromTo(heroSplit.words,
+            { yPercent: 110, autoAlpha: 0 },
+            {
+              yPercent: 0,
+              autoAlpha: 1,
+              duration: 0.8,        // token: ~slow
+              ease: "power3.out",   // token: impact
+              stagger: { each: 0.05, from: "start" }, // token: tight
+            }
+          )
+          .fromTo(".hero .subtitle",
+            { autoAlpha: 0, y: 20 },
+            { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" }, // token: base / entrance
+            "-=0.3"
+          );
+
+        // ─── Projects header — scroll reveal (scroll-trigger-reveal, score 9) ───
+        gsap.fromTo(".projects-header",
+          { autoAlpha: 0, y: 30 },
+          {
+            autoAlpha: 1, y: 0,
+            duration: 0.65,        // token: base
+            ease: "power2.out",    // token: entrance
+            scrollTrigger: { trigger: ".projects-header", start: "top 85%", toggleActions: "play none none none" }
+          }
+        );
+
+        // ─── Pattern 4 — Project items stagger scroll reveal (scroll-trigger-reveal, score 9) ───
+        const projectItems = gsap.utils.toArray(".project-item");
+        projectItems.forEach((item, i) => {
+          gsap.fromTo(item,
+            { autoAlpha: 0, y: 40 },
+            {
+              autoAlpha: 1, y: 0,
+              duration: 0.6,        // token: base
+              ease: "power3.out",   // token: impact
+              delay: i * 0.09,      // token: medium stagger
+              scrollTrigger: { trigger: item, start: "top 85%", toggleActions: "play none none none" }
+            }
+          );
+        });
+
+        // ─── Pattern 7 — Spring hover on project items (spring-physics-interactions, score 9) ───
+        projectItems.forEach(item => {
+          item.addEventListener("mouseenter", () => {
+            item.style.willChange = "transform";
+            gsap.to(item, {
+              x: 8,
+              duration: 0.3,           // token: fast
+              ease: "back.out(1.7)",   // token: spring
+            });
+          });
+          item.addEventListener("mouseleave", () => {
+            gsap.to(item, {
+              x: 0,
+              duration: 0.3,           // token: fast
+              ease: "power2.out",      // token: entrance
+              onComplete: () => { item.style.willChange = "auto"; }
+            });
+          });
+        });
+
+        // ─── About section — scroll reveals (scroll-trigger-reveal, score 9) ───
+        gsap.fromTo(".about-label",
+          { autoAlpha: 0, y: 30 },
+          {
+            autoAlpha: 1, y: 0,
+            duration: 0.65,        // token: base
+            ease: "power2.out",    // token: entrance
+            scrollTrigger: { trigger: ".about", start: "top 75%", toggleActions: "play none none none" }
+          }
+        );
+
+        gsap.fromTo(".about-text",
+          { autoAlpha: 0, y: 30 },
+          {
+            autoAlpha: 1, y: 0,
+            duration: 0.65,        // token: base
+            ease: "power2.out",    // token: entrance
+            scrollTrigger: { trigger: ".about-text", start: "top 85%", toggleActions: "play none none none" }
+          }
+        );
+
+        // Skills list — stagger reveal
+        const skillItems = gsap.utils.toArray(".skills-list li");
+        skillItems.forEach((li, i) => {
+          gsap.fromTo(li,
+            { autoAlpha: 0, x: -15 },
+            {
+              autoAlpha: 1, x: 0,
+              duration: 0.5,        // token: ~fast-base
+              ease: "power2.out",   // token: entrance
+              delay: i * 0.05,      // token: tight stagger
+              scrollTrigger: { trigger: ".skills-list", start: "top 85%", toggleActions: "play none none none" }
+            }
+          );
+        });
+
+        // Second about-label (Capabilities)
+        const aboutLabels = gsap.utils.toArray(".about-label");
+        if (aboutLabels.length > 1) {
+          gsap.fromTo(aboutLabels[1],
+            { autoAlpha: 0, y: 30 },
+            {
+              autoAlpha: 1, y: 0,
+              duration: 0.65,        // token: base
+              ease: "power2.out",    // token: entrance
+              scrollTrigger: { trigger: aboutLabels[1], start: "top 85%", toggleActions: "play none none none" }
+            }
+          );
+        }
+
+        // ─── Contact section — scroll reveal ───
+        gsap.fromTo(".contact-label",
+          { autoAlpha: 0, y: 20 },
+          {
+            autoAlpha: 1, y: 0,
+            duration: 0.6,         // token: base
+            ease: "power2.out",    // token: entrance
+            scrollTrigger: { trigger: ".contact", start: "top 75%", toggleActions: "play none none none" }
+          }
+        );
+
+        gsap.fromTo(".contact-email",
+          { autoAlpha: 0, y: 30 },
+          {
+            autoAlpha: 1, y: 0,
+            duration: 0.8,         // token: ~slow
+            ease: "power3.out",    // token: impact
+            scrollTrigger: { trigger: ".contact-email", start: "top 85%", toggleActions: "play none none none" }
+          }
+        );
+
+        // ─── Pattern 8 — Footer scroll reveal (scroll-trigger-reveal, score 9) ───
+        gsap.fromTo("footer",
+          { autoAlpha: 0, y: 40 },
+          {
+            autoAlpha: 1, y: 0,
+            duration: 0.8,         // token: base
+            ease: "power2.out",    // token: entrance
+            scrollTrigger: { trigger: "footer", start: "top 95%" }
+          }
+        );
+
+        // ─── Pattern 14 — Custom Cursor Follower (custom-cursor-follower, score 8) ───
+        const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+        if (!isTouch && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+          const dot = document.querySelector(".cursor-dot");
+          const ring = document.querySelector(".cursor-ring");
+
+          if (dot && ring) {
+            const xTo = gsap.quickTo(dot, "x", { duration: 0.15, ease: "power2.out" });   // token: micro
+            const yTo = gsap.quickTo(dot, "y", { duration: 0.15, ease: "power2.out" });
+            const ringX = gsap.quickTo(ring, "x", { duration: 0.35, ease: "power2.out" }); // lagging ring
+            const ringY = gsap.quickTo(ring, "y", { duration: 0.35, ease: "power2.out" });
+
+            window.addEventListener("mousemove", (e) => {
+              xTo(e.clientX); yTo(e.clientY);
+              ringX(e.clientX); ringY(e.clientY);
+            });
+
+            // Scale ring on hoverable elements
+            document.querySelectorAll("a, button, .hoverable").forEach(el => {
+              el.addEventListener("mouseenter", () =>
+                gsap.to(ring, { scale: 2.5, autoAlpha: 0.8, duration: 0.3, ease: "back.out(1.7)" }) // token: fast / spring
+              );
+              el.addEventListener("mouseleave", () =>
+                gsap.to(ring, { scale: 1, autoAlpha: 0.5, duration: 0.3, ease: "power2.out" })   // token: fast / entrance
+              );
+            });
+          }
+        }
+
+        // ─── Magnetic Cursor Pull — nav links & footer links (magnetic-cursor-pull, score 8) ───
+        if (!isTouch && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+          document.querySelectorAll("nav .links a, footer .social a").forEach(el => {
+            const xTo = gsap.quickTo(el, "x", { duration: 0.4, ease: "power3.out" }); // token: fast / impact
+            const yTo = gsap.quickTo(el, "y", { duration: 0.4, ease: "power3.out" });
+
+            el.addEventListener("mousemove", e => {
+              const { left, top, width, height } = el.getBoundingClientRect();
+              xTo((e.clientX - (left + width / 2)) * 0.35);
+              yTo((e.clientY - (top + height / 2)) * 0.35);
+            });
+            el.addEventListener("mouseleave", () => { xTo(0); yTo(0); });
+          });
+        }
+
+        // Cleanup
+        return () => {
+          heroTl.kill();
+          heroSplit.revert();
+          ScrollTrigger.getAll().forEach(t => t.kill());
+        };
+      });
+
+      // ─── Reduced motion fallback ───
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        // Ensure all elements are visible without animation
+        gsap.set([
+          ".hero h1", ".hero .subtitle",
+          ".projects-header", ".project-item",
+          ".about-label", ".about-text", ".skills-list li",
+          ".contact-label", ".contact-email",
+          "footer"
+        ], { clearProps: "all" });
+
+        // Destroy Lenis for reduced-motion users
+        if (lenis) lenis.destroy();
+      });
+
+      // ─── ScrollTrigger.refresh() on full page load — Hard Rule #6 ───
+      window.addEventListener("load", () => ScrollTrigger.refresh());
+    </script>
+  </body>
+</html>

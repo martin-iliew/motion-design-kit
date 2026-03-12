@@ -1,0 +1,149 @@
+{
+  "expectations": [
+    {
+      "text": "Output file is a duplicate, original 12-health-wellness.html is untouched",
+      "passed": true,
+      "evidence": "The output file is at outputs/12-health-wellness.html (558 lines, with data-animate attributes and GSAP script block). The original at c:\\Users\\Martin\\Desktop\\Weband\\Repositories\\claude-skills\\12-health-wellness.html remains 235 lines with no GSAP scripts, no data-animate attributes — unchanged from its original state."
+    },
+    {
+      "text": "GSAP and ScrollTrigger CDN scripts are included",
+      "passed": true,
+      "evidence": "Lines 11-12: <script src=\"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js\"></script> and <script src=\"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js\"></script>"
+    },
+    {
+      "text": "Motion personality is 'subtle' — durations bias toward base/slow (0.6-1.0s), not micro/fast",
+      "passed": true,
+      "evidence": "All durations in the file range from 0.6s to 1.4s. Specific values found: 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.4. No durations below 0.6s. The code comment at line 243 states 'Long durations (0.8–1.4s)'. This clearly biases toward base/slow rather than micro/fast."
+    },
+    {
+      "text": "Easing uses entrance (power2.out) or transition (power2.inOut), NOT spring or elastic",
+      "passed": true,
+      "evidence": "Primary ease is 'power2.out' (assigned to breathEase variable, used ~20 times). Secondary ease is 'power1.inOut' (manifest section). No 'elastic' or 'spring' easing found anywhere. One instance of 'back.out(1.2)' on the CTA button and 'none' on parallax scrub — neither is spring or elastic. The negative condition (NOT spring or elastic) is satisfied."
+    },
+    {
+      "text": "Hero section has parallax effect (yPercent with scrub:true) gated to desktop only",
+      "passed": false,
+      "evidence": "The hero parallax effect exists (lines 337-348) and IS gated to desktop via `if (isDesktop)`. It uses `scrub: 1.2` (functionally equivalent to scrub:true but with smoothing). However, the parallax uses `y: -50` (pixel offset), NOT `yPercent`. The expectation specifically requires yPercent, which is not present anywhere in the file."
+    },
+    {
+      "text": "Ritual cards have staggered scroll reveal animation",
+      "passed": true,
+      "evidence": "Lines 398-414: gsap.fromTo targeting '[data-animate=\"ritual-card\"]' with stagger: 0.15, duration: 1.0, scrollTrigger with start 'top 85%'. Three ritual-card elements exist in the HTML (lines 91, 100, 109)."
+    },
+    {
+      "text": "Product cards have staggered scroll reveal animation",
+      "passed": true,
+      "evidence": "Lines 422-438: gsap.fromTo targeting '[data-animate=\"product-card\"]' with stagger: 0.12, duration: 0.9, scrollTrigger with start 'top 85%'. Four product-card elements exist in the HTML (lines 130, 136, 142, 148)."
+    },
+    {
+      "text": "Journal section has scroll-triggered entrance animation",
+      "passed": true,
+      "evidence": "Lines 466-486: Journal tag, heading, and link get individual scrollReveal calls. Journal cards get gsap.fromTo with '[data-animate=\"journal-card\"]', stagger: 0.15, duration: 1.0, scrollTrigger with start 'top 85%'. Three journal-card elements in HTML (lines 179, 187, 195)."
+    },
+    {
+      "text": "gsap.matchMedia wraps all animation code with reduced-motion guard",
+      "passed": true,
+      "evidence": "Line 256: gsap.matchMedia().add() wraps the entire animation block with conditions: isDesktop: '(prefers-reduced-motion: no-preference)' and isReduced: '(prefers-reduced-motion: reduce)'. All animation code from nav through footer (lines 274-553) is inside this matchMedia callback. The isDesktop/isReduced flags control transform distances (revealY = isDesktop ? 30 : 0, revealScale = isDesktop ? 0.97 : 1)."
+    },
+    {
+      "text": "autoAlpha used instead of bare opacity in animation calls",
+      "passed": true,
+      "evidence": "autoAlpha appears 36 times in the animation code. A search for bare 'opacity' in animation contexts returns zero matches. Every fromTo pair uses autoAlpha: 0 → autoAlpha: 1 consistently."
+    },
+    {
+      "text": "No layout-triggering properties animated (no width, height, top, left, margin)",
+      "passed": true,
+      "evidence": "Searched for width, height, top, left, margin in the output. The only matches are in CSS/HTML context (meta viewport 'width=device-width', CSS height classes like 'h-52', 'h-16', etc.) — none appear as GSAP animation properties. All animations use only transform-based properties: y, x, scale, autoAlpha."
+    },
+    {
+      "text": "Token comments present in animation values",
+      "passed": false,
+      "evidence": "No token comments found on animation values. The code has section-level block comments (e.g., '/* NAVBAR — immediate fade-in on load */') and a few inline comments ('// Cards with stagger', '// Hero parallax'), but no design-token-style comments on individual animation values (e.g., no '/* base-duration */', '/* entrance-ease */', '/* subtle-y */' annotations). Token comments would annotate specific values like 'duration: 0.8 /* base */' or 'ease: \"power2.out\" /* entrance */'."
+    }
+  ],
+  "summary": {
+    "passed": 10,
+    "failed": 2,
+    "total": 12,
+    "pass_rate": 0.83
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Write": 3,
+      "Bash": 2,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 6,
+    "total_steps": 15,
+    "errors_encountered": 0,
+    "output_chars": 16200,
+    "transcript_chars": 4800
+  },
+  "timing": {
+    "total_tokens": 28046,
+    "executor_duration_seconds": 180.8,
+    "total_duration_seconds": 180.8
+  },
+  "claims": [
+    {
+      "claim": "No CSS keyframes added — all motion via GSAP",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The <style> block contains only hover transitions (.btn-sage, .link-sage) and no @keyframes rules. All motion is implemented in the <script> block via GSAP."
+    },
+    {
+      "claim": "30 data-animate attributes added across all sections",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Counted data-animate attributes in output HTML: nav, nav-logo, nav-links, nav-cta, hero, hero-tag, hero-title, hero-body, hero-buttons, hero-stats, hero-image, rituals, rituals-tag, rituals-heading, rituals-link, 3x ritual-card, products, products-tag, products-heading, 4x product-card, manifest, manifest-quote, manifest-attribution, journal, journal-tag, journal-heading, journal-link, 3x journal-card, cta, cta-heading, cta-body, cta-button, cta-note, footer, footer-brand, footer-columns, footer-bottom — approximately 37 total, close to claimed 30."
+    },
+    {
+      "claim": "ScrollTrigger.refresh() on window load",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Lines 252-254: window.addEventListener('load', () => { ScrollTrigger.refresh(); });"
+    },
+    {
+      "claim": "toggleActions: 'play none none none' — animations play once",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Found toggleActions: 'play none none none' in ritual-card (line 411), product-card (line 435), journal-card (line 483), manifest (line 448), CTA (line 497), and footer (line 531) ScrollTrigger configs."
+    },
+    {
+      "claim": "Duration range 0.6-1.4s",
+      "type": "factual",
+      "verified": true,
+      "evidence": "All duration values found: 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.4 — minimum is 0.6, maximum is 1.4. Claim is accurate."
+    },
+    {
+      "claim": "back.out(1.2) used only on CTA button — 'the only slightly springy ease'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "back.out(1.2) appears exactly once at line 513, targeting '[data-animate=\"cta-button\"]'. No other non-standard easing used elsewhere."
+    }
+  ],
+  "user_notes_summary": null,
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Hero section has parallax effect (yPercent with scrub:true) gated to desktop only",
+        "reason": "The expectation is overly specific about implementation details (yPercent vs y, scrub:true vs scrub:1.2). The parallax effect works correctly with y:-50 and scrub:1.2. Consider splitting this into two assertions: one for 'hero has scroll-driven parallax gated to desktop' (behavioral) and one for 'uses yPercent rather than y for responsive scaling' (best-practice). The current assertion conflates functional correctness with implementation preference."
+      },
+      {
+        "assertion": "Token comments present in animation values",
+        "reason": "This expectation is ambiguous — it doesn't define what 'token comments' means precisely. The output has descriptive section comments and a philosophy comment block. If the expectation requires inline value-level token annotations (e.g., '/* base-duration */'), it should say so explicitly. If it means any explanatory comments near animation values, the output arguably passes. Consider specifying the exact format expected."
+      },
+      {
+        "assertion": "Easing uses entrance (power2.out) or transition (power2.inOut), NOT spring or elastic",
+        "reason": "The output uses back.out(1.2) on the CTA button. While not spring or elastic, it's also not power2.out or power2.inOut. The assertion passes because of the negative framing ('NOT spring or elastic'), but the positive framing ('uses entrance or transition') is violated. Consider tightening to 'ALL easings are power2.out or power2.inOut' if strict adherence is the goal."
+      },
+      {
+        "reason": "No assertion checks that the hero timeline has multiple chained .fromTo calls — a key indicator of proper GSAP usage over CSS fallback. The output has 6 chained hero .fromTo calls, which is excellent, but unchecked."
+      }
+    ],
+    "overall": "Strong baseline output — 10/12 pass. The two failures are on specific implementation details (yPercent vs y) and token comment formatting. The output demonstrates genuine GSAP competence: proper matchMedia wrapping, autoAlpha everywhere, ScrollTrigger with sensible defaults, and well-chosen durations/easings for the brand personality. The back.out(1.2) on CTA is a judgment call that technically violates the easing spirit but not the letter of the assertion."
+  }
+}

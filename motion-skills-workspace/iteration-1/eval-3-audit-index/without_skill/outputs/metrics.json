@@ -1,0 +1,37 @@
+{
+  "tool_calls": {
+    "Read": 1,
+    "Bash": 2,
+    "Write": 3,
+    "Edit": 0,
+    "Grep": 0,
+    "Glob": 0
+  },
+  "total_tool_calls": 6,
+  "files_created": 3,
+  "files_modified": 0,
+  "errors_encountered": 0,
+  "input_file": "c:\\Users\\Martin\\Desktop\\Weband\\Repositories\\claude-skills\\index.html",
+  "input_file_lines": 980,
+  "output_directory": "c:\\Users\\Martin\\Desktop\\Weband\\Repositories\\claude-skills\\motion-skills-workspace\\iteration-1\\eval-3-audit-index\\without_skill\\outputs",
+  "outputs": [
+    "audit-report.md",
+    "transcript.md",
+    "metrics.json"
+  ],
+  "audit_summary": {
+    "animations_found": 0,
+    "css_keyframes": 0,
+    "css_transitions": 0,
+    "js_animations": 0,
+    "gsap_loaded": false,
+    "scrolltrigger_loaded": false,
+    "prefers_reduced_motion_handled": false,
+    "animation_suggestive_elements": 19,
+    "quality_score": "1/10",
+    "critical_issues": 2,
+    "medium_issues": 3,
+    "low_issues": 4,
+    "info_issues": 1
+  }
+}

@@ -1,0 +1,22 @@
+version: '1'
+type: tween
+id: clip-path-image-wipe-scroll
+target:
+  selector: '[data-motion="clip-path-image-wipe-scroll"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: scroll
+  scroll_start: top 85%
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- scrolltrigger
+config:
+  root: '[data-motion="clip-path-image-wipe-scroll"]'
+  items: '[data-motion="clip-path-image-wipe-scroll"] [data-motion-item]'
+  target: '[data-motion="clip-path-image-wipe-scroll"] [data-motion-target]'
+  path: '[data-motion="clip-path-image-wipe-scroll"] [data-motion-path]'

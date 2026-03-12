@@ -1,0 +1,23 @@
+# Primary: breathing button (CSS @keyframes — scale + opacity oscillation)
+# Note: breathing/idle uses infinite loop with yoyo — there is no standard IR for yoyo repeat.
+# duration_raw represents the half-cycle; the full yoyo cycle is 2x that value.
+version: "1"
+type: tween
+id: "idle-breathing"
+target:
+  selector: ".btn-primary"
+  type: element
+from:
+  scale: 1.0
+  opacity: 1
+to:
+  scale: 1.04
+  opacity: 0.88
+timing:
+  duration_raw: 3         # override: full CSS animation duration is 3s infinite; ambient looping above the token scale (slow token = 1.0s)
+  easing: scrub           # sine.inOut is organic rhythm — mapped to scrub as nearest CSS compat token
+  easing_raw: "cubic-bezier(0.37, 0, 0.63, 1)"  # sine.inOut approximation in CSS cubic-bezier
+trigger:
+  type: load
+a11y:
+  reduced_motion: skip    # purely decorative ambient signal — skip entirely for reduced-motion users

@@ -1,0 +1,2038 @@
+version: "1"
+# Motion Library Catalog — Structural metadata for all patterns
+# For trend narrative context (what, when, how it should feel), see trends-overview.md
+# Each pattern lives in its own folder: <folder>/index.md, <folder>/spec.yaml, <folder>/snippet.css|js
+patterns:
+- id: scroll-trigger-reveal
+  name: ScrollTrigger Reveal
+  type: tween
+  category: scroll
+  framework: GSAP
+  triggers:
+  - scroll-enter
+  components:
+  - card
+  - section
+  - hero
+  - list
+  folder: scroll-trigger-reveal
+  snippet: snippet.js
+  description: GSAP-based scroll pattern for card, section, hero surfaces.
+  trend_score: 9
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/ScrollTrigger/
+  - https://tympanus.net/codrops/2025/10/29/building-a-layered-zoom-scroll-effect-with-gsap-scrollsmoother-and-scrolltrigger/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: morphing-button-states
+  name: Morphing Button States
+  type: tween
+  category: micro-interaction
+  framework: CSS
+  triggers:
+  - click
+  - hover
+  components:
+  - button
+  - cta
+  folder: morphing-button-states
+  snippet: snippet.css
+  description: CSS-based micro interaction pattern for button, cta surfaces.
+  trend_score: 7
+  status: evergreen
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations
+  - https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-variation-settings
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: idle-breathing-pulse
+  name: Idle Breathing Pulse
+  type: tween
+  category: ambient
+  framework: CSS
+  triggers:
+  - idle
+  components:
+  - button
+  - cta
+  - icon
+  folder: idle-breathing-pulse
+  snippet: snippet.css
+  description: CSS-based ambient pattern for button, cta, icon surfaces.
+  trend_score: 6
+  status: evergreen
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations
+  - https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-variation-settings
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: spring-physics-interactions
+  name: Spring Physics Interactions
+  type: tween
+  category: micro-interaction
+  framework: GSAP
+  triggers:
+  - hover
+  - click
+  components:
+  - card
+  - button
+  - list
+  folder: spring-physics-interactions
+  snippet: snippet.js
+  description: GSAP-based micro interaction pattern for card, button, list surfaces.
+  trend_score: 9
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: bento-grid-motion
+  name: Bento Grid Motion
+  type: tween
+  category: micro-interaction
+  framework: GSAP
+  triggers:
+  - hover
+  - click
+  components:
+  - card
+  - grid
+  folder: bento-grid-motion
+  snippet: snippet.js
+  description: GSAP-based micro interaction pattern for card, grid surfaces.
+  trend_score: 8
+  status: evergreen
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: flip-layout-animations
+  name: FLIP Layout Animations
+  type: tween
+  category: transition
+  framework: GSAP
+  triggers:
+  - click
+  components:
+  - card
+  - list
+  - grid
+  folder: flip-layout-animations
+  snippet: snippet.js
+  description: GSAP-based transition pattern for card, list, grid surfaces.
+  trend_score: 8
+  status: evergreen
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: parallax-depth-layers
+  name: Parallax Depth Layers
+  type: tween
+  category: scroll
+  framework: GSAP
+  triggers:
+  - scroll
+  components:
+  - hero
+  - background
+  - section
+  folder: parallax-depth-layers
+  snippet: snippet.js
+  description: GSAP-based scroll pattern for hero, background, section surfaces.
+  trend_score: 7
+  status: evergreen
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/ScrollTrigger/
+  - https://tympanus.net/codrops/2025/10/29/building-a-layered-zoom-scroll-effect-with-gsap-scrollsmoother-and-scrolltrigger/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: kinetic-typography-splittext
+  name: Kinetic Typography (SplitText)
+  type: tween
+  category: typography
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll-enter
+  components:
+  - hero
+  - heading
+  folder: kinetic-typography-splittext
+  snippet: snippet.js
+  description: GSAP-based typography pattern for hero, heading surfaces.
+  trend_score: 9
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/SplitText/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/11/04/creating-3d-scroll-driven-text-animations-with-css-and-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: ambient-floating-particles
+  name: Ambient Floating Particles
+  type: procedural
+  category: ambient
+  framework: GSAP
+  triggers:
+  - idle
+  components:
+  - background
+  - hero
+  folder: ambient-floating-particles
+  snippet: snippet.js
+  description: GSAP-based ambient pattern for background, hero surfaces.
+  trend_score: 5
+  status: declining
+  popularity_signal: low
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/04/15/nite-riot-minimalism-gets-a-wild-side/
+  manual_override: false
+  notes: Retained as a low-priority fallback; dated against the March 2026 GSAP/Codrops
+    baseline.
+- id: custom-cursor-follower
+  name: Custom Cursor Follower
+  type: procedural
+  category: cursor
+  framework: GSAP
+  triggers:
+  - cursor-move
+  components:
+  - cursor
+  - global
+  folder: custom-cursor-follower
+  snippet: snippet.js
+  description: GSAP-based cursor pattern for cursor, global surfaces.
+  trend_score: 7
+  status: evergreen
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/04/15/nite-riot-minimalism-gets-a-wild-side/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: magnetic-cursor-pull
+  name: Magnetic Cursor Pull
+  type: procedural
+  category: cursor
+  framework: GSAP
+  triggers:
+  - hover
+  components:
+  - nav
+  - button
+  - link
+  folder: magnetic-cursor-pull
+  snippet: snippet.js
+  description: GSAP-based cursor pattern for nav, button, link surfaces.
+  trend_score: 8
+  status: evergreen
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/04/15/nite-riot-minimalism-gets-a-wild-side/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: text-scramble-decode
+  name: Text Scramble / Glitch Decode
+  type: procedural
+  category: typography
+  framework: Mixed
+  triggers:
+  - page-load
+  - hover
+  components:
+  - badge
+  - heading
+  - label
+  folder: text-scramble-decode
+  snippet: snippet.js
+  description: Mixed-based typography pattern for badge, heading, label surfaces.
+  trend_score: 7
+  status: evergreen
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/SplitText/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/11/04/creating-3d-scroll-driven-text-animations-with-css-and-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: css-scroll-driven-animations
+  name: CSS Scroll-Driven Animations
+  type: browser-native
+  category: scroll
+  framework: CSS
+  triggers:
+  - scroll
+  components:
+  - progress-bar
+  - section
+  - hero
+  folder: css-scroll-driven-animations
+  snippet: snippet.css
+  description: CSS-based scroll pattern for progress-bar, section, hero surfaces.
+  trend_score: 8
+  status: emerging
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline
+  - https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-variation-settings
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: view-transitions-api
+  name: View Transitions API
+  type: browser-native
+  category: transition
+  framework: CSS
+  triggers:
+  - page-load
+  - click
+  components:
+  - page
+  - section
+  folder: view-transitions-api
+  snippet: snippet.css
+  description: CSS-based transition pattern for page, section surfaces.
+  trend_score: 8
+  status: emerging
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline
+  - https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-variation-settings
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: gesture-swipe-animations
+  name: Gesture-Based Swipe Animations
+  type: procedural
+  category: micro-interaction
+  framework: GSAP
+  triggers:
+  - drag
+  components:
+  - card
+  - list
+  folder: gesture-swipe-animations
+  snippet: snippet.js
+  description: GSAP-based micro interaction pattern for card, list surfaces.
+  trend_score: 8
+  status: evergreen
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: variable-font-morphing
+  name: Variable Font Morphing
+  type: tween
+  category: typography
+  framework: CSS
+  triggers:
+  - hover
+  - page-load
+  components:
+  - heading
+  - text
+  folder: variable-font-morphing
+  snippet: snippet.css
+  description: CSS-based typography pattern for heading, text surfaces.
+  trend_score: 7
+  status: emerging
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline
+  - https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-variation-settings
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: 3d-tilt-parallax-cursor
+  name: 3D Tilt Parallax with Cursor Tracking
+  type: procedural
+  category: cursor
+  framework: GSAP
+  triggers:
+  - cursor-move
+  components:
+  - card
+  - hero
+  folder: 3d-tilt-parallax-cursor
+  snippet: snippet.js
+  description: GSAP-based cursor pattern for card, hero surfaces.
+  trend_score: 7
+  status: evergreen
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/04/15/nite-riot-minimalism-gets-a-wild-side/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: gradient-text-flow
+  name: Gradient Text Flow
+  type: tween
+  category: typography
+  framework: CSS
+  triggers:
+  - idle
+  - page-load
+  components:
+  - heading
+  - text
+  folder: gradient-text-flow
+  snippet: snippet.css
+  description: CSS-based typography pattern for heading, text surfaces.
+  trend_score: 6
+  status: evergreen
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations
+  - https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-variation-settings
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: ripple-wave-click
+  name: Ripple Wave Click
+  type: procedural
+  category: micro-interaction
+  framework: GSAP
+  triggers:
+  - click
+  components:
+  - button
+  - card
+  - surface
+  folder: ripple-wave-click
+  snippet: snippet.js
+  description: GSAP-based micro interaction pattern for button, card, surface surfaces.
+  trend_score: 6
+  status: evergreen
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: number-counter-easing
+  name: Number Counter with Easing
+  type: tween
+  category: typography
+  framework: GSAP
+  triggers:
+  - scroll-enter
+  - page-load
+  components:
+  - stat
+  - badge
+  - kpi
+  folder: number-counter-easing
+  snippet: snippet.js
+  description: GSAP-based typography pattern for stat, badge, kpi surfaces.
+  trend_score: 7
+  status: evergreen
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: card-flip-3d
+  name: Card Flip 3D
+  type: tween
+  category: micro-interaction
+  framework: CSS
+  triggers:
+  - hover
+  - click
+  components:
+  - card
+  folder: card-flip-3d
+  snippet: snippet.css
+  description: CSS-based micro interaction pattern for card surfaces.
+  trend_score: 4
+  status: declining
+  popularity_signal: low
+  last_reviewed: 2026-03
+  sources:
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations
+  - https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-variation-settings
+  manual_override: false
+  notes: Retained as a low-priority fallback; dated against the March 2026 GSAP/Codrops
+    baseline.
+- id: staggered-word-reveal
+  name: Staggered Word Reveal
+  type: tween
+  category: typography
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll-enter
+  components:
+  - heading
+  - text
+  folder: staggered-word-reveal
+  snippet: snippet.js
+  description: GSAP-based typography pattern for heading, text surfaces.
+  trend_score: 8
+  status: evergreen
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/SplitText/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/11/04/creating-3d-scroll-driven-text-animations-with-css-and-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: marquee-infinite-scroll
+  name: Marquee / Infinite Scroll Text
+  type: tween
+  category: scroll
+  framework: GSAP
+  triggers:
+  - idle
+  components:
+  - logo-bar
+  - testimonial
+  - ticker
+  folder: marquee-infinite-scroll
+  snippet: snippet.js
+  description: GSAP-based scroll pattern for logo-bar, testimonial, ticker surfaces.
+  trend_score: 7
+  status: evergreen
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/ScrollTrigger/
+  - https://tympanus.net/codrops/2025/10/29/building-a-layered-zoom-scroll-effect-with-gsap-scrollsmoother-and-scrolltrigger/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: horizontal-scroll-section
+  name: Horizontal Scroll Section
+  type: tween
+  category: scroll
+  framework: GSAP
+  triggers:
+  - scroll
+  components:
+  - section
+  - portfolio
+  - feature-walkthrough
+  folder: horizontal-scroll-section
+  snippet: snippet.js
+  description: GSAP-based scroll pattern for section, portfolio, feature-walkthrough
+    surfaces.
+  trend_score: 8
+  status: evergreen
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/ScrollTrigger/
+  - https://tympanus.net/codrops/2025/10/29/building-a-layered-zoom-scroll-effect-with-gsap-scrollsmoother-and-scrolltrigger/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: lenis-smooth-scroll
+  name: Lenis Smooth Scroll Integration
+  type: integration
+  category: scroll
+  framework: Mixed
+  triggers:
+  - page-load
+  components:
+  - global
+  - scroll
+  folder: lenis-smooth-scroll
+  snippet: snippet.js
+  description: Mixed-based scroll pattern for global, scroll surfaces.
+  trend_score: 7
+  status: evergreen
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/ScrollTrigger/
+  - https://tympanus.net/codrops/2025/10/29/building-a-layered-zoom-scroll-effect-with-gsap-scrollsmoother-and-scrolltrigger/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: pinned-story-panels
+  name: Pinned Story Panels
+  type: tween
+  category: scroll
+  framework: GSAP
+  triggers:
+  - scroll
+  - scroll-enter
+  - page-load
+  components:
+  - timeline
+  - section
+  folder: pinned-story-panels
+  snippet: snippet.js
+  description: Pinned Story Panels is a GSAP pattern for timeline, section surfaces
+    that pins a sequence and hands focus from one beat to the next as the user scrolls.
+  trend_score: 9
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/ScrollTrigger/
+  - https://tympanus.net/codrops/2025/10/29/building-a-layered-zoom-scroll-effect-with-gsap-scrollsmoother-and-scrolltrigger/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: stacked-cards-scroll-pin
+  name: Stacked Cards Scroll Pin
+  type: tween
+  category: scroll
+  framework: GSAP
+  triggers:
+  - scroll
+  - scroll-enter
+  - page-load
+  components:
+  - timeline
+  - section
+  folder: stacked-cards-scroll-pin
+  snippet: snippet.js
+  description: Stacked Cards Scroll Pin is a GSAP pattern for timeline, section surfaces
+    that pins a sequence and hands focus from one beat to the next as the user scrolls.
+  trend_score: 9
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/ScrollTrigger/
+  - https://tympanus.net/codrops/2025/10/29/building-a-layered-zoom-scroll-effect-with-gsap-scrollsmoother-and-scrolltrigger/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: clip-path-image-wipe-scroll
+  name: Clip Path Image Wipe Scroll
+  type: tween
+  category: scroll
+  framework: GSAP
+  triggers:
+  - scroll
+  - scroll-enter
+  - page-load
+  components:
+  - media
+  folder: clip-path-image-wipe-scroll
+  snippet: snippet.js
+  description: Clip Path Image Wipe Scroll is a GSAP pattern for media surfaces that
+    scrubs transform-led motion against scroll without breaking layout.
+  trend_score: 9
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: sticky-media-content-sync
+  name: Sticky Media Content Sync
+  type: tween
+  category: scroll
+  framework: GSAP
+  triggers:
+  - scroll
+  - scroll-enter
+  - page-load
+  components:
+  - timeline
+  - section
+  - media
+  folder: sticky-media-content-sync
+  snippet: snippet.js
+  description: Sticky Media Content Sync is a GSAP pattern for timeline, section,
+    media surfaces that pins a sequence and hands focus from one beat to the next
+    as the user scrolls.
+  trend_score: 9
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/ScrollTrigger/
+  - https://tympanus.net/codrops/2025/10/29/building-a-layered-zoom-scroll-effect-with-gsap-scrollsmoother-and-scrolltrigger/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: image-sequence-scroll-scrub
+  name: Image Sequence Scroll Scrub
+  type: tween
+  category: scroll
+  framework: GSAP
+  triggers:
+  - scroll
+  - scroll-enter
+  - page-load
+  components:
+  - media
+  folder: image-sequence-scroll-scrub
+  snippet: snippet.js
+  description: Image Sequence Scroll Scrub is a GSAP pattern for media surfaces that
+    steps through prepared frames so scroll behaves like a lightweight film strip.
+  trend_score: 8
+  status: emerging
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/ScrollTrigger/
+  - https://tympanus.net/codrops/2025/10/29/building-a-layered-zoom-scroll-effect-with-gsap-scrollsmoother-and-scrolltrigger/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: zoom-out-hero-exit
+  name: Zoom Out Hero Exit
+  type: tween
+  category: scroll
+  framework: GSAP
+  triggers:
+  - scroll
+  - scroll-enter
+  - page-load
+  components:
+  - hero
+  folder: zoom-out-hero-exit
+  snippet: snippet.js
+  description: Zoom Out Hero Exit is a GSAP pattern for hero surfaces that scrubs
+    transform-led motion against scroll without breaking layout.
+  trend_score: 8
+  status: trending
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/ScrollTrigger/
+  - https://tympanus.net/codrops/2025/10/29/building-a-layered-zoom-scroll-effect-with-gsap-scrollsmoother-and-scrolltrigger/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: section-progress-rail
+  name: Section Progress Rail
+  type: tween
+  category: scroll
+  framework: GSAP
+  triggers:
+  - scroll
+  - scroll-enter
+  - page-load
+  components:
+  - section
+  - progress-bar
+  folder: section-progress-rail
+  snippet: snippet.js
+  description: Section Progress Rail is a GSAP pattern for section, progress bar surfaces
+    that builds scoped progress feedback that grows with the reading path.
+  trend_score: 8
+  status: trending
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/ScrollTrigger/
+  - https://tympanus.net/codrops/2025/10/29/building-a-layered-zoom-scroll-effect-with-gsap-scrollsmoother-and-scrolltrigger/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: scroll-velocity-navbar
+  name: Scroll Velocity Navbar
+  type: tween
+  category: scroll
+  framework: GSAP
+  triggers:
+  - scroll
+  - scroll-enter
+  - page-load
+  components:
+  - nav
+  folder: scroll-velocity-navbar
+  snippet: snippet.js
+  description: Scroll Velocity Navbar is a GSAP pattern for nav surfaces that uses
+    scroll direction and velocity to tune navigation behavior.
+  trend_score: 9
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/ScrollTrigger/
+  - https://tympanus.net/codrops/2025/10/29/building-a-layered-zoom-scroll-effect-with-gsap-scrollsmoother-and-scrolltrigger/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: observer-section-slider
+  name: Observer Section Slider
+  type: procedural
+  category: scroll
+  framework: GSAP
+  triggers:
+  - scroll
+  - scroll-enter
+  - page-load
+  components:
+  - section
+  folder: observer-section-slider
+  snippet: snippet.js
+  description: Observer Section Slider is a GSAP pattern for section surfaces that
+    turns section changes into an Observer-driven presentation flow.
+  trend_score: 8
+  status: emerging
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Observer/
+  - https://gsap.com/docs/v3/Plugins/ScrollTrigger/
+  - https://tympanus.net/codrops/2025/10/29/building-a-layered-zoom-scroll-effect-with-gsap-scrollsmoother-and-scrolltrigger/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: responsive-curved-path-scroll
+  name: Responsive Curved Path Scroll
+  type: procedural
+  category: scroll
+  framework: GSAP
+  triggers:
+  - scroll
+  - scroll-enter
+  - page-load
+  components:
+  - hero
+  - section
+  folder: responsive-curved-path-scroll
+  snippet: snippet.js
+  description: Responsive Curved Path Scroll is a GSAP pattern for hero, section surfaces
+    that moves an accent or media element along a defined path.
+  trend_score: 8
+  status: emerging
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/MotionPathPlugin/
+  - https://gsap.com/docs/v3/Plugins/MorphSVGPlugin/
+  - https://gsap.com/docs/v3/Plugins/DrawSVGPlugin/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: pinned-hotspot-journey
+  name: Pinned Hotspot Journey
+  type: tween
+  category: scroll
+  framework: GSAP
+  triggers:
+  - scroll
+  - scroll-enter
+  - page-load
+  components:
+  - timeline
+  - section
+  - hotspot
+  folder: pinned-hotspot-journey
+  snippet: snippet.js
+  description: Pinned Hotspot Journey is a GSAP pattern for timeline, section, hotspot
+    surfaces that pins a sequence and hands focus from one beat to the next as the
+    user scrolls.
+  trend_score: 8
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/ScrollTrigger/
+  - https://tympanus.net/codrops/2025/10/29/building-a-layered-zoom-scroll-effect-with-gsap-scrollsmoother-and-scrolltrigger/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: scrollsmoother-data-effects
+  name: ScrollSmoother Data Effects
+  type: procedural
+  category: scroll
+  framework: GSAP
+  triggers:
+  - scroll
+  - scroll-enter
+  - page-load
+  components:
+  - hero
+  - section
+  folder: scrollsmoother-data-effects
+  snippet: snippet.js
+  description: ScrollSmoother Data Effects is a GSAP pattern for hero, section surfaces
+    that adds premium smooth-scrolling effects around a GSAP page shell.
+  trend_score: 9
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/ScrollTrigger/
+  - https://tympanus.net/codrops/2025/10/29/building-a-layered-zoom-scroll-effect-with-gsap-scrollsmoother-and-scrolltrigger/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: splittext-line-mask-lift
+  name: SplitText Line Mask Lift
+  type: tween
+  category: typography
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll-enter
+  - hover
+  components:
+  - text
+  folder: splittext-line-mask-lift
+  snippet: snippet.js
+  description: SplitText Line Mask Lift is a GSAP pattern for text surfaces that reveals
+    display copy line-by-line with SplitText masking.
+  trend_score: 9
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/SplitText/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/11/04/creating-3d-scroll-driven-text-animations-with-css-and-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: splittext-char-rotation-burst
+  name: SplitText Char Rotation Burst
+  type: tween
+  category: typography
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll-enter
+  - hover
+  components:
+  - text
+  folder: splittext-char-rotation-burst
+  snippet: snippet.js
+  description: SplitText Char Rotation Burst is a GSAP pattern for text surfaces that
+    animates characters with dimensional rotation before settling into readable copy.
+  trend_score: 8
+  status: trending
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/SplitText/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/11/04/creating-3d-scroll-driven-text-animations-with-css-and-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: splittext-random-stagger-reveal
+  name: SplitText Random Stagger Reveal
+  type: tween
+  category: typography
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll-enter
+  - hover
+  components:
+  - text
+  folder: splittext-random-stagger-reveal
+  snippet: snippet.js
+  description: SplitText Random Stagger Reveal is a GSAP pattern for text surfaces
+    that uses randomized text staggering for a less templated reveal cadence.
+  trend_score: 8
+  status: trending
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/SplitText/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/11/04/creating-3d-scroll-driven-text-animations-with-css-and-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: scramble-hover-relabel
+  name: Scramble Hover Relabel
+  type: tween
+  category: typography
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll-enter
+  - hover
+  components:
+  - label
+  folder: scramble-hover-relabel
+  snippet: snippet.js
+  description: Scramble Hover Relabel is a GSAP pattern for label surfaces that scrambles
+    short labels before resolving to the final copy.
+  trend_score: 7
+  status: evergreen
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/SplitText/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/11/04/creating-3d-scroll-driven-text-animations-with-css-and-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: svg-clip-mask-text-reveal
+  name: SVG Clip Mask Text Reveal
+  type: tween
+  category: typography
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll-enter
+  - hover
+  components:
+  - text
+  folder: svg-clip-mask-text-reveal
+  snippet: snippet.js
+  description: SVG Clip Mask Text Reveal is a GSAP pattern for text surfaces that
+    reveals content through a crisp transform-led mask sweep.
+  trend_score: 8
+  status: emerging
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/SplitText/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/11/04/creating-3d-scroll-driven-text-animations-with-css-and-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: 3d-cylinder-text-scroll
+  name: 3D Cylinder Text Scroll
+  type: tween
+  category: typography
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll-enter
+  - hover
+  components:
+  - text
+  folder: 3d-cylinder-text-scroll
+  snippet: snippet.js
+  description: 3D Cylinder Text Scroll is a GSAP pattern for text surfaces that scrubs
+    transform-led motion against scroll without breaking layout.
+  trend_score: 8
+  status: emerging
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/SplitText/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/11/04/creating-3d-scroll-driven-text-animations-with-css-and-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: circular-text-orbit-scroll
+  name: Circular Text Orbit Scroll
+  type: procedural
+  category: typography
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll-enter
+  - hover
+  components:
+  - text
+  folder: circular-text-orbit-scroll
+  snippet: snippet.js
+  description: Circular Text Orbit Scroll is a GSAP pattern for text surfaces that
+    moves an accent or media element along a defined path.
+  trend_score: 7
+  status: emerging
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/MotionPathPlugin/
+  - https://gsap.com/docs/v3/Plugins/MorphSVGPlugin/
+  - https://gsap.com/docs/v3/Plugins/DrawSVGPlugin/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: text-highlight-sweep
+  name: Text Highlight Sweep
+  type: tween
+  category: typography
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll-enter
+  - hover
+  components:
+  - text
+  folder: text-highlight-sweep
+  snippet: snippet.js
+  description: Text Highlight Sweep is a GSAP pattern for text surfaces that reveals
+    content through a crisp transform-led mask sweep.
+  trend_score: 8
+  status: trending
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/SplitText/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/11/04/creating-3d-scroll-driven-text-animations-with-css-and-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: marker-underline-draw
+  name: Marker Underline Draw
+  type: tween
+  category: typography
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll-enter
+  - hover
+  components:
+  - heading
+  - text
+  folder: marker-underline-draw
+  snippet: snippet.js
+  description: Marker Underline Draw is a GSAP pattern for heading, text surfaces
+    that draws a path or underline progressively to guide the eye.
+  trend_score: 8
+  status: trending
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/MotionPathPlugin/
+  - https://gsap.com/docs/v3/Plugins/MorphSVGPlugin/
+  - https://gsap.com/docs/v3/Plugins/DrawSVGPlugin/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: odometer-digit-roll
+  name: Odometer Digit Roll
+  type: tween
+  category: typography
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll-enter
+  - hover
+  components:
+  - heading
+  - text
+  folder: odometer-digit-roll
+  snippet: snippet.js
+  description: Odometer Digit Roll is a GSAP pattern for heading, text surfaces that
+    rolls digits mechanically so value changes feel tangible.
+  trend_score: 8
+  status: trending
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: hamburger-icon-morph
+  name: Hamburger Icon Morph
+  type: tween
+  category: transition
+  framework: GSAP
+  triggers:
+  - click
+  - hover
+  - focus
+  - state-change
+  components:
+  - nav
+  - menu
+  folder: hamburger-icon-morph
+  snippet: snippet.js
+  description: Hamburger Icon Morph is a GSAP pattern for nav, menu surfaces that
+    confirms a binary state change with a compact icon morph.
+  trend_score: 7
+  status: evergreen
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: nav-active-pill-flip
+  name: Nav Active Pill FLIP
+  type: tween
+  category: transition
+  framework: GSAP
+  triggers:
+  - click
+  - hover
+  - focus
+  - state-change
+  components:
+  - nav
+  folder: nav-active-pill-flip
+  snippet: snippet.js
+  description: Nav Active Pill FLIP is a GSAP pattern for nav surfaces that uses FLIP
+    continuity so active-state indicators glide instead of jump.
+  trend_score: 9
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: mega-menu-stagger-reveal
+  name: Mega Menu Stagger Reveal
+  type: tween
+  category: transition
+  framework: GSAP
+  triggers:
+  - click
+  - hover
+  - focus
+  - state-change
+  components:
+  - menu
+  - nav
+  folder: mega-menu-stagger-reveal
+  snippet: snippet.js
+  description: Mega Menu Stagger Reveal is a GSAP pattern for menu, nav surfaces that
+    stages a panel or overlay with coordinated depth and stagger.
+  trend_score: 8
+  status: trending
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: accordion-scale-reveal
+  name: Accordion Scale Reveal
+  type: tween
+  category: transition
+  framework: GSAP
+  triggers:
+  - click
+  - hover
+  - focus
+  - state-change
+  components:
+  - accordion
+  folder: accordion-scale-reveal
+  snippet: snippet.js
+  description: Accordion Scale Reveal is a GSAP pattern for accordion surfaces that
+    reveals disclosure content without the hard jump of instant height changes.
+  trend_score: 8
+  status: trending
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: tabs-shared-indicator
+  name: Tabs Shared Indicator
+  type: tween
+  category: transition
+  framework: GSAP
+  triggers:
+  - click
+  - hover
+  - focus
+  - state-change
+  components:
+  - tabs
+  - menu
+  folder: tabs-shared-indicator
+  snippet: snippet.js
+  description: Tabs Shared Indicator is a GSAP pattern for tabs, menu surfaces that
+    uses FLIP continuity so active-state indicators glide instead of jump.
+  trend_score: 9
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: modal-depth-intro
+  name: Modal Depth Intro
+  type: tween
+  category: transition
+  framework: GSAP
+  triggers:
+  - click
+  - hover
+  - focus
+  - state-change
+  components:
+  - modal
+  folder: modal-depth-intro
+  snippet: snippet.js
+  description: Modal Depth Intro is a GSAP pattern for modal surfaces that stages
+    a panel or overlay with coordinated depth and stagger.
+  trend_score: 8
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: drawer-spring-slide
+  name: Drawer Spring Slide
+  type: tween
+  category: transition
+  framework: GSAP
+  triggers:
+  - click
+  - hover
+  - focus
+  - state-change
+  components:
+  - drawer
+  folder: drawer-spring-slide
+  snippet: snippet.js
+  description: Drawer Spring Slide is a GSAP pattern for drawer surfaces that stages
+    a panel or overlay with coordinated depth and stagger.
+  trend_score: 8
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: toast-stack-dismiss
+  name: Toast Stack Dismiss
+  type: tween
+  category: transition
+  framework: GSAP
+  triggers:
+  - click
+  - hover
+  - focus
+  - state-change
+  components:
+  - toast
+  folder: toast-stack-dismiss
+  snippet: snippet.js
+  description: Toast Stack Dismiss is a GSAP pattern for toast surfaces that keeps
+    stacked notifications organized through entry and dismissal motion.
+  trend_score: 8
+  status: trending
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: tooltip-follow-reveal
+  name: Tooltip Follow Reveal
+  type: tween
+  category: transition
+  framework: GSAP
+  triggers:
+  - click
+  - hover
+  - focus
+  - state-change
+  components:
+  - tooltip
+  folder: tooltip-follow-reveal
+  snippet: snippet.js
+  description: Tooltip Follow Reveal is a GSAP pattern for tooltip surfaces that lets
+    hover help text follow the cursor with low-latency motion.
+  trend_score: 7
+  status: emerging
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: form-focus-cascade
+  name: Form Focus Cascade
+  type: tween
+  category: transition
+  framework: GSAP
+  triggers:
+  - click
+  - hover
+  - focus
+  - state-change
+  components:
+  - form
+  - input
+  folder: form-focus-cascade
+  snippet: snippet.js
+  description: Form Focus Cascade is a GSAP pattern for form, input surfaces that
+    cascades adjacent form elements so focus feels guided instead of abrupt.
+  trend_score: 8
+  status: trending
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: draggable-card-deck
+  name: Draggable Card Deck
+  type: procedural
+  category: micro-interaction
+  framework: GSAP
+  triggers:
+  - drag
+  - hover
+  - click
+  - cursor-move
+  components:
+  - card
+  folder: draggable-card-deck
+  snippet: snippet.js
+  description: Draggable Card Deck is a GSAP pattern for card surfaces that makes
+    a deck behave like a direct-manipulation object.
+  trend_score: 8
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: horizontal-loop-carousel
+  name: Horizontal Loop Carousel
+  type: tween
+  category: micro-interaction
+  framework: GSAP
+  triggers:
+  - drag
+  - hover
+  - click
+  - cursor-move
+  components:
+  - carousel
+  - gallery
+  folder: horizontal-loop-carousel
+  snippet: snippet.js
+  description: Horizontal Loop Carousel is a GSAP pattern for carousel, gallery surfaces
+    that creates a seamless loop for horizontally repeated content.
+  trend_score: 8
+  status: trending
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: before-after-drag-reveal
+  name: Before After Drag Reveal
+  type: procedural
+  category: micro-interaction
+  framework: GSAP
+  triggers:
+  - drag
+  - hover
+  - click
+  - cursor-move
+  components:
+  - gallery
+  - carousel
+  folder: before-after-drag-reveal
+  snippet: snippet.js
+  description: Before After Drag Reveal is a GSAP pattern for gallery, carousel surfaces
+    that lets a draggable handle reveal two media states inside one frame.
+  trend_score: 8
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: cursor-image-preview-trail
+  name: Cursor Image Preview Trail
+  type: procedural
+  category: micro-interaction
+  framework: GSAP
+  triggers:
+  - drag
+  - hover
+  - click
+  - cursor-move
+  components:
+  - image
+  - media
+  folder: cursor-image-preview-trail
+  snippet: snippet.js
+  description: Cursor Image Preview Trail is a GSAP pattern for image, media surfaces
+    that uses cursor-proximate previews to enrich browsing without a click.
+  trend_score: 8
+  status: trending
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: product-grid-preview-overlay
+  name: Product Grid Preview Overlay
+  type: tween
+  category: micro-interaction
+  framework: GSAP
+  triggers:
+  - drag
+  - hover
+  - click
+  - cursor-move
+  components:
+  - grid
+  - card
+  folder: product-grid-preview-overlay
+  snippet: snippet.js
+  description: Product Grid Preview Overlay is a GSAP pattern for grid, card surfaces
+    that stages a panel or overlay with coordinated depth and stagger.
+  trend_score: 9
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: hover-video-preview-scrub
+  name: Hover Video Preview Scrub
+  type: procedural
+  category: micro-interaction
+  framework: GSAP
+  triggers:
+  - drag
+  - hover
+  - click
+  - cursor-move
+  components:
+  - video
+  - media
+  folder: hover-video-preview-scrub
+  snippet: snippet.js
+  description: Hover Video Preview Scrub is a GSAP pattern for video, media surfaces
+    that scrubs short video previews on hover for richer media cards.
+  trend_score: 8
+  status: emerging
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: shared-element-gallery-expand
+  name: Shared Element Gallery Expand
+  type: tween
+  category: micro-interaction
+  framework: GSAP
+  triggers:
+  - drag
+  - hover
+  - click
+  - cursor-move
+  components:
+  - gallery
+  - media
+  - image
+  folder: shared-element-gallery-expand
+  snippet: snippet.js
+  description: Shared Element Gallery Expand is a GSAP pattern for gallery, media,
+    image surfaces that expands a shared element while preserving spatial continuity.
+  trend_score: 9
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: drag-to-reorder-grid
+  name: Drag To Reorder Grid
+  type: tween
+  category: micro-interaction
+  framework: GSAP
+  triggers:
+  - drag
+  - hover
+  - click
+  - cursor-move
+  components:
+  - grid
+  - card
+  folder: drag-to-reorder-grid
+  snippet: snippet.js
+  description: Drag To Reorder Grid is a GSAP pattern for grid, card surfaces that
+    reflows a grid smoothly around direct drag-based reordering.
+  trend_score: 8
+  status: emerging
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: stacked-testimonial-rotator
+  name: Stacked Testimonial Rotator
+  type: tween
+  category: micro-interaction
+  framework: GSAP
+  triggers:
+  - drag
+  - hover
+  - click
+  - cursor-move
+  components:
+  - testimonial
+  - card
+  folder: stacked-testimonial-rotator
+  snippet: snippet.js
+  description: Stacked Testimonial Rotator is a GSAP pattern for testimonial, card
+    surfaces that rotates stacked cards while preserving depth and order.
+  trend_score: 7
+  status: evergreen
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: orbiting-thumbnail-gallery
+  name: Orbiting Thumbnail Gallery
+  type: procedural
+  category: micro-interaction
+  framework: GSAP
+  triggers:
+  - drag
+  - hover
+  - click
+  - cursor-move
+  components:
+  - gallery
+  - media
+  - image
+  folder: orbiting-thumbnail-gallery
+  snippet: snippet.js
+  description: Orbiting Thumbnail Gallery is a GSAP pattern for gallery, media, image
+    surfaces that moves an accent or media element along a defined path.
+  trend_score: 7
+  status: emerging
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/Flip/
+  - https://gsap.com/docs/v3/Plugins/Draggable/
+  - https://tympanus.net/codrops/2025/05/27/animated-product-grid-preview-with-gsap-clip-path/
+  - https://tympanus.net/codrops/2025/09/01/recreating-palmers-draggable-product-grid-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: drawsvg-route-reveal
+  name: DrawSVG Route Reveal
+  type: tween
+  category: svg
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll
+  - hover
+  - click
+  components:
+  - svg
+  folder: drawsvg-route-reveal
+  snippet: snippet.js
+  description: DrawSVG Route Reveal is a GSAP pattern for svg surfaces that draws
+    a path or underline progressively to guide the eye.
+  trend_score: 8
+  status: trending
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/MotionPathPlugin/
+  - https://gsap.com/docs/v3/Plugins/MorphSVGPlugin/
+  - https://gsap.com/docs/v3/Plugins/DrawSVGPlugin/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: morphsvg-logo-sequence
+  name: MorphSVG Logo Sequence
+  type: procedural
+  category: svg
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll
+  - hover
+  - click
+  components:
+  - logo
+  - icon
+  - svg
+  folder: morphsvg-logo-sequence
+  snippet: snippet.js
+  description: MorphSVG Logo Sequence is a GSAP pattern for logo, icon, svg surfaces
+    that morphs SVG shapes through a branded sequence.
+  trend_score: 8
+  status: emerging
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/MotionPathPlugin/
+  - https://gsap.com/docs/v3/Plugins/MorphSVGPlugin/
+  - https://gsap.com/docs/v3/Plugins/DrawSVGPlugin/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: motionpath-badge-orbit
+  name: Motionpath Badge Orbit
+  type: procedural
+  category: svg
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll
+  - hover
+  - click
+  components:
+  - badge
+  - path
+  - svg
+  folder: motionpath-badge-orbit
+  snippet: snippet.js
+  description: Motionpath Badge Orbit is a GSAP pattern for badge, path, svg surfaces
+    that moves an accent or media element along a defined path.
+  trend_score: 8
+  status: emerging
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/MotionPathPlugin/
+  - https://gsap.com/docs/v3/Plugins/MorphSVGPlugin/
+  - https://gsap.com/docs/v3/Plugins/DrawSVGPlugin/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: motionpath-cta-journey
+  name: Motionpath CTA Journey
+  type: procedural
+  category: svg
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll
+  - hover
+  - click
+  components:
+  - path
+  - svg
+  - cta
+  folder: motionpath-cta-journey
+  snippet: snippet.js
+  description: Motionpath CTA Journey is a GSAP pattern for path, svg, cta surfaces
+    that moves an accent or media element along a defined path.
+  trend_score: 8
+  status: emerging
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/MotionPathPlugin/
+  - https://gsap.com/docs/v3/Plugins/MorphSVGPlugin/
+  - https://gsap.com/docs/v3/Plugins/DrawSVGPlugin/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: checkmark-success-morph
+  name: Checkmark Success Morph
+  type: tween
+  category: svg
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll
+  - hover
+  - click
+  components:
+  - svg
+  - icon
+  folder: checkmark-success-morph
+  snippet: snippet.js
+  description: Checkmark Success Morph is a GSAP pattern for svg, icon surfaces that
+    confirms a binary state change with a compact icon morph.
+  trend_score: 8
+  status: trending
+  popularity_signal: high
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/MotionPathPlugin/
+  - https://gsap.com/docs/v3/Plugins/MorphSVGPlugin/
+  - https://gsap.com/docs/v3/Plugins/DrawSVGPlugin/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: gooey-blob-morph
+  name: Gooey Blob Morph
+  type: procedural
+  category: svg
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll
+  - hover
+  - click
+  components:
+  - svg
+  - icon
+  folder: gooey-blob-morph
+  snippet: snippet.js
+  description: Gooey Blob Morph is a GSAP pattern for svg, icon surfaces that morphs
+    SVG shapes through a branded sequence.
+  trend_score: 7
+  status: emerging
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/MotionPathPlugin/
+  - https://gsap.com/docs/v3/Plugins/MorphSVGPlugin/
+  - https://gsap.com/docs/v3/Plugins/DrawSVGPlugin/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: radial-icon-burst
+  name: Radial Icon Burst
+  type: tween
+  category: svg
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll
+  - hover
+  - click
+  components:
+  - icon
+  folder: radial-icon-burst
+  snippet: snippet.js
+  description: Radial Icon Burst is a GSAP pattern for icon surfaces that uses a quick
+    radial burst for celebratory micro-feedback.
+  trend_score: 7
+  status: evergreen
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/MotionPathPlugin/
+  - https://gsap.com/docs/v3/Plugins/MorphSVGPlugin/
+  - https://gsap.com/docs/v3/Plugins/DrawSVGPlugin/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.
+- id: orbital-loader-dots
+  name: Orbital Loader Dots
+  type: procedural
+  category: svg
+  framework: GSAP
+  triggers:
+  - page-load
+  - scroll
+  - hover
+  - click
+  components:
+  - loader
+  - icon
+  folder: orbital-loader-dots
+  snippet: snippet.js
+  description: Orbital Loader Dots is a GSAP pattern for loader, icon surfaces that
+    moves an accent or media element along a defined path.
+  trend_score: 8
+  status: trending
+  popularity_signal: medium
+  last_reviewed: 2026-03
+  sources:
+  - https://gsap.com/llms.txt
+  - https://gsap.com/docs/v3/Plugins/MotionPathPlugin/
+  - https://gsap.com/docs/v3/Plugins/MorphSVGPlugin/
+  - https://gsap.com/docs/v3/Plugins/DrawSVGPlugin/
+  - https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/
+  - https://tympanus.net/codrops/2025/12/17/building-responsive-scroll-triggered-curved-path-animations-with-gsap/
+  manual_override: false
+  notes: Refreshed against the March 2026 GSAP/Codrops baseline.

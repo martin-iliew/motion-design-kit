@@ -1,0 +1,21 @@
+version: '1'
+type: tween
+id: scramble-hover-relabel
+target:
+  selector: '[data-motion="scramble-hover-relabel"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: load
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- scramble
+config:
+  root: '[data-motion="scramble-hover-relabel"]'
+  items: '[data-motion="scramble-hover-relabel"] [data-motion-item]'
+  target: '[data-motion="scramble-hover-relabel"] [data-motion-target]'
+  path: '[data-motion="scramble-hover-relabel"] [data-motion-path]'

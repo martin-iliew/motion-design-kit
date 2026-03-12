@@ -1,0 +1,25 @@
+version: '1'
+type: procedural
+id: scrollsmoother-data-effects
+target:
+  selector: '[data-motion="scrollsmoother-data-effects"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: scroll
+  scroll_start: top 85%
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- scrolltrigger
+- scrollsmoother
+config:
+  root: '[data-motion="scrollsmoother-data-effects"]'
+  items: '[data-motion="scrollsmoother-data-effects"] [data-motion-item]'
+  target: '[data-motion="scrollsmoother-data-effects"] [data-motion-target]'
+  path: '[data-motion="scrollsmoother-data-effects"] [data-motion-path]'
+behavior: ScrollSmoother Data Effects is a GSAP pattern for hero, section surfaces
+  that adds premium smooth-scrolling effects around a GSAP page shell.

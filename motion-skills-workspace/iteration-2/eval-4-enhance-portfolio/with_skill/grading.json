@@ -1,0 +1,65 @@
+{
+  "expectations": [
+    {
+      "text": "Site type detected as 'portfolio'",
+      "passed": true,
+      "evidence": "enhancement-report.md line 4: 'Site type detected: **portfolio**'. transcript.md confirms: 'Classification: `portfolio`' with rationale citing work grid, project items, Selected Works header, about section with capabilities list."
+    },
+    {
+      "text": "GSAP and ScrollTrigger scripts are added",
+      "passed": true,
+      "evidence": "HTML lines 145-147 include three GSAP CDN scripts: gsap@3.14 core, ScrollTrigger.min.js, and SplitText.min.js. Line 158: 'gsap.registerPlugin(ScrollTrigger, SplitText)' confirms registration."
+    },
+    {
+      "text": "Phase A identifies issues: no scroll animations (CRITICAL), no reduced-motion guard (CRITICAL)",
+      "passed": true,
+      "evidence": "transcript.md Step 1 audit lists: 'CRITICAL: Zero scroll animations', 'CRITICAL: Only opacity animated via CSS hover transitions', 'CRITICAL: No gsap.matchMedia() (no GSAP at all)'. enhancement-report.md confirms: 'Fixed: 4 CRITICAL, 3 WARNING' including 'Zero scroll animations (entire page was static)' and 'No gsap.matchMedia() (no GSAP at all)'."
+    },
+    {
+      "text": "Phase B adds animations from motion-dev pattern library",
+      "passed": true,
+      "evidence": "enhancement-report.md Phase B lists 15 new animations mapped to named patterns: Pattern 9 (SplitText), Pattern 1 (hero subtitle), Pattern 3 (magnetic), Pattern 4 (stagger), Pattern 6 (scroll reveal), Pattern 7 (spring hover), Pattern 8 (footer), Pattern 14 (cursor follower), Pattern 25 (Lenis). transcript.md Step 2 confirms 6 pattern reference files loaded from the motion library."
+    },
+    {
+      "text": "Hero heading gets kinetic typography (SplitText)",
+      "passed": true,
+      "evidence": "HTML lines 190-217: SplitText is instantiated on '.hero h1' with type 'lines,words', mask 'lines' for curtain lift, autoSplit true, aria true. Words animate with yPercent:110, autoAlpha:0 to visible, duration 0.8, power3.out, stagger 0.05. enhancement-report.md confirms: 'hero h1 --> kinetic typography SplitText curtain lift (Pattern 9) | ADDED'."
+    },
+    {
+      "text": "Project items get stagger scroll reveal",
+      "passed": true,
+      "evidence": "HTML lines 311-329: '.project-item' elements are selected via gsap.utils.toArray, each gets gsap.fromTo with autoAlpha:0/y:40 to autoAlpha:1/y:0, duration 0.6, power3.out, delay i*0.09 for stagger, each with its own ScrollTrigger at 'top 85%'. enhancement-report.md confirms: 'project-item (x6) --> stagger scroll reveal (Pattern 4) | ADDED'."
+    },
+    {
+      "text": "About section gets scroll-triggered entrance",
+      "passed": true,
+      "evidence": "HTML lines 257-278: '.about-label' elements get fromTo with autoAlpha:0/y:30 to visible, ScrollTrigger at 'top 85%'. '.about-text' gets separate fromTo with autoAlpha:0/y:30, duration 0.8, ScrollTrigger at 'top 85%'. Lines 335-353: '.skills-list li' items also get stagger scroll reveal. enhancement-report.md confirms: 'about-label (x2) --> section scroll reveal (Pattern 6) | ADDED' and 'about-text --> scroll reveal (Pattern 6) | ADDED'."
+    },
+    {
+      "text": "gsap.matchMedia wraps all animation code",
+      "passed": true,
+      "evidence": "HTML line 161: 'const mm = gsap.matchMedia()'. Every animation block is wrapped in mm.add('(prefers-reduced-motion: no-preference)', ...) — verified at lines 169, 190, 226, 242, 311, 335, 359, 402, 431, 473. Only exception is the touch-guard check (line 401/430) which gates desktop-only effects, itself containing mm.add inside."
+    },
+    {
+      "text": "Reduced-motion fallback uses clearProps or sets elements to visible state",
+      "passed": true,
+      "evidence": "Multiple mm.add('(prefers-reduced-motion: reduce)', ...) blocks with clearProps: Line 219: gsap.set('.hero h1', {clearProps:'all'}). Line 234-235: gsap.set('.hero .subtitle', {clearProps:'all'}). Line 303-304: clearProps on section elements. Line 327-328: clearProps on '.project-item'. Line 351-352: clearProps on '.skills-list li'. Line 463-466: cursor elements set to autoAlpha:0. Line 485-486: clearProps on footer."
+    },
+    {
+      "text": "Summary report follows the specified format with APPLIED/SKIPPED/N-A status per pattern",
+      "passed": true,
+      "evidence": "enhancement-report.md lines 38-54 list all patterns with status labels: 6 APPLIED (lenis-smooth-scroll, scroll-trigger-reveal, spring-physics-interactions, kinetic-typography-splittext, custom-cursor-follower, magnetic-cursor-pull), 4 SKIPPED with reasons (staggered-word-reveal, 3d-tilt-parallax-cursor, horizontal-scroll-section, ambient-floating-particles, card-flip-3d), 5 N/A with structural reasons. Report also includes Legend section at lines 89-93 defining APPLIED/SKIPPED/N-A/ALREADY_ANIMATED/PASSED."
+    },
+    {
+      "text": "No CSS transition conflicts with newly added GSAP animations",
+      "passed": true,
+      "evidence": "HTML contains explicit comments marking CSS transition removals: line 18 'PHASE A FIX: Removed CSS transition on nav links', line 29 'Removed CSS transition on project-item hover', line 39 'Removed CSS transition on skills-list li', line 43 'Removed CSS transition on contact-email', line 47 'Removed CSS transition on footer a'. transcript.md Step 3.6 confirms: 'No CSS transition on GSAP-owned properties' checked and passed. No 'transition:' declarations remain on any GSAP-animated element."
+    }
+  ],
+  "summary": {
+    "passed": 11,
+    "failed": 0,
+    "total": 11,
+    "pass_rate": 1.0
+  }
+}

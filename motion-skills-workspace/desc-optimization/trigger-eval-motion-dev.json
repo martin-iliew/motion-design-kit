@@ -1,0 +1,82 @@
+[
+  {
+    "query": "hey i want to add some animations to my landing page, it's a SaaS product and right now everything just sits there statically. can you make the hero section come alive with a nice entrance animation?",
+    "should_trigger": true
+  },
+  {
+    "query": "i have this portfolio site i built in html/css and i want the project cards to do a nice stagger reveal when you scroll down to them. using gsap for the rest of the site already",
+    "should_trigger": true
+  },
+  {
+    "query": "my react app uses framer motion but the hero heading animation feels choppy and the exit transition is broken. can you help me fix and improve it?",
+    "should_trigger": true
+  },
+  {
+    "query": "how do i make buttons feel more tactile and bouncy in my web app? the whole site feels a bit dead right now",
+    "should_trigger": true
+  },
+  {
+    "query": "i need to convert these CSS keyframe animations to GSAP — we're moving from a CSS-only approach to gsap for better control. here's the current code",
+    "should_trigger": true
+  },
+  {
+    "query": "add scroll-triggered section reveals to my marketing site. each section should fade up as the user scrolls past. I'm already using tailwind",
+    "should_trigger": true
+  },
+  {
+    "query": "what's the best way to animate a drawer opening in vue 3? i want it to feel smooth and physical",
+    "should_trigger": true
+  },
+  {
+    "query": "my gsap animations look janky on mobile because they're animating 'left' and 'top' properties. can you tell me what properties are safe to animate for performance?",
+    "should_trigger": true
+  },
+  {
+    "query": "make this navbar sticky and add a subtle scroll animation where it shrinks slightly when the user scrolls down",
+    "should_trigger": true
+  },
+  {
+    "query": "what are the most modern 2026 animation patterns for web? i want to make my site feel current",
+    "should_trigger": true
+  },
+  {
+    "query": "can you write a python script to parse all the URLs from this sitemap.xml and check which ones return 404?",
+    "should_trigger": false
+  },
+  {
+    "query": "i need to add form validation to my checkout page — when the user submits with missing fields, highlight the inputs in red and show error messages",
+    "should_trigger": false
+  },
+  {
+    "query": "how do i set up a cron job in node.js to run a database cleanup task every night at 2am?",
+    "should_trigger": false
+  },
+  {
+    "query": "can you help me write CSS to center a div both vertically and horizontally? nothing complex, just the standard flexbox approach",
+    "should_trigger": false
+  },
+  {
+    "query": "audit my website animations — i want to know if they're causing performance issues and if there are any conflicts",
+    "should_trigger": false
+  },
+  {
+    "query": "i want to enhance this page's animations — it has some basic hover transitions but i need you to also fix the issues and add more advanced effects",
+    "should_trigger": false
+  },
+  {
+    "query": "my react app has a loading spinner that needs to rotate. just a simple css animation or a one-liner would be fine",
+    "should_trigger": false
+  },
+  {
+    "query": "set up webpack bundling for my vanilla JS project — i need code splitting and tree shaking for production",
+    "should_trigger": false
+  },
+  {
+    "query": "i'm building a dashboard with charts — what's the best library for animated data visualizations in 2026?",
+    "should_trigger": false
+  },
+  {
+    "query": "write a typescript interface for a user object with id, name, email, and role fields",
+    "should_trigger": false
+  }
+]

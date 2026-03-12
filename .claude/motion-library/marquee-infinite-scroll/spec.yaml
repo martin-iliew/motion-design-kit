@@ -1,0 +1,14 @@
+version: "1"
+type: tween
+id: "marquee-infinite-scroll"
+target:
+  selector: ".marquee-track"
+  type: group
+to:
+  x: "-50%"   # scrolls exactly one copy-width
+timing:
+  duration_raw: dynamic  # calculated from content width / speed
+  easing: scrub          # none (linear) for constant speed
+repeat: -1
+a11y:
+  reduced_motion: instant-final  # show content statically

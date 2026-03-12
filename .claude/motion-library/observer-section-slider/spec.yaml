@@ -1,0 +1,25 @@
+version: '1'
+type: procedural
+id: observer-section-slider
+target:
+  selector: '[data-motion="observer-section-slider"]'
+  type: group
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: scroll
+  scroll_start: top 85%
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- scrolltrigger
+- observer
+config:
+  root: '[data-motion="observer-section-slider"]'
+  items: '[data-motion="observer-section-slider"] [data-motion-item]'
+  target: '[data-motion="observer-section-slider"] [data-motion-target]'
+  path: '[data-motion="observer-section-slider"] [data-motion-path]'
+behavior: Observer Section Slider is a GSAP pattern for section surfaces that turns
+  section changes into an Observer-driven presentation flow.

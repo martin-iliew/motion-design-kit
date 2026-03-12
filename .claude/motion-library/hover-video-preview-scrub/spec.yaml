@@ -1,0 +1,22 @@
+version: '1'
+type: procedural
+id: hover-video-preview-scrub
+target:
+  selector: '[data-motion="hover-video-preview-scrub"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: drag
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+config:
+  root: '[data-motion="hover-video-preview-scrub"]'
+  items: '[data-motion="hover-video-preview-scrub"] [data-motion-item]'
+  target: '[data-motion="hover-video-preview-scrub"] [data-motion-target]'
+  path: '[data-motion="hover-video-preview-scrub"] [data-motion-path]'
+behavior: Hover Video Preview Scrub is a GSAP pattern for video, media surfaces that
+  scrubs short video previews on hover for richer media cards.

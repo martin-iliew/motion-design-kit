@@ -1,0 +1,45 @@
+{
+  "name": "motion-design-kit",
+  "owner": {
+    "name": "Martin Iliew",
+    "url": "https://github.com/martin-iliew"
+  },
+  "metadata": {
+    "description": "Claude Code marketplace for modern web animation workflows, including five motion skills and a 75-pattern library.",
+    "version": "1.2.0"
+  },
+  "plugins": [
+    {
+      "name": "motion-design-kit",
+      "description": "Five Claude Code motion skills backed by a 75-pattern animation library for authoring, auditing, discovery, reranking, and enhancement.",
+      "version": "1.2.0",
+      "author": {
+        "name": "Martin Iliew",
+        "url": "https://github.com/martin-iliew"
+      },
+      "homepage": "https://github.com/martin-iliew/motion-design-kit",
+      "repository": "https://github.com/martin-iliew/motion-design-kit",
+      "license": "Apache-2.0",
+      "keywords": [
+        "claude-code",
+        "plugin",
+        "animation",
+        "gsap",
+        "motion-design",
+        "frontend"
+      ],
+      "category": "frontend",
+      "tags": [
+        "animation",
+        "design-system",
+        "gsap",
+        "frontend"
+      ],
+      "source": {
+        "source": "github",
+        "repo": "martin-iliew/motion-design-kit",
+        "ref": "main"
+      }
+    }
+  ]
+}

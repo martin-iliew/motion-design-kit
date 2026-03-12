@@ -1,0 +1,23 @@
+version: '1'
+type: procedural
+id: draggable-card-deck
+target:
+  selector: '[data-motion="draggable-card-deck"]'
+  type: group
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: drag
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- draggable
+config:
+  root: '[data-motion="draggable-card-deck"]'
+  items: '[data-motion="draggable-card-deck"] [data-motion-item]'
+  target: '[data-motion="draggable-card-deck"] [data-motion-target]'
+  path: '[data-motion="draggable-card-deck"] [data-motion-path]'
+behavior: Draggable Card Deck is a GSAP pattern for card surfaces that makes a deck
+  behave like a direct-manipulation object.

@@ -1,0 +1,69 @@
+# Motion Spec: flip-grid-reorder
+# IR Note: FLIP captures live DOM state — from.x/from.y are runtime-computed
+# via Flip.getState() and cannot be expressed as static values. The spec
+# represents the timing/easing intent only. Stack translators must use
+# Flip.from(state, {...}) — no direct CSS/WAA equivalent exists.
+version: "1"
+type: tween
+id: "flip-grid-reorder"
+target:
+  selector: ".card"
+  type: group
+from:
+  x: "<captured>"   # DOM position before state change — runtime-measured by Flip.getState()
+  y: "<captured>"   # DOM position before state change — runtime-measured by Flip.getState()
+to:
+  x: 0   # natural DOM position after state change
+  y: 0
+timing:
+  duration: fast       # 0.55s
+  easing: transition   # power2.inOut for layout changes
+stagger:
+  tier: tight          # 0.04s per element
+  from: start
+trigger:
+  type: state-change   # triggered by DOM mutation (class add/remove, filter click)
+a11y:
+  reduced_motion: instant-final
+---
+# Sub-animation: onEnter (elements entering the filtered state)
+version: "1"
+type: tween
+id: "flip-grid-enter"
+target:
+  selector: ".card"
+  type: group
+from:
+  opacity: 0
+  scale: 0.85
+to:
+  opacity: 1
+  scale: 1
+timing:
+  duration: fast       # 0.4s
+  easing_raw: "cubic-bezier(0.34, 1.56, 0.64, 1)"   # back.out(1.4) — mild spring pop; spring token = back.out(1.7), tuned down slightly
+trigger:
+  type: state-change
+a11y:
+  reduced_motion: instant-final
+---
+# Sub-animation: onLeave (elements leaving the filtered state)
+version: "1"
+type: tween
+id: "flip-grid-leave"
+target:
+  selector: ".card"
+  type: group
+from:
+  opacity: 1
+  scale: 1
+to:
+  opacity: 0
+  scale: 0.85
+timing:
+  duration_raw: 0.3    # fast token = 0.3s; exact match
+  easing: exit         # power2.in
+trigger:
+  type: state-change
+a11y:
+  reduced_motion: instant-start

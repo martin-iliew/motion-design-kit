@@ -1,0 +1,117 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains a structured audit report table with columns including Issue, Severity, and Fix",
+      "passed": false,
+      "evidence": "The audit report contains several tables (Section 1 'Category | Count | Details', Section 7 'Aspect | Rating | Notes') but none with columns 'Issue, Severity, and Fix' together. Issues are described in prose sections with severity labels inline (e.g., 'Severity: Critical') and fixes are in a separate Section 6 as bullet-point recommendations, not in a unified table."
+    },
+    {
+      "text": "Report evaluates all 5 audit dimensions: dependencies, modernity, performance, conflict, consistency",
+      "passed": false,
+      "evidence": "The report covers performance (Section 3) and consistency (Section 4) explicitly. It also covers accessibility (Section 5) and animation quality (Section 2). However, the five specific dimensions 'dependencies, modernity, performance, conflict, consistency' are not all named or evaluated as distinct audit dimensions. 'Dependencies' is partially addressed (noting no GSAP loaded) but not as a named dimension. 'Modernity' and 'conflict' are not evaluated as explicit dimensions. The Summary Table (Section 7) rates: Animation Quality, Performance, Accessibility, Consistency, Production Readiness — a different set of 5."
+    },
+    {
+      "text": "CRITICAL issues are identified (no GSAP loaded, no scroll animations, no reduced-motion guard)",
+      "passed": false,
+      "evidence": "Section 2.1 identifies 'No Animations Implemented' as 'Severity: Critical', covering no GSAP and no scroll animations. Section 4.1 'Content-Code Mismatch' is also 'Severity: Critical'. However, the no-reduced-motion-guard issue in Section 5.1 is labeled 'Severity: High' rather than CRITICAL. Two of three expected CRITICAL items are present at CRITICAL level, but reduced-motion is downgraded. Partial coverage — the expectation requires all three to be CRITICAL."
+    },
+    {
+      "text": "Summary line states count of CRITICAL, WARNING, and INFO items",
+      "passed": false,
+      "evidence": "The audit-report.md does not contain a summary count line with CRITICAL, WARNING, and INFO tallies. The metrics.json file (a separate file) lists 'critical_issues: 2, medium_issues: 3, low_issues: 4, info_issues: 1' but this is not in the audit report itself, and uses 'medium/low' rather than 'WARNING/INFO' terminology. The report has no line like 'X CRITICAL, Y WARNING, Z INFO'."
+    },
+    {
+      "text": "Concrete Before/After fix patches are provided for CRITICAL and WARNING items",
+      "passed": false,
+      "evidence": "Section 6 'Recommendations' provides descriptive bullet points (e.g., 'Load GSAP + plugins', 'Hero timeline -- Staggered entrance of badge, title...') but no before/after code patches. No code diffs, no 'Before:' / 'After:' blocks. The only code shown is diagnostic (quoting existing HTML in Section 2.2), not fix patches."
+    },
+    {
+      "text": "Each fix has a Why explanation sentence",
+      "passed": false,
+      "evidence": "The recommendations in Section 6 list fixes as action items without explicit 'Why' explanation sentences. For example, 'Load GSAP + plugins -- Add <script> tags for gsap.min.js, ScrollTrigger.min.js' describes what to do but not why. Some context is implied (e.g., 'to prevent invisible click-blocking elements' for autoAlpha) but there is no consistent 'Why:' pattern for each fix."
+    },
+    {
+      "text": "Report identifies that the page has NO animation JavaScript code despite having animation-related CSS classes",
+      "passed": true,
+      "evidence": "Executive Summary: 'it contains zero implemented animations. There is no JavaScript, no GSAP, no CSS keyframes, no CSS transitions, and no scroll-driven effects.' Section 1 lists 'Total animated elements: 0' and includes a full subsection 'Elements with animation-suggestive class names (but no implementation)' listing 19+ elements. Transcript Step 4: 'Finding: Zero animations implemented. The page is entirely static.' This is the strongest finding in the report."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 6,
+    "total": 7,
+    "pass_rate": 0.14
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Bash": 2,
+      "Write": 3,
+      "Edit": 0,
+      "Grep": 0,
+      "Glob": 0
+    },
+    "total_tool_calls": 6,
+    "total_steps": 10,
+    "errors_encountered": 0,
+    "output_chars": 10248,
+    "transcript_chars": 2460
+  },
+  "timing": {
+    "total_tokens": 32196,
+    "executor_duration_seconds": 119.4,
+    "total_duration_seconds": 119.4
+  },
+  "claims": [
+    {
+      "claim": "The page contains zero implemented animations",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Transcript Step 4 documents checking for <script> tags, @keyframes, transition, animation, GSAP, ScrollTrigger, and prefers-reduced-motion — all absent. Only script is Tailwind CSS CDN."
+    },
+    {
+      "claim": "19+ elements have animation-suggestive class names",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The audit-report.md Section 1 lists 19 elements with class names like .hero-badge, .marquee-track, .magnetic-btn, .card, #cursor, etc. Each is documented with its implied animation and 'none implemented' status."
+    },
+    {
+      "claim": "Content claims contradict the code (100% GPU Accelerated, GSAP patterns, etc.)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Section 4.1 lists 7 specific content-code contradictions including hero stats, subtitle claims, footer text, and performance card claims — all referencing features that do not exist in the code."
+    },
+    {
+      "claim": "Overall Animation Quality Score: 0/10",
+      "type": "quality",
+      "verified": true,
+      "evidence": "With zero animations implemented, a 0/10 score is accurate and well-justified."
+    },
+    {
+      "claim": "Two different magnetic button class names exist",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Section 4.2 identifies .magnetic-btn (line 172) and .cta-magnetic-btn (line 896) as inconsistent naming."
+    }
+  ],
+  "user_notes_summary": null,
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "CRITICAL issues are identified (no GSAP loaded, no scroll animations, no reduced-motion guard)",
+        "reason": "This assertion bundles three separate checks into one. The baseline run correctly identified all three problems but labeled reduced-motion as 'High' instead of 'CRITICAL'. Consider splitting into separate assertions: one for identifying the issues exist, another for severity classification."
+      },
+      {
+        "assertion": "Summary line states count of CRITICAL, WARNING, and INFO items",
+        "reason": "This assertion tests a very specific output format (a count line with exact severity tier names). The baseline run provided counts in metrics.json with different tier names (medium/low instead of WARNING/INFO). Consider testing for 'a severity breakdown is provided' rather than exact formatting."
+      },
+      {
+        "reason": "No assertion checks whether the audit identifies the custom cursor elements (#cursor, #cursor-ring) as non-functional. The baseline run caught this (Section 2.2), which is a genuinely useful finding that distinguishes a thorough audit from a superficial one."
+      },
+      {
+        "reason": "No assertion checks the quality of the animation inventory table. The baseline produced a thorough 9-row inventory (Section 1) which is arguably the most useful part of the report for diagnosing the page's state."
+      }
+    ],
+    "overall": "The expectations are heavily weighted toward structured formatting (table columns, summary counts, before/after patches, Why sentences) rather than analytical substance. The baseline run produced a genuinely thorough and insightful audit — it found all the right problems, documented them well, and provided useful recommendations — but fails 6 of 7 expectations because its output format doesn't match the expected structure. Consider rebalancing: keep some format checks but add assertions that test analytical depth (e.g., 'identifies at least 3 categories of missing animation code', 'provides actionable implementation order')."
+  }
+}

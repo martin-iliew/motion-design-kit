@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MARA CHEN — Designer & Art Director</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      *{margin:0;padding:0;box-sizing:border-box}
+      :root{--bg:#f5f0eb;--text:#1a1a1a;--accent:#ff3d00;--muted:#999;--mono:'JetBrains Mono',monospace;--sans:'Space Grotesk',system-ui,sans-serif}
+      ::selection{background:var(--accent);color:#fff}
+      body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden}
+      .container{max-width:1400px;margin:0 auto;padding:0 clamp(24px,4vw,80px)}
+      nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:24px clamp(24px,4vw,80px);display:flex;justify-content:space-between;align-items:center;mix-blend-mode:difference;color:#fff}
+      nav a{color:inherit;text-decoration:none;font-size:14px;font-family:var(--mono)}
+      nav .name{font-weight:700;font-size:16px;letter-spacing:.05em;text-transform:uppercase}
+      nav .links{display:flex;gap:32px}
+      /* REMOVED CSS transition on nav links — GSAP owns opacity via magnetic interaction */
+      nav .links a{opacity:.6}
+      nav .links a:hover{opacity:1}
+      .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:80px;padding-top:120px}
+      .hero h1{font-size:clamp(4rem,12vw,14rem);font-weight:700;line-height:.9;letter-spacing:-.04em;text-transform:uppercase}
+      .hero h1 .accent{color:var(--accent)}
+      .hero .subtitle{margin-top:40px;font-family:var(--mono);font-size:14px;color:var(--muted);max-width:400px;line-height:1.6}
+      .projects{padding:160px 0}
+      .projects-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:80px;border-bottom:1px solid rgba(0,0,0,.1);padding-bottom:20px}
+      .projects-header h2{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted)}
+      .projects-header span{font-family:var(--mono);font-size:12px;color:var(--muted)}
+      .project-item{border-bottom:1px solid rgba(0,0,0,.08);padding:40px 0;display:grid;grid-template-columns:1fr auto auto;gap:40px;align-items:baseline;text-decoration:none;color:inherit}
+      /* REMOVED CSS transition on project-title — GSAP owns color via hover interaction */
+      .project-item:hover .project-title{color:var(--accent)}
+      .project-title{font-size:clamp(2rem,5vw,4.5rem);font-weight:700;letter-spacing:-.03em}
+      .project-meta,.project-year{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
+      .about{padding:160px 0;border-top:1px solid rgba(0,0,0,.1)}
+      .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:120px}
+      .about-label{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:40px}
+      .about-text{font-size:clamp(1.5rem,3vw,2.5rem);font-weight:300;line-height:1.4;letter-spacing:-.01em}
+      .about-text strong{font-weight:700}
+      .skills-list{list-style:none;font-family:var(--mono);font-size:14px;line-height:2.2;color:var(--muted)}
+      /* REMOVED CSS transition on skills-list li — no GSAP conflict but keeping clean */
+      .skills-list li:hover{color:var(--text)}
+      .contact{padding:200px 0 100px;border-top:1px solid rgba(0,0,0,.1);text-align:center}
+      .contact-label{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:40px}
+      .contact-email{font-size:clamp(2rem,6vw,6rem);font-weight:700;letter-spacing:-.03em;text-decoration:none;color:var(--text);display:inline-block;border-bottom:4px solid transparent}
+      /* REMOVED CSS transition on contact-email — GSAP magnetic owns transform */
+      .contact-email:hover{color:var(--accent);border-bottom-color:var(--accent)}
+      footer{padding:40px clamp(24px,4vw,80px);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;color:var(--muted);border-top:1px solid rgba(0,0,0,.05)}
+      footer a{color:inherit;text-decoration:none}
+      /* REMOVED CSS transition on footer a — keeping clean */
+      footer a:hover{color:var(--text)}
+      footer .social{display:flex;gap:24px}
+      @media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:60px}.project-item{grid-template-columns:1fr;gap:8px}nav .links{display:none}}
+
+      /* Custom cursor styles — desktop only, hidden by default */
+      .cursor-dot, .cursor-ring {
+        position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+        transform: translate(-50%, -50%);
+        display: none;
+      }
+      .cursor-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; }
+      .cursor-ring { width: 40px; height: 40px; border: 1.5px solid var(--text); border-radius: 50%; opacity: 0.4; }
+
+      /* Hide cursor elements on touch / reduced-motion */
+      @media (pointer: coarse), (prefers-reduced-motion: reduce) {
+        .cursor-dot, .cursor-ring { display: none !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Custom cursor elements -->
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
+
+    <nav>
+      <a href="#" class="name" data-magnetic>Mara Chen</a>
+      <div class="links">
+        <a href="#work" data-magnetic>Work</a>
+        <a href="#about" data-magnetic>About</a>
+        <a href="#contact" data-magnetic>Contact</a>
+      </div>
+    </nav>
+    <main>
+      <section class="hero container" id="hero">
+        <h1>Design<br /><span class="accent">&</span> Art<br />Direction</h1>
+        <p class="subtitle">Independent designer based in Berlin. Specializing in brand identity, editorial, and digital experiences since 2019.</p>
+      </section>
+      <section class="projects container" id="work">
+        <div class="projects-header"><h2 data-scramble>Selected Works</h2><span>(06)</span></div>
+        <a href="#" class="project-item hoverable"><span class="project-title">Void Gallery</span><span class="project-meta">Brand Identity</span><span class="project-year">2026</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Terraform</span><span class="project-meta">Web Experience</span><span class="project-year">2025</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Mono Journal</span><span class="project-meta">Editorial Design</span><span class="project-year">2025</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Noctis</span><span class="project-meta">Visual Identity</span><span class="project-year">2024</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Drift Studio</span><span class="project-meta">Art Direction</span><span class="project-year">2023</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Sonder Press</span><span class="project-meta">Brand System</span><span class="project-year">2022</span></a>
+      </section>
+      <section class="about container" id="about">
+        <div class="about-grid">
+          <div>
+            <p class="about-label">About</p>
+            <p class="about-text">I'm a <strong>designer and art director</strong> obsessed with the intersection of typography, space, and meaning. I believe in reduction — stripping away until only the essential remains.</p>
+          </div>
+          <div>
+            <p class="about-label">Capabilities</p>
+            <ul class="skills-list">
+              <li>Brand Identity</li><li>Art Direction</li><li>Typography</li><li>Editorial Design</li><li>Web Design</li><li>Motion Graphics</li><li>Packaging</li><li>Environmental Graphics</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="contact container" id="contact">
+        <p class="contact-label">Get in Touch</p>
+        <a href="mailto:hello@marachen.design" class="contact-email hoverable" data-magnetic>hello@marachen.design</a>
+      </section>
+    </main>
+    <footer>
+      <span>&copy; 2026 Mara Chen</span>
+      <div class="social"><a href="#" class="hoverable" data-magnetic>Instagram</a><a href="#" class="hoverable" data-magnetic>Dribbble</a><a href="#" class="hoverable" data-magnetic>LinkedIn</a><a href="#" class="hoverable" data-magnetic>Read.cv</a></div>
+    </footer>
+
+    <!-- GSAP Core + Plugins (all free since GSAP 3.13, May 2025) -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/SplitText.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/ScrambleTextPlugin.min.js"></script>
+
+    <script>
+    gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin);
+
+    const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    const mm = gsap.matchMedia();
+
+    // ═══════════════════════════════════════════════════════
+    // REDUCED-MOTION: NO-PREFERENCE — Full animation suite
+    // ═══════════════════════════════════════════════════════
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+
+      // ─────────────────────────────────────────────────────
+      // Pattern 9 — Kinetic Typography (SplitText) on Hero h1
+      // Personality: dramatic → slow duration, impact easing, loose stagger
+      // ─────────────────────────────────────────────────────
+      const heroH1 = document.querySelector(".hero h1");
+      let splitInstance;
+      let heroTl;
+
+      function buildHeroSplit(split) {
+        if (heroTl) heroTl.kill();
+
+        heroTl = gsap.timeline({
+          defaults: { ease: "power3.out" } // token: impact
+        });
+
+        // Words reveal from below line mask — cinematic curtain lift
+        heroTl.from(split.words, {
+          yPercent: 120,
+          autoAlpha: 0,
+          duration: 1.0,                    // token: slow (dramatic bias)
+          ease: "power3.out",               // token: impact
+          stagger: { each: 0.06, from: "start" }, // token: between tight and medium — dramatic pacing
+        });
+
+        // Hero subtitle fades in after heading completes
+        heroTl.fromTo(".hero .subtitle",
+          { autoAlpha: 0, y: 25 },
+          { autoAlpha: 1, y: 0, duration: 0.8, ease: "power2.out" }, // token: ~slow / entrance
+          "-=0.3"
+        );
+      }
+
+      splitInstance = new SplitText(heroH1, {
+        type: "lines,words",
+        mask: "lines",        // words slide up from below clipping line
+        autoSplit: true,      // re-splits on resize and font-load
+        aria: true,           // adds aria-label on parent, aria-hidden on children
+        onSplit(self) { buildHeroSplit(self); }
+      });
+      buildHeroSplit(splitInstance);
+
+      // ─────────────────────────────────────────────────────
+      // Pattern 2 — Smart Navbar Hide/Show (velocity-driven)
+      // ─────────────────────────────────────────────────────
+      let navVisible = true;
+      const navST = ScrollTrigger.create({
+        start: "top top",
+        onUpdate: (self) => {
+          // Only trigger after scrolling past hero
+          if (self.scroll() < 300) return;
+          if (self.direction === 1 && navVisible) {
+            gsap.to("nav", { yPercent: -100, duration: 0.3, ease: "power2.in" }); // token: fast / exit
+            navVisible = false;
+          } else if (self.direction === -1 && !navVisible) {
+            gsap.to("nav", { yPercent: 0, duration: 0.3, ease: "power2.out" });   // token: fast / entrance
+            navVisible = true;
+          }
+        }
+      });
+
+      // ─────────────────────────────────────────────────────
+      // Pattern 10 — ScrambleText on "Selected Works" label
+      // Personality: dramatic → slow decode
+      // ─────────────────────────────────────────────────────
+      const scrambleEl = document.querySelector("[data-scramble]");
+      if (scrambleEl) {
+        const finalText = scrambleEl.textContent.trim();
+        gsap.fromTo(scrambleEl,
+          { autoAlpha: 0.3 },
+          {
+            autoAlpha: 1,
+            duration: 1.5,          // token: epic (dramatic bias)
+            ease: "none",
+            scrambleText: {
+              text: finalText,
+              chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+              speed: 0.3,
+              revealDelay: 0.3,
+            },
+            scrollTrigger: {
+              trigger: scrambleEl,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            }
+          }
+        );
+      }
+
+      // ─────────────────────────────────────────────────────
+      // Pattern 4 — Project Items Stagger Scroll Reveal
+      // Personality: dramatic → loose stagger, slow duration
+      // ─────────────────────────────────────────────────────
+      const projectItems = gsap.utils.toArray(".project-item");
+      projectItems.forEach((item, i) => {
+        gsap.fromTo(item,
+          { autoAlpha: 0, y: 50, x: -20 },
+          {
+            autoAlpha: 1, y: 0, x: 0,
+            duration: 0.8,              // token: ~slow (dramatic bias)
+            ease: "power3.out",         // token: impact
+            scrollTrigger: {
+              trigger: item,
+              start: "top 88%",
+              toggleActions: "play none none none",
+            }
+          }
+        );
+      });
+
+      // ─────────────────────────────────────────────────────
+      // Pattern 7 — Spring Hover on Project Items
+      // Subtle lift — portfolio dramatic personality
+      // ─────────────────────────────────────────────────────
+      projectItems.forEach(item => {
+        item.addEventListener("mouseenter", () => {
+          item.style.willChange = "transform";
+          gsap.to(item, {
+            x: 12,                       // subtle rightward shift — editorial feel
+            duration: 0.4,               // token: fast
+            ease: "back.out(1.7)",       // token: spring
+          });
+        });
+        item.addEventListener("mouseleave", () => {
+          gsap.to(item, {
+            x: 0,
+            duration: 0.4,              // token: fast
+            ease: "power2.out",          // token: entrance
+            onComplete: () => { item.style.willChange = "auto"; }
+          });
+        });
+      });
+
+      // ─────────────────────────────────────────────────────
+      // Pattern 6 — About Section Reveal
+      // Personality: dramatic → slow entrance, loose stagger
+      // ─────────────────────────────────────────────────────
+      const aboutSection = document.querySelector(".about");
+      const aboutLabels = gsap.utils.toArray(".about .about-label");
+      const aboutText = document.querySelector(".about .about-text");
+
+      aboutLabels.forEach(label => {
+        gsap.fromTo(label,
+          { autoAlpha: 0, y: 30 },
+          {
+            autoAlpha: 1, y: 0,
+            duration: 0.8,              // token: ~slow (dramatic bias)
+            ease: "power3.out",         // token: impact
+            scrollTrigger: {
+              trigger: label,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            }
+          }
+        );
+      });
+
+      if (aboutText) {
+        gsap.fromTo(aboutText,
+          { autoAlpha: 0, y: 40 },
+          {
+            autoAlpha: 1, y: 0,
+            duration: 1.0,              // token: slow (dramatic bias)
+            ease: "power2.out",         // token: entrance
+            scrollTrigger: {
+              trigger: aboutText,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            }
+          }
+        );
+      }
+
+      // ─────────────────────────────────────────────────────
+      // Skills list — stagger reveal
+      // Personality: dramatic → loose stagger
+      // ─────────────────────────────────────────────────────
+      const skillItems = gsap.utils.toArray(".skills-list li");
+      skillItems.forEach((li, i) => {
+        gsap.fromTo(li,
+          { autoAlpha: 0, x: -15 },
+          {
+            autoAlpha: 1, x: 0,
+            duration: 0.5,              // token: between fast and base
+            ease: "power2.out",         // token: entrance
+            delay: i * 0.07,            // stagger between tight and medium
+            scrollTrigger: {
+              trigger: li.closest("ul"),
+              start: "top 80%",
+              toggleActions: "play none none none",
+            }
+          }
+        );
+      });
+
+      // ─────────────────────────────────────────────────────
+      // Pattern 6 — Contact Section Reveal
+      // ─────────────────────────────────────────────────────
+      gsap.fromTo(".contact-label",
+        { autoAlpha: 0, y: 25 },
+        {
+          autoAlpha: 1, y: 0,
+          duration: 0.8,                // token: ~slow
+          ease: "power3.out",           // token: impact
+          scrollTrigger: {
+            trigger: ".contact",
+            start: "top 80%",
+            toggleActions: "play none none none",
+          }
+        }
+      );
+
+      gsap.fromTo(".contact-email",
+        { autoAlpha: 0, y: 40 },
+        {
+          autoAlpha: 1, y: 0,
+          duration: 1.0,                // token: slow (dramatic)
+          ease: "power3.out",           // token: impact
+          scrollTrigger: {
+            trigger: ".contact-email",
+            start: "top 90%",
+            toggleActions: "play none none none",
+          }
+        }
+      );
+
+      // ─────────────────────────────────────────────────────
+      // Pattern 8 — Footer Reveal
+      // ─────────────────────────────────────────────────────
+      gsap.fromTo("footer",
+        { autoAlpha: 0, y: 30 },
+        {
+          autoAlpha: 1, y: 0,
+          duration: 0.8,                // token: ~slow
+          ease: "power2.out",           // token: entrance
+          scrollTrigger: {
+            trigger: "footer",
+            start: "top 95%",
+            toggleActions: "play none none none",
+          }
+        }
+      );
+
+      // ─────────────────────────────────────────────────────
+      // Pattern 3 — Magnetic Cursor Pull (Desktop-Only)
+      // Nav links, contact email, footer socials
+      // ─────────────────────────────────────────────────────
+      if (!isTouch) {
+        document.querySelectorAll("[data-magnetic]").forEach(el => {
+          const strength = el.classList.contains("contact-email") ? 0.2 : 0.35;
+          const xTo = gsap.quickTo(el, "x", { duration: 0.4, ease: "power3.out" }); // token: fast / impact
+          const yTo = gsap.quickTo(el, "y", { duration: 0.4, ease: "power3.out" });
+
+          el.addEventListener("mousemove", e => {
+            const { left, top, width, height } = el.getBoundingClientRect();
+            xTo((e.clientX - (left + width / 2)) * strength);
+            yTo((e.clientY - (top + height / 2)) * strength);
+          });
+          el.addEventListener("mouseleave", () => { xTo(0); yTo(0); });
+        });
+      }
+
+      // ─────────────────────────────────────────────────────
+      // Pattern 14 — Custom Cursor Follower (Desktop-Only)
+      // Portfolio personality — preferred pattern
+      // ─────────────────────────────────────────────────────
+      if (!isTouch) {
+        const dot = document.querySelector(".cursor-dot");
+        const ring = document.querySelector(".cursor-ring");
+
+        if (dot && ring) {
+          dot.style.display = "block";
+          ring.style.display = "block";
+
+          const xTo = gsap.quickTo(dot, "x", { duration: 0.15, ease: "power2.out" });   // token: micro
+          const yTo = gsap.quickTo(dot, "y", { duration: 0.15, ease: "power2.out" });
+          const ringX = gsap.quickTo(ring, "x", { duration: 0.4, ease: "power2.out" }); // lagging ring
+          const ringY = gsap.quickTo(ring, "y", { duration: 0.4, ease: "power2.out" });
+
+          window.addEventListener("mousemove", (e) => {
+            xTo(e.clientX); yTo(e.clientY);
+            ringX(e.clientX); ringY(e.clientY);
+          });
+
+          // Scale ring on interactive elements
+          document.querySelectorAll("a, button, .hoverable").forEach(el => {
+            el.addEventListener("mouseenter", () =>
+              gsap.to(ring, { scale: 2.2, autoAlpha: 0.8, duration: 0.3, ease: "back.out(1.7)" }) // token: fast / spring
+            );
+            el.addEventListener("mouseleave", () =>
+              gsap.to(ring, { scale: 1, autoAlpha: 0.4, duration: 0.3, ease: "power2.out" })     // token: fast / entrance
+            );
+          });
+        }
+      }
+
+      // Cleanup
+      return () => {
+        if (heroTl) heroTl.kill();
+        if (splitInstance) splitInstance.revert();
+        navST.kill();
+        ScrollTrigger.getAll().forEach(t => t.kill());
+      };
+    });
+
+    // ═══════════════════════════════════════════════════════
+    // REDUCED-MOTION: REDUCE — Static visible, no animation
+    // ═══════════════════════════════════════════════════════
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      gsap.set([
+        ".hero h1", ".hero .subtitle",
+        ".project-item",
+        ".about-label", ".about-text",
+        ".skills-list li",
+        ".contact-label", ".contact-email",
+        "footer",
+        "[data-scramble]"
+      ], { clearProps: "all" });
+
+      // Hide custom cursor
+      gsap.set([".cursor-dot", ".cursor-ring"], { display: "none" });
+    });
+
+    // ═══════════════════════════════════════════════════════
+    // ScrollTrigger.refresh() on page load — required
+    // ═══════════════════════════════════════════════════════
+    window.addEventListener("load", () => ScrollTrigger.refresh());
+    </script>
+  </body>
+</html>

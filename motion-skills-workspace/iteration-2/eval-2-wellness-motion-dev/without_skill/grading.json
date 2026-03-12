@@ -1,0 +1,75 @@
+{
+  "expectations": [
+    {
+      "text": "Output file is a duplicate, original untouched",
+      "passed": false,
+      "evidence": "Output file is named '12-health-wellness.html' (same name as the original). No separate '-animated' copy was created. The output appears to have been written in-place rather than as a duplicate with a distinct filename."
+    },
+    {
+      "text": "GSAP and ScrollTrigger CDN scripts are included",
+      "passed": true,
+      "evidence": "Lines 11-12: gsap 3.12.5 and ScrollTrigger 3.12.5 loaded via cdnjs.cloudflare.com CDN. Plugin registered at line 239: gsap.registerPlugin(ScrollTrigger)."
+    },
+    {
+      "text": "Motion personality is 'subtle' — durations should bias toward base/slow (0.6-1.0s)",
+      "passed": true,
+      "evidence": "Durations used: 0.6s, 0.7s, 0.8s, 0.9s, 1.0s, 1.2s. The vast majority (all but 1.2s) fall within the 0.6-1.0s range. Stagger values are 0.12-0.15s. Consistent with a subtle/calm motion personality."
+    },
+    {
+      "text": "Easing uses entrance (power2.out) or transition (power2.inOut), NOT spring or elastic",
+      "passed": true,
+      "evidence": "All animations use 'power2.out' (lines 244, 298, 310, 328, 339, 364, 370, 380, 392, 417, 423, 430, 435, 445, 455) or 'power1.out' (line 276 for hero image). Zero instances of spring, elastic, or bounce easing."
+    },
+    {
+      "text": "Hero section has parallax effect (yPercent with scrub:true) on desktop only",
+      "passed": false,
+      "evidence": "Hero parallax exists (lines 280-289) using 'y: -40' with 'scrub: 1.5', but uses 'y' instead of 'yPercent'. Also not wrapped in gsap.matchMedia() for desktop-only — applies to all viewport sizes."
+    },
+    {
+      "text": "Ritual cards have staggered scroll reveal",
+      "passed": true,
+      "evidence": "Lines 306-317: gsap.from('.ritual-card', { autoAlpha:0, y:40, duration:0.9, stagger:0.15, scrollTrigger: { trigger:'.ritual-card', start:'top 85%' } })."
+    },
+    {
+      "text": "Product cards have staggered scroll reveal",
+      "passed": true,
+      "evidence": "Lines 334-345: gsap.from('.product-card', { autoAlpha:0, y:35, duration:0.8, stagger:0.12, scrollTrigger: { trigger:'.product-card', start:'top 85%' } })."
+    },
+    {
+      "text": "Journal section has scroll-triggered entrance",
+      "passed": true,
+      "evidence": "Lines 376-399: Journal header fades in with ScrollTrigger at 'top 85%'. Journal cards have staggered scroll reveal with gsap.from('.journal-card', { autoAlpha:0, y:40, stagger:0.15, scrollTrigger })."
+    },
+    {
+      "text": "gsap.matchMedia wraps all animation code",
+      "passed": false,
+      "evidence": "No instance of 'gsap.matchMedia' or 'matchMedia' found anywhere in the file. All animations run unconditionally on all viewport sizes."
+    },
+    {
+      "text": "Reduced-motion fallback uses clearProps or sets elements to visible state",
+      "passed": false,
+      "evidence": "No 'prefers-reduced-motion' media query, no 'clearProps', and no reduced-motion fallback found. Users with motion sensitivity preferences will still see all animations."
+    },
+    {
+      "text": "autoAlpha used instead of bare opacity",
+      "passed": true,
+      "evidence": "All GSAP animation calls use 'autoAlpha: 0' (lines 248, 253, 259, 264, 269, 273, 295, 307, 323, 335, 360, 367, 377, 389, 414, 420, 426, 433, 442, 454). Zero instances of bare 'opacity' in animation properties."
+    },
+    {
+      "text": "No layout-triggering properties animated (no width, height, top, left, margin)",
+      "passed": true,
+      "evidence": "Only GPU-friendly properties animated: y (translate), scale, and autoAlpha (opacity+visibility). No width, height, top, left, or margin properties used in any gsap.from() or gsap.to() call."
+    },
+    {
+      "text": "Token comments present in animation values",
+      "passed": false,
+      "evidence": "No token comments (e.g., '/* $duration-base */', '/* entrance */') found in any animation values. Durations and easings are hardcoded as raw literals without design-token annotations."
+    }
+  ],
+  "summary": {
+    "passed": 8,
+    "failed": 5,
+    "total": 13,
+    "pass_rate": 0.615
+  }
+}

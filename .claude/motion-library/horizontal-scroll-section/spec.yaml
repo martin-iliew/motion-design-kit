@@ -1,0 +1,19 @@
+version: "1"
+type: tween
+id: "horizontal-scroll-section"
+target:
+  selector: ".horizontal-track"
+  type: element
+to:
+  x: "dynamic"   # -(track.scrollWidth - container.offsetWidth)
+timing:
+  easing: scrub   # none (linear) — scroll-tied
+trigger:
+  type: scroll
+  pin: true
+  scrub: 0.5
+  scroll_start: "top top"
+  scroll_end: "dynamic"
+  invalidateOnRefresh: true
+a11y:
+  reduced_motion: instant-final  # show all panels visible, no horizontal scroll

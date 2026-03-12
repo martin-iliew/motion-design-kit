@@ -1,0 +1,45 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains an audit report table with columns: #, Issue, Severity, Location, Fix",
+      "passed": true,
+      "evidence": "Severity Table at line 68 has exact header: '| # | Issue | Severity | Location | Fix |' with 14 rows covering all findings."
+    },
+    {
+      "text": "Report checks all 5 dimensions: dependencies, modernity, performance, conflict, consistency",
+      "passed": true,
+      "evidence": "Dimension Analysis section contains subsections for all 5: '1. DEPENDENCIES' (line 12), '2. MODERNITY' (line 28), '3. PERFORMANCE' (line 47), '4. CONFLICT' (line 55), '5. CONSISTENCY' (line 61)."
+    },
+    {
+      "text": "CRITICAL issues are identified (e.g. no GSAP loaded, no scroll animations, no reduced-motion guard)",
+      "passed": true,
+      "evidence": "5 CRITICAL issues identified: #1 'No GSAP library loaded', #2 'No hero entrance timeline', #3 'No scroll-triggered reveals on any section', #4 'No prefers-reduced-motion guard', #5 'Custom cursor elements exist in DOM but have no JS'."
+    },
+    {
+      "text": "Summary line states count of CRITICAL, WARNING, and INFO items",
+      "passed": true,
+      "evidence": "Line 85: '**Summary:** 5 critical, 3 warnings, 6 info' -- counts match actual rows in the severity table (issues 1-5 CRITICAL, 6-8 WARNING, 9-14 INFO)."
+    },
+    {
+      "text": "Concrete 'Before/After' fix patches are provided for CRITICAL and WARNING items",
+      "passed": true,
+      "evidence": "Fixes #1-#8 each contain explicit Before/After code blocks with copy-paste-ready HTML/JS patches. All 5 CRITICAL fixes (#1-#5) and all 3 WARNING fixes (#6-#8) have concrete code patches."
+    },
+    {
+      "text": "Each fix has a 'Why' explanation",
+      "passed": true,
+      "evidence": "Every fix section (#1 through #8) ends with a '**Why:**' paragraph explaining the rationale. Examples: Fix #1 'The page cannot animate anything without GSAP loaded', Fix #4 'WCAG 2.1 SC 2.3.3 requires respecting it', Fix #7 'CSS scroll-behavior: smooth interferes with ScrollTrigger scroll position calculations'."
+    },
+    {
+      "text": "Report identifies that the page has NO animation code despite having animation-related classes",
+      "passed": true,
+      "evidence": "Multiple explicit callouts: Dependencies section states 'No GSAP CDN loaded, No CSS animation or transition declarations, No inline JavaScript -- the page talks extensively about GSAP patterns in its marketing copy but does not actually implement any of them'. Overall Assessment: 'fully static HTML document with zero animation implementation' with 'well-structured class names that map directly to animation patterns (.hero-badge, .magnetic-btn, .card, .process-step, .scroll-line, .marquee-track) but none of these are wired to any animation logic'."
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 0,
+    "total": 7,
+    "pass_rate": 1.0
+  }
+}

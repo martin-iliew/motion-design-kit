@@ -1,0 +1,17 @@
+version: "1"
+type: procedural
+id: "ambient-floating-particles"
+description: "Canvas-based particle system where small semi-transparent dots drift continuously across the screen at randomised speeds and trajectories. Frame-driven via GSAP ticker — not a discrete tween."
+config:
+  count: 55                        # total particles; keep ≤ 80 for performance
+  min_radius: 1                    # px — smallest particle
+  max_radius: 2.8                  # px — largest particle
+  min_opacity: 0.04                # barely visible
+  max_opacity: 0.18                # never distracting
+  min_speed: 18                    # seconds for one drift cycle (per-particle random range)
+  max_speed: 45                    # seconds for one drift cycle (per-particle random range)
+  color: "160, 170, 220"           # RGB string — tweak for your palette
+  dpr_cap: 2                       # cap devicePixelRatio at 2 for GPU efficiency
+behavior: "Each particle is assigned random x, y, radius, and opacity on init. A GSAP tween continuously animates each particle object to a new random x/y/opacity target, restarting on complete. A requestAnimationFrame draw loop reads these values and renders arcs to canvas. Particles never have a fixed end state — the effect is truly ambient and continuous."
+a11y:
+  reduced_motion: skip             # purely decorative — hide canvas entirely and skip JS init

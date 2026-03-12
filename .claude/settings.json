@@ -1,0 +1,6 @@
+{
+  "plugins": ["skill-creator"],
+  "permissions": {
+    "defaultMode": "acceptEdits"
+  }
+}

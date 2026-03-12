@@ -1,0 +1,18 @@
+{
+  "eval_id": 4,
+  "eval_name": "enhance-portfolio",
+  "prompt": "Enhance this portfolio site — audit it for animation issues and add missing animations. It's a designer portfolio so it should feel premium.",
+  "assertions": [
+    {"id": "a1", "text": "Site type detected as 'portfolio'"},
+    {"id": "a2", "text": "GSAP and ScrollTrigger scripts are added"},
+    {"id": "a3", "text": "Phase A identifies issues: no scroll animations (CRITICAL), no reduced-motion guard (CRITICAL)"},
+    {"id": "a4", "text": "Phase B adds animations from motion-dev pattern library"},
+    {"id": "a5", "text": "Hero heading gets kinetic typography (SplitText)"},
+    {"id": "a6", "text": "Project items get stagger scroll reveal"},
+    {"id": "a7", "text": "About section gets scroll-triggered entrance"},
+    {"id": "a8", "text": "gsap.matchMedia wraps all animation code"},
+    {"id": "a9", "text": "Reduced-motion fallback uses clearProps or sets elements to visible state"},
+    {"id": "a10", "text": "Summary report follows the specified format with APPLIED/SKIPPED/N-A status per pattern"},
+    {"id": "a11", "text": "No CSS transition conflicts with newly added GSAP animations"}
+  ]
+}

@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MARA CHEN — Designer & Art Director</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      *{margin:0;padding:0;box-sizing:border-box}
+      :root{--bg:#f5f0eb;--text:#1a1a1a;--accent:#ff3d00;--muted:#999;--mono:'JetBrains Mono',monospace;--sans:'Space Grotesk',system-ui,sans-serif}
+      ::selection{background:var(--accent);color:#fff}
+      body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden}
+      .container{max-width:1400px;margin:0 auto;padding:0 clamp(24px,4vw,80px)}
+      nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:24px clamp(24px,4vw,80px);display:flex;justify-content:space-between;align-items:center;mix-blend-mode:difference;color:#fff}
+      nav a{color:inherit;text-decoration:none;font-size:14px;font-family:var(--mono)}
+      nav .name{font-weight:700;font-size:16px;letter-spacing:.05em;text-transform:uppercase}
+      nav .links{display:flex;gap:32px}
+      nav .links a{opacity:.6}
+      nav .links a:hover{opacity:1}
+      .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:80px;padding-top:120px}
+      .hero h1{font-size:clamp(4rem,12vw,14rem);font-weight:700;line-height:.9;letter-spacing:-.04em;text-transform:uppercase}
+      .hero h1 .accent{color:var(--accent)}
+      .hero .subtitle{margin-top:40px;font-family:var(--mono);font-size:14px;color:var(--muted);max-width:400px;line-height:1.6}
+      .projects{padding:160px 0}
+      .projects-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:80px;border-bottom:1px solid rgba(0,0,0,.1);padding-bottom:20px}
+      .projects-header h2{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted)}
+      .projects-header span{font-family:var(--mono);font-size:12px;color:var(--muted)}
+      .project-item{border-bottom:1px solid rgba(0,0,0,.08);padding:40px 0;display:grid;grid-template-columns:1fr auto auto;gap:40px;align-items:baseline;text-decoration:none;color:inherit}
+      .project-item:hover .project-title{color:var(--accent)}
+      .project-title{font-size:clamp(2rem,5vw,4.5rem);font-weight:700;letter-spacing:-.03em}
+      .project-meta,.project-year{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
+      .about{padding:160px 0;border-top:1px solid rgba(0,0,0,.1)}
+      .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:120px}
+      .about-label{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:40px}
+      .about-text{font-size:clamp(1.5rem,3vw,2.5rem);font-weight:300;line-height:1.4;letter-spacing:-.01em}
+      .about-text strong{font-weight:700}
+      .skills-list{list-style:none;font-family:var(--mono);font-size:14px;line-height:2.2;color:var(--muted)}
+      .skills-list li:hover{color:var(--text)}
+      .contact{padding:200px 0 100px;border-top:1px solid rgba(0,0,0,.1);text-align:center}
+      .contact-label{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:40px}
+      .contact-email{font-size:clamp(2rem,6vw,6rem);font-weight:700;letter-spacing:-.03em;text-decoration:none;color:var(--text);display:inline-block;border-bottom:4px solid transparent}
+      .contact-email:hover{color:var(--accent);border-bottom-color:var(--accent)}
+      footer{padding:40px clamp(24px,4vw,80px);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;color:var(--muted);border-top:1px solid rgba(0,0,0,.05)}
+      footer a{color:inherit;text-decoration:none}
+      footer a:hover{color:var(--text)}
+      footer .social{display:flex;gap:24px}
+      @media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:60px}.project-item{grid-template-columns:1fr;gap:8px}nav .links{display:none}}
+
+      /* Custom cursor (desktop only — hidden by default, shown via JS) */
+      .cursor-dot, .cursor-ring {
+        position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+        transform: translate(-50%, -50%);
+        opacity: 0; /* hidden until JS activates */
+      }
+      .cursor-dot { width: 8px; height: 8px; background: var(--text); border-radius: 50%; }
+      .cursor-ring { width: 40px; height: 40px; border: 1.5px solid var(--text); border-radius: 50%; opacity: 0; }
+
+      /* Initial states for GSAP-animated elements — prevents FOUC */
+      .hero h1,
+      .hero .subtitle { visibility: hidden; }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="#" class="name" data-magnetic>Mara Chen</a>
+      <div class="links">
+        <a href="#work" data-magnetic>Work</a>
+        <a href="#about" data-magnetic>About</a>
+        <a href="#contact" data-magnetic>Contact</a>
+      </div>
+    </nav>
+
+    <!-- Custom cursor elements -->
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
+
+    <main>
+      <section class="hero container" id="hero">
+        <h1>Design<br /><span class="accent">&</span> Art<br />Direction</h1>
+        <p class="subtitle">Independent designer based in Berlin. Specializing in brand identity, editorial, and digital experiences since 2019.</p>
+      </section>
+      <section class="projects container" id="work">
+        <div class="projects-header"><h2>Selected Works</h2><span>(06)</span></div>
+        <a href="#" class="project-item hoverable"><span class="project-title">Void Gallery</span><span class="project-meta">Brand Identity</span><span class="project-year">2026</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Terraform</span><span class="project-meta">Web Experience</span><span class="project-year">2025</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Mono Journal</span><span class="project-meta">Editorial Design</span><span class="project-year">2025</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Noctis</span><span class="project-meta">Visual Identity</span><span class="project-year">2024</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Drift Studio</span><span class="project-meta">Art Direction</span><span class="project-year">2023</span></a>
+        <a href="#" class="project-item hoverable"><span class="project-title">Sonder Press</span><span class="project-meta">Brand System</span><span class="project-year">2022</span></a>
+      </section>
+      <section class="about container" id="about">
+        <div class="about-grid">
+          <div>
+            <p class="about-label">About</p>
+            <p class="about-text">I'm a <strong>designer and art director</strong> obsessed with the intersection of typography, space, and meaning. I believe in reduction — stripping away until only the essential remains.</p>
+          </div>
+          <div>
+            <p class="about-label">Capabilities</p>
+            <ul class="skills-list">
+              <li>Brand Identity</li><li>Art Direction</li><li>Typography</li><li>Editorial Design</li><li>Web Design</li><li>Motion Graphics</li><li>Packaging</li><li>Environmental Graphics</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="contact container" id="contact">
+        <p class="contact-label">Get in Touch</p>
+        <a href="mailto:hello@marachen.design" class="contact-email hoverable" data-magnetic>hello@marachen.design</a>
+      </section>
+    </main>
+    <footer>
+      <span>© 2026 Mara Chen</span>
+      <div class="social"><a href="#" class="hoverable" data-magnetic>Instagram</a><a href="#" class="hoverable" data-magnetic>Dribbble</a><a href="#" class="hoverable" data-magnetic>LinkedIn</a><a href="#" class="hoverable" data-magnetic>Read.cv</a></div>
+    </footer>
+
+    <!-- GSAP Core + Plugins (all free since May 2025) -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/SplitText.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/ScrambleTextPlugin.min.js"></script>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin);
+
+      const mm = gsap.matchMedia();
+      const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+      // =========================================================
+      // REDUCED MOTION: no-preference — full animations
+      // =========================================================
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+
+        // ---------------------------------------------------------
+        // Pattern 1 + 9: Hero Timeline with Kinetic Typography
+        // Personality: dramatic — slow/epic durations, impact easing, loose stagger
+        // ---------------------------------------------------------
+        const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } }); // token: impact
+
+        // SplitText on the hero h1 — kinetic typography with line mask
+        const heroH1 = document.querySelector(".hero h1");
+        const heroSplit = new SplitText(heroH1, {
+          type: "lines,words",
+          mask: "lines",       // words slide up from below clipping line
+          autoSplit: true,     // re-splits on resize
+          aria: true           // aria-label on parent, aria-hidden on children
+        });
+
+        // Make h1 visible now that SplitText has set up
+        gsap.set(heroH1, { visibility: "visible" });
+
+        // Hero h1 kinetic words — dramatic stagger
+        heroTl.from(heroSplit.words, {
+          yPercent: 110,
+          autoAlpha: 0,
+          duration: 1.0,           // token: slow (dramatic personality)
+          ease: "power3.out",      // token: impact
+          stagger: { each: 0.06, from: "start" }, // token: between tight and medium (dramatic)
+        });
+
+        // Hero subtitle — cascaded after heading
+        heroTl.fromTo(".hero .subtitle",
+          { autoAlpha: 0, y: 30 },
+          { autoAlpha: 1, y: 0, duration: 0.8, ease: "power3.out" }, // token: ~slow / impact
+          "-=0.4"
+        );
+
+        // ---------------------------------------------------------
+        // Pattern 2: Smart Navbar Hide/Show
+        // ---------------------------------------------------------
+        let lastScrollDir = 0;
+        const navST = ScrollTrigger.create({
+          start: "top top",
+          end: "max",
+          onUpdate: (self) => {
+            if (self.direction !== lastScrollDir) {
+              lastScrollDir = self.direction;
+              if (self.direction === 1 && self.scroll() > 200) {
+                gsap.to("nav", { yPercent: -100, duration: 0.3, ease: "power3.in" }); // token: fast / exit
+              } else {
+                gsap.to("nav", { yPercent: 0, duration: 0.3, ease: "power2.out" }); // token: fast / entrance
+              }
+            }
+          }
+        });
+
+        // ---------------------------------------------------------
+        // Pattern 10: ScrambleText on Projects Header Label
+        // ---------------------------------------------------------
+        const projectsLabel = document.querySelector(".projects-header h2");
+        const projectsLabelText = projectsLabel.textContent.trim();
+        gsap.fromTo(projectsLabel,
+          { autoAlpha: 0 },
+          {
+            autoAlpha: 1,
+            duration: 1.2,          // token: slow
+            ease: "none",
+            scrambleText: {
+              text: projectsLabelText,
+              chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+              speed: 0.4,
+              revealDelay: 0.25,
+            },
+            scrollTrigger: {
+              trigger: ".projects-header",
+              start: "top 85%",
+              toggleActions: "play none none none",
+            }
+          }
+        );
+
+        // Projects header count
+        gsap.fromTo(".projects-header span",
+          { autoAlpha: 0 },
+          {
+            autoAlpha: 1,
+            duration: 0.6,          // token: base
+            ease: "power2.out",     // token: entrance
+            scrollTrigger: {
+              trigger: ".projects-header",
+              start: "top 85%",
+              toggleActions: "play none none none",
+            }
+          }
+        );
+
+        // ---------------------------------------------------------
+        // Pattern 4 + 7: Project Items — Stagger Scroll Reveal + Spring Hover
+        // ---------------------------------------------------------
+        const projectItems = gsap.utils.toArray(".project-item");
+        projectItems.forEach((item, i) => {
+          // Stagger scroll reveal
+          gsap.fromTo(item,
+            { autoAlpha: 0, y: 40 },
+            {
+              autoAlpha: 1, y: 0,
+              duration: 0.7,          // token: ~base (dramatic bias)
+              ease: "power3.out",     // token: impact
+              delay: i * 0.13,        // token: loose (dramatic personality)
+              scrollTrigger: {
+                trigger: item,
+                start: "top 88%",
+                toggleActions: "play none none none",
+              }
+            }
+          );
+
+          // Spring hover — Pattern 7
+          item.addEventListener("mouseenter", () => {
+            item.style.willChange = "transform";
+            gsap.to(item, { x: 12, duration: 0.3, ease: "back.out(1.7)" }); // token: fast / spring — horizontal shift for list items
+          });
+          item.addEventListener("mouseleave", () => {
+            gsap.to(item, {
+              x: 0,
+              duration: 0.4,           // token: fast
+              ease: "power2.out",      // token: entrance
+              onComplete: () => { item.style.willChange = "auto"; }
+            });
+          });
+        });
+
+        // ---------------------------------------------------------
+        // Pattern 6: About Section Reveal
+        // ---------------------------------------------------------
+        // About labels
+        gsap.utils.toArray(".about-label").forEach(el => {
+          gsap.fromTo(el,
+            { autoAlpha: 0, y: 25 },
+            {
+              autoAlpha: 1, y: 0,
+              duration: 0.7,          // token: ~base
+              ease: "power3.out",     // token: impact
+              scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" }
+            }
+          );
+        });
+
+        // About text
+        gsap.fromTo(".about-text",
+          { autoAlpha: 0, y: 35 },
+          {
+            autoAlpha: 1, y: 0,
+            duration: 0.8,            // token: ~slow
+            ease: "power3.out",       // token: impact
+            scrollTrigger: { trigger: ".about-text", start: "top 85%", toggleActions: "play none none none" }
+          }
+        );
+
+        // ---------------------------------------------------------
+        // Pattern 4: Skills List Stagger Reveal
+        // ---------------------------------------------------------
+        const skillItems = gsap.utils.toArray(".skills-list li");
+        skillItems.forEach((li, i) => {
+          gsap.fromTo(li,
+            { autoAlpha: 0, x: -20 },
+            {
+              autoAlpha: 1, x: 0,
+              duration: 0.5,           // token: ~fast-base
+              ease: "power3.out",      // token: impact
+              delay: i * 0.06,         // token: tight-medium (varies from cards)
+              scrollTrigger: {
+                trigger: ".skills-list",
+                start: "top 85%",
+                toggleActions: "play none none none",
+              }
+            }
+          );
+        });
+
+        // ---------------------------------------------------------
+        // Pattern 6: Contact Section Reveal
+        // ---------------------------------------------------------
+        gsap.fromTo(".contact-label",
+          { autoAlpha: 0, y: 25 },
+          {
+            autoAlpha: 1, y: 0,
+            duration: 0.7,
+            ease: "power3.out",       // token: impact
+            scrollTrigger: { trigger: ".contact", start: "top 80%", toggleActions: "play none none none" }
+          }
+        );
+
+        gsap.fromTo(".contact-email",
+          { autoAlpha: 0, y: 40 },
+          {
+            autoAlpha: 1, y: 0,
+            duration: 1.0,            // token: slow (dramatic — key CTA)
+            ease: "power3.out",       // token: impact
+            scrollTrigger: { trigger: ".contact-email", start: "top 90%", toggleActions: "play none none none" }
+          }
+        );
+
+        // ---------------------------------------------------------
+        // Pattern 8: Footer Reveal
+        // ---------------------------------------------------------
+        gsap.fromTo("footer",
+          { autoAlpha: 0, y: 30 },
+          {
+            autoAlpha: 1, y: 0,
+            duration: 0.8,            // token: ~slow
+            ease: "power2.out",       // token: entrance
+            scrollTrigger: { trigger: "footer", start: "top 95%", toggleActions: "play none none none" }
+          }
+        );
+
+        // ---------------------------------------------------------
+        // Pattern 14: Custom Cursor Follower (desktop-only)
+        // ---------------------------------------------------------
+        if (!isTouch) {
+          const dot = document.querySelector(".cursor-dot");
+          const ring = document.querySelector(".cursor-ring");
+
+          // Show custom cursor elements
+          gsap.set(dot, { opacity: 1 });
+          gsap.set(ring, { opacity: 0.4 });
+
+          const xTo = gsap.quickTo(dot, "x", { duration: 0.15, ease: "power2.out" });    // token: micro
+          const yTo = gsap.quickTo(dot, "y", { duration: 0.15, ease: "power2.out" });
+          const ringX = gsap.quickTo(ring, "x", { duration: 0.4, ease: "power2.out" });   // lagging ring
+          const ringY = gsap.quickTo(ring, "y", { duration: 0.4, ease: "power2.out" });
+
+          window.addEventListener("mousemove", (e) => {
+            xTo(e.clientX); yTo(e.clientY);
+            ringX(e.clientX); ringY(e.clientY);
+          });
+
+          // Ring scales up on hoverable / interactive elements
+          document.querySelectorAll("a, button, .hoverable").forEach(el => {
+            el.addEventListener("mouseenter", () =>
+              gsap.to(ring, { scale: 2, duration: 0.3, ease: "back.out(1.7)" })  // token: fast / spring
+            );
+            el.addEventListener("mouseleave", () =>
+              gsap.to(ring, { scale: 1, duration: 0.3, ease: "power2.out" })     // token: fast / entrance
+            );
+          });
+        }
+
+        // ---------------------------------------------------------
+        // Pattern 3: Magnetic Cursor Pull (desktop-only)
+        // ---------------------------------------------------------
+        if (!isTouch) {
+          document.querySelectorAll("[data-magnetic]").forEach(btn => {
+            const strength = btn.classList.contains("contact-email") ? 0.15 : 0.3;
+            const xTo = gsap.quickTo(btn, "x", { duration: 0.4, ease: "power3.out" }); // token: fast / impact
+            const yTo = gsap.quickTo(btn, "y", { duration: 0.4, ease: "power3.out" });
+            btn.addEventListener("mousemove", e => {
+              const { left, top, width, height } = btn.getBoundingClientRect();
+              xTo((e.clientX - (left + width / 2)) * strength);
+              yTo((e.clientY - (top + height / 2)) * strength);
+            });
+            btn.addEventListener("mouseleave", () => { xTo(0); yTo(0); });
+          });
+        }
+
+        // ---------------------------------------------------------
+        // Cleanup
+        // ---------------------------------------------------------
+        return () => {
+          heroTl.kill();
+          heroSplit.revert();
+          navST.kill();
+          ScrollTrigger.getAll().forEach(t => t.kill());
+        };
+      });
+
+      // =========================================================
+      // REDUCED MOTION: reduce — make everything visible, no animation
+      // =========================================================
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.set([
+          ".hero h1", ".hero .subtitle",
+          ".projects-header h2", ".projects-header span",
+          ".project-item", ".about-label", ".about-text",
+          ".skills-list li", ".contact-label", ".contact-email",
+          "footer"
+        ], { clearProps: "all", visibility: "visible" });
+      });
+
+      // =========================================================
+      // ScrollTrigger.refresh() on page load
+      // =========================================================
+      window.addEventListener("load", () => ScrollTrigger.refresh());
+    </script>
+  </body>
+</html>

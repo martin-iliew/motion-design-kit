@@ -1,0 +1,16 @@
+version: "1"
+type: integration
+id: "lenis-smooth-scroll"
+dependency: "lenis@1"
+integration:
+  - target: gsap-scroll-trigger
+    method: "lenis.on('scroll', ScrollTrigger.update)"
+  - target: gsap-ticker
+    method: "gsap.ticker.add((time) => lenis.raf(time * 1000))"
+config:
+  duration: 1.2
+  easing: "exponential-ease-out"
+  orientation: vertical
+  smoothWheel: true
+a11y:
+  reduced_motion: destroy  # destroy Lenis entirely, use native scroll

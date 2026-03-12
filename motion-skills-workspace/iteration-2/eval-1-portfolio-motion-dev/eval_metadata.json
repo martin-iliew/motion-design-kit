@@ -1,0 +1,21 @@
+{
+  "eval_id": 1,
+  "eval_name": "portfolio-motion-dev",
+  "prompt": "Add GSAP animations to this portfolio site. It's a minimal designer portfolio — should feel subtle and premium, not flashy. Make it scroll-responsive with kinetic typography on the hero heading.",
+  "assertions": [
+    {"id": "a1", "text": "Output file is a duplicate (e.g. 02-portfolio-minimal-animated.html), original is untouched"},
+    {"id": "a2", "text": "GSAP and ScrollTrigger CDN scripts are included"},
+    {"id": "a3", "text": "SplitText plugin is loaded from cdn.jsdelivr.net"},
+    {"id": "a4", "text": "Hero timeline has 4+ distinct chained method calls (.fromTo/.to/.from) on the same timeline object — a single staggered call (e.g. tl.from(split.words)) counts as ONE, not one-per-word"},
+    {"id": "a5", "text": "SplitText uses aria: true for accessibility"},
+    {"id": "a6", "text": "gsap.matchMedia wraps all animation code with prefers-reduced-motion guard"},
+    {"id": "a7", "text": "Reduced-motion fallback uses clearProps or sets elements to visible state (not just animation:none)"},
+    {"id": "a8", "text": "autoAlpha is used instead of bare opacity in gsap.from/fromTo calls"},
+    {"id": "a9", "text": "ScrollTrigger scroll reveals cover projects, about, and contact sections"},
+    {"id": "a10", "text": "At least one interactive effect exists (magnetic buttons, spring hover, or tilt)"},
+    {"id": "a11", "text": "No CSS transition conflicts with GSAP-owned properties"},
+    {"id": "a12", "text": "Token comments are present (e.g. // token: base, // token: entrance)"},
+    {"id": "a13", "text": "gsap.registerPlugin() is called for all used plugins"},
+    {"id": "a14", "text": "ScrollTrigger.refresh() is called on window load"}
+  ]
+}

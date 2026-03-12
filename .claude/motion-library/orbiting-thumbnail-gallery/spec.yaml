@@ -1,0 +1,23 @@
+version: '1'
+type: procedural
+id: orbiting-thumbnail-gallery
+target:
+  selector: '[data-motion="orbiting-thumbnail-gallery"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: drag
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- motionpath
+config:
+  root: '[data-motion="orbiting-thumbnail-gallery"]'
+  items: '[data-motion="orbiting-thumbnail-gallery"] [data-motion-item]'
+  target: '[data-motion="orbiting-thumbnail-gallery"] [data-motion-target]'
+  path: '[data-motion="orbiting-thumbnail-gallery"] [data-motion-path]'
+behavior: Orbiting Thumbnail Gallery is a GSAP pattern for gallery, media, image surfaces
+  that moves an accent or media element along a defined path.

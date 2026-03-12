@@ -1,0 +1,80 @@
+{
+  "expectations": [
+    {
+      "text": "Output file is a duplicate (e.g. 02-portfolio-minimal-animated.html), original is untouched",
+      "passed": false,
+      "evidence": "Output file is named '02-portfolio-minimal.html' (same as original), not a duplicate with a distinct name like '02-portfolio-minimal-animated.html'. No separate original file is preserved in the outputs directory."
+    },
+    {
+      "text": "GSAP and ScrollTrigger CDN scripts are included",
+      "passed": true,
+      "evidence": "Lines 111-112: <script src=\"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js\"></script> and <script src=\"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js\"></script>"
+    },
+    {
+      "text": "SplitText plugin is loaded from cdn.jsdelivr.net",
+      "passed": false,
+      "evidence": "No SplitText script tag found anywhere in the HTML. Only GSAP core and ScrollTrigger are loaded. Hero text splitting is done manually with nested span elements instead."
+    },
+    {
+      "text": "Hero timeline has 4+ distinct chained method calls (.fromTo/.to/.from) on the same timeline object — a single staggered call (e.g. tl.from(split.words)) counts as ONE, not one-per-word",
+      "passed": false,
+      "evidence": "heroTl has only 2 chained calls: (1) .from('.hero-line-inner', {yPercent:110, rotation:3, ...stagger:0.12}) and (2) .from('.hero .subtitle', {opacity:0, y:30, ...}). That is 2 calls, not 4+."
+    },
+    {
+      "text": "SplitText uses aria: true for accessibility",
+      "passed": false,
+      "evidence": "SplitText is not used at all. No SplitText instantiation or aria configuration exists in the code."
+    },
+    {
+      "text": "gsap.matchMedia wraps all animation code with prefers-reduced-motion guard",
+      "passed": false,
+      "evidence": "No gsap.matchMedia() call found anywhere in the script. All animations run unconditionally with no prefers-reduced-motion check."
+    },
+    {
+      "text": "Reduced-motion fallback uses clearProps or sets elements to visible state (not just animation:none)",
+      "passed": false,
+      "evidence": "No reduced-motion handling exists at all — no matchMedia, no clearProps, no visibility fallback."
+    },
+    {
+      "text": "autoAlpha is used instead of bare opacity in gsap.from/fromTo calls",
+      "passed": false,
+      "evidence": "All gsap.from calls use bare 'opacity: 0' instead of 'autoAlpha: 0'. Examples: nav (line 122), projects-header (line 178), project items (line 195), about-label (line 233), about-text (line 246), skills-list li (line 259), contact-label (line 284), contact-email (line 290), footer (line 300), footer social (line 312)."
+    },
+    {
+      "text": "ScrollTrigger scroll reveals cover projects, about, and contact sections",
+      "passed": true,
+      "evidence": "Projects: .project-item forEach with ScrollTrigger (lines 193-206). About: .about-label (lines 232-243), .about-text (lines 245-255), .skills-list li (lines 258-269) all have ScrollTrigger. Contact: contactTl timeline with ScrollTrigger on '.contact' (lines 274-294)."
+    },
+    {
+      "text": "At least one interactive effect exists (magnetic buttons, spring hover, or tilt)",
+      "passed": true,
+      "evidence": "Project item hover interaction (lines 209-227): mouseenter slides .project-title 16px right, mouseleave returns it to x:0. This is a GSAP-driven interactive hover effect."
+    },
+    {
+      "text": "No CSS transition conflicts with GSAP-owned properties",
+      "passed": true,
+      "evidence": "CSS transitions exist on: nav .links a (opacity), .skills-list li (color), .contact-email (color), footer a (color). GSAP animates opacity/y/x on different selectors or non-conflicting properties. The nav opacity transition is on 'nav .links a' while GSAP animates 'nav' itself. No direct property conflicts found."
+    },
+    {
+      "text": "Token comments are present (e.g. // token: base, // token: entrance)",
+      "passed": false,
+      "evidence": "No '// token:' comments found in the script. Comments are descriptive section headers (e.g. '// 1. NAV — fade in on load') but do not follow the token annotation pattern."
+    },
+    {
+      "text": "gsap.registerPlugin() is called for all used plugins",
+      "passed": true,
+      "evidence": "Line 115: gsap.registerPlugin(ScrollTrigger); — the only plugin used (ScrollTrigger) is properly registered. (SplitText is not used, so no registration needed for it.)"
+    },
+    {
+      "text": "ScrollTrigger.refresh() is called on window load",
+      "passed": true,
+      "evidence": "Lines 339-341: window.addEventListener('load', () => { ScrollTrigger.refresh(); });"
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 8,
+    "total": 14,
+    "pass_rate": 0.43
+  }
+}

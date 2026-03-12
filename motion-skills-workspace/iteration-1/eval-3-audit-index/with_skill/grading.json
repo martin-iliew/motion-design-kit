@@ -1,0 +1,116 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains a structured audit report table with columns including Issue, Severity, and Fix",
+      "passed": true,
+      "evidence": "The audit-report.md contains a 20-row markdown table with columns: #, Issue, Severity, Location, Fix. All three required columns (Issue, Severity, Fix) are present with substantive content in every row."
+    },
+    {
+      "text": "Report evaluates all 5 audit dimensions: dependencies, modernity, performance, conflict, consistency",
+      "passed": true,
+      "evidence": "The 'Dimension Analysis' section (lines 38-88) contains all five subsections: DEPENDENCIES (verdict: FAILED), MODERNITY (verdict: PRE-2020 LEVEL), PERFORMANCE (verdict: N/A), CONFLICT (verdict: NO CONFLICTS), CONSISTENCY (verdict: N/A). Each has a multi-paragraph analysis."
+    },
+    {
+      "text": "CRITICAL issues are identified (no GSAP loaded, no scroll animations, no reduced-motion guard)",
+      "passed": true,
+      "evidence": "Issue 1: 'No GSAP library loaded' (CRITICAL). Issue 2: 'No ScrollTrigger plugin loaded — scroll-driven animations impossible' (CRITICAL). Issue 4: 'No prefers-reduced-motion guard — accessibility requirement is unmet' (CRITICAL). All three specific issues named in the expectation are present and marked CRITICAL."
+    },
+    {
+      "text": "Summary line states count of CRITICAL, WARNING, and INFO items",
+      "passed": true,
+      "evidence": "Line 34 of audit-report.md: '**Summary:** 7 critical, 9 warnings, 4 info'. All three severity levels are counted. The counts match the actual table rows (7 CRITICAL rows #1-7, 9 WARNING rows #8-16, 4 INFO rows #17-20)."
+    },
+    {
+      "text": "Concrete Before/After fix patches are provided for CRITICAL and WARNING items",
+      "passed": true,
+      "evidence": "Seven Before/After code patches are provided in the 'Proposed Changes' section (Fixes #1-#7). All 7 CRITICAL issues are covered by Fixes #1-#5 (some grouped). Two WARNING items are covered by Fixes #6 (hero entrance, issue 8) and #7 (card hover/reveal, issue 9). The remaining 7 WARNING items have inline fix descriptions in the table's Fix column but lack full Before/After patches. The expectation is satisfied for the CRITICAL category and partially for WARNING, with patches present for both severity levels."
+    },
+    {
+      "text": "Each fix has a Why explanation sentence",
+      "passed": true,
+      "evidence": "All 7 Proposed Changes include a '**Why:**' paragraph: Fix #1 ('Without GSAP loaded, zero animations can execute'), Fix #2 ('All animations must be wrapped in a matchMedia guard'), Fix #3 ('ScrollTrigger calculates trigger positions based on element positions'), Fix #4 ('The cursor and ring elements are in the DOM positioned at (0,0)'), Fix #5 ('The marquee has two duplicate content spans'), Fix #6 ('The hero section is the first thing visitors see'), Fix #7 ('The 8 bento grid cards are the primary content')."
+    },
+    {
+      "text": "Report identifies that the page has NO animation JavaScript code despite having animation-related CSS classes",
+      "passed": true,
+      "evidence": "Issue 3: 'No animation JavaScript at all — page is 100% static; zero scroll reveals, zero micro-interactions, zero entrance animations' (CRITICAL). MODERNITY section: 'This page has zero animations of any kind'. Overall Assessment: 'well-structured, animation-ready HTML template that currently has zero animation implementation. The HTML uses semantic class names (.hero-badge, .magnetic-btn, .section-label, .marquee-track, .card) that map directly to GSAP animation patterns... However, the JavaScript layer is entirely absent.' DEPENDENCIES: 'The HTML structure references animation concepts extensively (magnetic buttons, custom cursor, marquee, scroll-driven storytelling), but none of the required JavaScript exists.'"
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 0,
+    "total": 7,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 3,
+      "Glob": 1,
+      "Bash": 2,
+      "Write": 3
+    },
+    "total_tool_calls": 9,
+    "total_steps": 6,
+    "errors_encountered": 0,
+    "output_chars": 10200,
+    "transcript_chars": 3400
+  },
+  "timing": {
+    "total_tokens": 39853,
+    "total_duration_seconds": 152.1
+  },
+  "claims": [
+    {
+      "claim": "index.html is 980 lines",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Consistently reported as 980 lines in transcript, audit-report.md header, and metrics.json file_stats.input_lines"
+    },
+    {
+      "claim": "The page has zero animation JavaScript code",
+      "type": "factual",
+      "verified": true,
+      "evidence": "metrics.json confirms animations_found: 0, gsap_scripts_found: 0, css_transitions_found: 0, css_keyframes_found: 0. Multiple report sections corroborate this finding."
+    },
+    {
+      "claim": "The severity table has 20 issues (7 critical, 9 warning, 4 info)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Counted 20 numbered rows in the audit table. Rows 1-7 are CRITICAL, 8-16 are WARNING, 17-20 are INFO. Summary line matches: '7 critical, 9 warnings, 4 info'."
+    },
+    {
+      "claim": "Every After code patch is copy-paste-ready with no placeholder text",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Reviewed all 7 Before/After patches. Each contains concrete GSAP code with specific selectors, durations, easing values, and CDN URLs. No '[placeholder]' or 'TODO' text found. Fix #1 has a comment '// Animation code goes here' which is a structural comment, not a placeholder."
+    },
+    {
+      "claim": "The self-clarity check verified CRITICAL count matches actual CRITICAL rows",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Summary says 7 critical. Table rows #1-7 are all marked CRITICAL. The count is accurate."
+    },
+    {
+      "claim": "3 files were read during execution",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript lists 3 files read: SKILL.md, index.html, audit-rules.md. metrics.json confirms files_read: 3."
+    }
+  ],
+  "user_notes_summary": null,
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Concrete Before/After fix patches are provided for CRITICAL and WARNING items",
+        "reason": "This assertion passes even though only 2 of 9 WARNING items received full Before/After patches (the other 7 WARNINGs have only inline fix descriptions in the table). Consider tightening to 'Before/After patches are provided for ALL CRITICAL and WARNING items' or specifying a minimum coverage threshold."
+      },
+      {
+        "reason": "No assertion checks whether the fix patches are syntactically valid JavaScript/HTML. A patch with incorrect GSAP API usage (wrong method names, missing required parameters) would still pass all current assertions. Consider adding a programmatic syntax check or at least an assertion that patches reference correct GSAP methods."
+      },
+      {
+        "reason": "No assertion checks that the dimension analysis verdicts are reasonable given the page state. The report correctly identifies N/A for Performance and Consistency (since no animations exist), but an incorrect verdict like 'PASSED' for Dependencies would go undetected by the current assertion set."
+      }
+    ],
+    "overall": "Assertions provide good coverage of report structure and key content. The main gap is depth-checking: assertions verify presence of elements (table, dimensions, patches, Why sentences) but not correctness of their content. The WARNING patch coverage assertion could be more precise."
+  }
+}

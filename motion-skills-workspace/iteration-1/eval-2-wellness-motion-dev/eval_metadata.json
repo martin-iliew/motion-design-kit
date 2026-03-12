@@ -1,0 +1,79 @@
+{
+  "eval_id": 2,
+  "eval_name": "wellness-motion-dev",
+  "prompt": "Animate this wellness landing page. It's a calm, nature-rooted brand — the motion should feel like breathing, not bouncing. Add scroll-triggered reveals for each section and a subtle parallax on the hero.",
+  "assertions": [
+    {
+      "id": "a2-duplicate-file",
+      "text": "Output file is a duplicate, original 12-health-wellness.html is untouched",
+      "type": "structural",
+      "check": "programmatic"
+    },
+    {
+      "id": "a2-gsap-cdn",
+      "text": "GSAP and ScrollTrigger CDN scripts are included",
+      "type": "structural",
+      "check": "programmatic"
+    },
+    {
+      "id": "a2-subtle-personality",
+      "text": "Motion personality is 'subtle' — durations bias toward base/slow (0.6-1.0s), not micro/fast",
+      "type": "quality",
+      "check": "manual"
+    },
+    {
+      "id": "a2-calm-easing",
+      "text": "Easing uses entrance (power2.out) or transition (power2.inOut), NOT spring or elastic",
+      "type": "quality",
+      "check": "programmatic"
+    },
+    {
+      "id": "a2-parallax",
+      "text": "Hero section has parallax effect (yPercent with scrub:true) gated to desktop only",
+      "type": "completeness",
+      "check": "manual"
+    },
+    {
+      "id": "a2-ritual-cards",
+      "text": "Ritual cards have staggered scroll reveal animation",
+      "type": "completeness",
+      "check": "manual"
+    },
+    {
+      "id": "a2-product-cards",
+      "text": "Product cards have staggered scroll reveal animation",
+      "type": "completeness",
+      "check": "manual"
+    },
+    {
+      "id": "a2-journal-section",
+      "text": "Journal section has scroll-triggered entrance animation",
+      "type": "completeness",
+      "check": "manual"
+    },
+    {
+      "id": "a2-matchmedia",
+      "text": "gsap.matchMedia wraps all animation code with reduced-motion guard",
+      "type": "accessibility",
+      "check": "programmatic"
+    },
+    {
+      "id": "a2-autoalpha",
+      "text": "autoAlpha used instead of bare opacity in animation calls",
+      "type": "quality",
+      "check": "programmatic"
+    },
+    {
+      "id": "a2-gpu-safe",
+      "text": "No layout-triggering properties animated (no width, height, top, left, margin)",
+      "type": "performance",
+      "check": "programmatic"
+    },
+    {
+      "id": "a2-token-comments",
+      "text": "Token comments present in animation values",
+      "type": "quality",
+      "check": "programmatic"
+    }
+  ]
+}

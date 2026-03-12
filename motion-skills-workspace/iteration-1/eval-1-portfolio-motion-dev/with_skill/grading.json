@@ -1,0 +1,143 @@
+{
+  "expectations": [
+    {
+      "text": "Output file is a duplicate (not the original) — original 02-portfolio-minimal.html is untouched",
+      "passed": true,
+      "evidence": "Output is 02-portfolio-minimal-animated.html (466 lines with GSAP scripts and animations). Original 02-portfolio-minimal.html remains at 98 lines with no GSAP code, original CSS transitions intact, no data-magnetic attributes — fully untouched."
+    },
+    {
+      "text": "GSAP core + ScrollTrigger CDN scripts are included via script tags",
+      "passed": true,
+      "evidence": "Line 121: <script src=\"https://cdn.jsdelivr.net/npm/gsap@3.14/dist/gsap.min.js\"></script> and line 122: <script src=\"https://cdn.jsdelivr.net/npm/gsap@3.14/dist/ScrollTrigger.min.js\"></script>"
+    },
+    {
+      "text": "SplitText plugin is loaded from cdn.jsdelivr.net and registered",
+      "passed": true,
+      "evidence": "Line 123: <script src=\"https://cdn.jsdelivr.net/npm/gsap@3.14/dist/SplitText.min.js\"></script>. Line 127: gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin)."
+    },
+    {
+      "text": "Hero has a GSAP timeline with 4+ chained .fromTo or .from calls",
+      "passed": false,
+      "evidence": "The hero timeline (heroTl) only has 2 chained calls: (1) heroTl.from(split.words, {...}) at line 153 and (2) heroTl.fromTo(\".hero .subtitle\", ...) at line 162. This falls short of the required 4+. The transcript self-verify claims PASS but miscounts — SplitText word stagger is a single .from() call, not multiple."
+    },
+    {
+      "text": "gsap.matchMedia wraps animation code with prefers-reduced-motion guard",
+      "passed": true,
+      "evidence": "Line 130: const mm = gsap.matchMedia(). Line 135: mm.add(\"(prefers-reduced-motion: no-preference)\", () => { ... }) wraps all animation code. Line 444: mm.add(\"(prefers-reduced-motion: reduce)\", () => { ... }) provides the reduced-motion fallback with clearProps."
+    },
+    {
+      "text": "autoAlpha is used instead of bare opacity in gsap.from/fromTo calls",
+      "passed": true,
+      "evidence": "All gsap.from/fromTo calls use autoAlpha (20+ occurrences across lines 155, 163-164, 205-207, 232-234, 279-281, 295-297, 316-318, 335-337, 349-351, 366-368, 423, 426). The only bare 'opacity' occurrences are in CSS (nav links initial styling and cursor-ring initial styling), not in GSAP calls."
+    },
+    {
+      "text": "ScrollTrigger scroll reveals cover projects, about, and contact sections",
+      "passed": true,
+      "evidence": "Projects: scrollTrigger on .project-item elements (line 237) and [data-scramble] Selected Works heading (line 216). About: scrollTrigger on .about-label (line 284), .about-text (line 300), and .skills-list (line 322). Contact: scrollTrigger on .contact (line 340) and .contact-email (line 354)."
+    },
+    {
+      "text": "At least one interactive effect exists (magnetic, spring hover, or tilt)",
+      "passed": true,
+      "evidence": "Three interactive effects present: (1) Magnetic cursor pull on [data-magnetic] elements (line 384-395, Pattern 3), (2) Spring hover on project items with back.out(1.7) easing (lines 250-267, Pattern 7), (3) Custom cursor follower with ring scaling on hoverable elements (lines 402-430, Pattern 14)."
+    },
+    {
+      "text": "No CSS transition conflicts with GSAP-owned properties",
+      "passed": true,
+      "evidence": "Zero active CSS 'transition:' declarations in the output file. All original transitions were removed with explanatory comments: nav links (line 18), project-title (line 30), skills-list li (line 40), contact-email (line 45), footer a (line 49)."
+    },
+    {
+      "text": "Token comments are present (e.g. // token: base, // token: entrance)",
+      "passed": true,
+      "evidence": "26+ token comments throughout: // token: impact (lines 149, 157, 236, 283, 339, 353, 386), // token: slow (lines 156, 298), // token: fast (lines 188, 191, 255, 262), // token: entrance (lines 164, 263, 299, 320, 370, 426), // token: spring (lines 256, 423), // token: epic (line 208), // token: micro (line 410), and compound forms like // token: fast / impact."
+    },
+    {
+      "text": "gsap.registerPlugin() is called for all used plugins",
+      "passed": true,
+      "evidence": "Line 127: gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin). All three plugins loaded via CDN (ScrollTrigger, SplitText, ScrambleTextPlugin) are registered. All three are actually used in the code."
+    },
+    {
+      "text": "ScrollTrigger.refresh() is called on window load event",
+      "passed": true,
+      "evidence": "Line 462: window.addEventListener(\"load\", () => ScrollTrigger.refresh());"
+    }
+  ],
+  "summary": {
+    "passed": 11,
+    "failed": 1,
+    "total": 12,
+    "pass_rate": 0.92
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 7,
+      "Write": 3,
+      "Glob": 1,
+      "Bash": 1,
+      "WebFetch": 1,
+      "ToolSearch": 1
+    },
+    "total_tool_calls": 14,
+    "total_steps": 3,
+    "errors_encountered": 0,
+    "output_chars": 18700,
+    "transcript_chars": 3400
+  },
+  "timing": {
+    "total_tokens": 56112,
+    "total_duration_seconds": 213.7
+  },
+  "claims": [
+    {
+      "claim": "Hero timeline with 4+ chained calls — FAIL",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The corrected transcript records FAIL, and only 2 chained calls exist on heroTl (.from on words + .fromTo on subtitle). The SplitText stagger counts as one call, not multiple."
+    },
+    {
+      "claim": "12 animation patterns applied across the page",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Metrics.json lists 12 patterns. Code inspection confirms all 12 are implemented: SplitText hero, hero subtitle, smart navbar, scramble text, project stagger reveal, spring hover, about labels, about text, skills list, contact reveal, footer reveal, magnetic cursor, custom cursor."
+    },
+    {
+      "claim": "5 CSS transitions removed to prevent conflicts",
+      "type": "factual",
+      "verified": true,
+      "evidence": "5 CSS transition removal comments found (nav links, project-title, skills-list li, contact-email, footer a), and metrics.json now reports 5 as well."
+    },
+    {
+      "claim": "Personality: dramatic with slow-epic duration bias",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Token comments confirm dramatic personality: durations range 0.8-1.5s for reveals (slow-epic), impact easing (power3.out) used frequently, stagger values in loose range (0.06-0.07)."
+    },
+    {
+      "claim": "Touch guards on interactive patterns",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Line 129: const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0. Lines 383 and 402: if (!isTouch) wraps magnetic pull and custom cursor."
+    },
+    {
+      "claim": "Cleanup function returned from matchMedia callback",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Lines 432-438: return () => { heroTl.kill(); splitInstance.revert(); navST.kill(); ScrollTrigger.getAll().forEach(t => t.kill()); }"
+    }
+  ],
+  "user_notes_summary": null,
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Hero has a GSAP timeline with 4+ chained .fromTo or .from calls",
+        "reason": "This expectation is well-defined and discriminating — it caught a genuine shortfall. The skill's self-verify incorrectly claimed PASS. Consider clarifying whether staggered calls on arrays of elements count as 1 call or N calls, as this ambiguity could cause inconsistent grading."
+      },
+      {
+        "reason": "No assertion checks whether SplitText uses accessibility features (aria: true) or responsive re-splitting (autoSplit: true). These are quality differentiators the skill produced but go unmeasured."
+      },
+      {
+        "reason": "No assertion validates that the reduced-motion fallback actually makes all elements visible (clearProps: 'all'). A broken fallback would leave elements invisible for users who prefer reduced motion — a significant accessibility failure that currently goes untested."
+      }
+    ],
+    "overall": "Strong assertion set that covers the core GSAP quality signals. The hero timeline assertion correctly caught a real shortcoming. Adding a reduced-motion fallback check and an accessibility assertion would round out the coverage."
+  }
+}
