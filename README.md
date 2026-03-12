@@ -1,352 +1,376 @@
 # motion-design-kit
 
-A public **Claude Code plugin marketplace and plugin** for writing, auditing, discovering, refreshing, and enhancing modern web animations. It ships 5 motion skills backed by a 75-pattern motion library with specs and code snippets.
+Claude Code plugin for modern web motion work. It gives your team 5 motion skills plus a 75-pattern library so they can point Claude at a real app file and let it write, audit, or modernize the animation code.
+
+Best use case: you already have a file like `index.html`, `Hero.tsx`, `Hero.vue`, or `Hero.svelte` and you want Claude to handle the implementation instead of hand-writing the motion layer yourself.
 
 **Status:** Public GitHub marketplace for Claude Code
 
 ---
 
-## Skills
+## Fast Start
 
-### `motion-dev`
+### 1. Install the plugin
 
-**Expert animation code writer.** Writes clean, accessible, performant animation code for any stack (GSAP, CSS, Tailwind, React, Vue).
-
-**Capabilities:**
-
-- Write/generate animation code for any framework
-- Convert animations between stacks ("give me the React version")
-- Review and fix animation code
-- Advise on GPU-safe properties and performance
-- Make UI feel "more alive", "bouncy", "fluid", or "tactile"
-
-**Trigger:** Mention animation intent, use `/motion-dev`, or share animation code
-
----
-
-### `motion-audit`
-
-**Animation quality auditor.** Analyzes HTML/JS/CSS files for animation issues across five quality dimensions.
-
-**What it checks:**
-
-- Dependencies (correct library imports, versions)
-- Modernity (2026 patterns, current best practices)
-- Performance (GPU safety, reflow/repaint, efficiency)
-- Conflicts (animation clashes, timing issues)
-- Consistency (follows motion tokens, patterns)
-
-**Use when:**
-
-- You need to audit animation code for quality and best practices
-- Code feels dated or has performance issues
-- Want a detailed severity report (CRITICAL/WARNING/INFO)
-
-**Trigger:** Use `/motion-audit [file]` or ask to review animation code
-
----
-
-### `motion-discover`
-
-**Animation trend researcher.** Discovers and catalogs modern 2026 web motion patterns.
-
-**What it does:**
-
-- Research 12+ current animation trends
-- Generate pattern files with specs and code snippets
-- Auto-update the motion library
-
-**Use when:**
-
-- Want to modernize a site's animations
-- Need new animation pattern ideas
-- Want to document what 2026 animation trends look like
-
-**Trigger:** Use `/motion-discover`
-
----
-
-### `motion-refresh`
-
-**Motion library reranker.** Re-evaluates the existing motion library against current 2026 trends and regenerates the lookup index used by the other skills.
-
-**What it does:**
-
-- Research current animation trends
-- Update trend fields in the motion library catalog
-- Regenerate the `scores.yaml` inverted index
-
-**Use when:**
-
-- Want fresh ranking data before a major update
-- Need to rerank patterns against current 2026 trends
-- Want to detect gaps in the library without creating new patterns yet
-
-**Trigger:** Use `/motion-refresh`
-
----
-
-### `motion-enhance`
-
-**One-step audit + auto-fix.** Evaluates animation code against motion library patterns and auto-fixes issues.
-
-**What it does:**
-
-- Audit against the 75-pattern motion library
-- Report which patterns apply to your code
-- Auto-fix all CRITICAL and WARNING issues
-
-**Use when:**
-
-- Want to modernize animations in one step
-- Need both audit and fixes applied automatically
-
-**Trigger:** Use `/motion-enhance [file]`
-
----
-
-## Quick Start
-
-Use any of these commands to invoke the skills:
-
-### `/motion-dev [request]`
-
-Write or fix animation code. Examples:
-
-- `animate a button with spring physics`
-- `convert this GSAP code to React hooks`
-- `make this scroll animation more performant`
-
-### `/motion-discover`
-
-Research and generate 2026 animation trends. Outputs new patterns to `.claude/motion-library/`.
-
-### `/motion-refresh`
-
-Research current animation trends and rerank the motion library by relevance and popularity. Updates `.claude/motion-library/catalog.yaml`, refreshes `.claude/motion-library/trends-overview.md`, and regenerates the `.claude/motion-library/scores.yaml` lookup index. Run monthly or quarterly to keep pattern relevance current.
-
-### `/motion-audit [file]`
-
-Full animation quality audit. Reports CRITICAL/WARNING/INFO issues.
+From a terminal:
 
 ```bash
-/motion-audit my-site.html
+claude plugin marketplace add --scope user martin-iliew/motion-design-kit
+claude plugin install --scope user motion-design-kit@motion-design-kit
 ```
 
-### `/motion-enhance [file]`
-
-Audit + auto-fix in one step. Fixes all CRITICAL and WARNING issues.
-
-```bash
-/motion-enhance my-site.html
-```
-
----
-
-## Motion Library
-
-**75 production-ready animation patterns** organized across scroll-driven storytelling, typography, micro-interactions, galleries, navigation, modals, loaders, cursors, ambient effects, and transitions.
-
-**Location:** `.claude/motion-library/`
-
-**Each pattern includes:**
-
-- `index.md` — Documentation, use cases, do's/don'ts, best practices
-- `spec.yaml` — Language-neutral animation specification
-- `snippet.css` or `snippet.js` — Copy-paste ready code
-
-Browse the [full catalog](./.claude/motion-library/catalog.yaml).
-
----
-
-## Reference
-
-### Motion Tokens (`.claude/motion-tokens.md`)
-
-Standardized animation values — duration, easing, and stagger scales. Use these when writing animations to maintain consistency.
-
-**Quick reference:**
-
-- **Duration:** `micro` (150ms), `fast` (300ms), `base` (600ms), `slow` (1s), `epic` (1.5s)
-- **Easing:** `entrance`, `impact`, `transition`, `exit`, `spring`, `elastic`, `scrub`, `brand`
-- **Stagger:** `tight` (0.04–0.06s), `medium` (0.08–0.10s), `loose` (0.12–0.15s)
-- **GPU-Safe Properties:** `x`, `y`, `scale`, `rotation`, `opacity` (only these animate without reflow)
-
-### Motion Spec (`.claude/motion-spec.md`)
-
-Language-neutral YAML format for describing animations. Use this when:
-
-- Documenting custom animations
-- Translating between stacks
-- Creating new motion library patterns
-
----
-
-## Installation & Setup
-
-These skills work with **Claude Code**. This repository now includes both a strict plugin manifest at `.claude-plugin/plugin.json` and a GitHub marketplace manifest at `.claude-plugin/marketplace.json`.
-
-### Community Install
-
-Claude Code community marketplaces currently use a two-command flow:
-
-Step 1 (one-time): Register the marketplace
+Inside Claude Code, the slash-command equivalent is:
 
 ```bash
 /plugin marketplace add martin-iliew/motion-design-kit
-```
-
-Step 2: Install the plugin
-
-```bash
 /plugin install motion-design-kit@motion-design-kit
 ```
 
-All 5 skills and their slash commands become available after install. Claude Code will pull updates from the same GitHub source when the plugin is updated.
+Today, the community install path is 2 commands. Once installed, the plugin is available in any project where Claude Code can load user-scoped plugins.
 
-If you want a true one-command install from the official Anthropic marketplace, the remaining step is submitting this plugin for official marketplace inclusion. The repository is now structured for that path.
+### 2. Add the recommended project settings
 
-**Alternative — Clone & load locally:**
+Plugin install gives your team the skills and slash commands. It does **not** automatically change permission behavior inside every app repo.
+
+In the project they want Claude to edit, create `.claude/settings.json` and use this:
+
+```json
+{
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Bash(rg:*)",
+      "Bash(ls:*)",
+      "Bash(dir:*)",
+      "Bash(Get-ChildItem:*)",
+      "Bash(cat:*)",
+      "Bash(type:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git ls-files:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run test:*)",
+      "Bash(pnpm run build:*)",
+      "Bash(pnpm run lint:*)",
+      "Bash(pnpm run test:*)",
+      "Bash(yarn build:*)",
+      "Bash(yarn lint:*)",
+      "Bash(yarn test:*)",
+      "Bash(bun run build:*)",
+      "Bash(bun run lint:*)",
+      "Bash(bun run test:*)"
+    ]
+  }
+}
+```
+
+This is the same profile stored in this repo at `.claude/settings.json`.
+
+What it does:
+
+- Claude can edit files without asking every time.
+- Claude can inspect the repo and run common read/build/lint/test commands without constant permission prompts.
+- Package installs, unusual shell commands, and pushes still ask unless the user allows them explicitly.
+
+### 3. Open Claude Code at the app root
 
 ```bash
-git clone https://github.com/martin-iliew/motion-design-kit.git
-cd motion-design-kit
-claude --work .
+cd your-project
+claude
 ```
 
-Use this if you're contributing new patterns or want full local control.
-
-**How to use:**
-
-- **Explicit:** Type `/motion-dev [request]`, `/motion-audit [file]`, `/motion-discover`, `/motion-refresh`, or `/motion-enhance [file]`
-- **Auto-trigger:** Skills activate automatically when context mentions animation + framework
+Then reference real file paths from that project in your prompt or slash command.
 
 ---
 
-## Example: Animate a Card Hover
+## Daily Workflow
 
-**Request:**
+The fastest way to use this plugin is:
 
+1. Open Claude Code in your app repo.
+2. Give Claude a file path.
+3. Say what motion outcome you want.
+4. Let Claude inspect the file and make the changes.
+
+You do **not** need to explain the implementation in detail.
+
+Good request shape:
+
+```text
+[file path] + [what should happen] + [optional stack/library preference]
 ```
-I want a card to lift on hover with a spring effect. Using vanilla JS + GSAP.
-```
 
-**Claude (via `motion-dev`):**
-Detects vanilla JS + GSAP, loads motion tokens, enforces GPU-safe properties, wraps in `gsap.matchMedia()`, includes reduced-motion guard.
+Examples:
 
-Output:
+- `src/index.html add a polished scroll-triggered reveal to the pricing cards`
+- `src/components/Hero.tsx add a premium intro animation and keep the current layout`
+- `src/components/Hero.vue make the testimonials feel more alive on scroll`
+- `src/lib/Hero.svelte modernize the section transitions and keep them accessible`
 
-```javascript
-// token: micro / spring
-gsap.to(card, {
-  y: -12,
-  duration: 0.15, // token: micro
-  ease: "back.out(1.7)", // token: spring
-  overwrite: "auto",
-});
-```
+What Claude will usually do on its own:
+
+- detect whether the file is HTML, React, Vue, Svelte, or another frontend format
+- inspect nearby imports and project structure
+- choose the right motion implementation path for the existing stack
+- update the component, markup, styles, and motion code where needed
+- keep reduced-motion and performance considerations in place
+- preserve the existing UI structure unless you ask for a redesign
 
 ---
 
-## Workflows
+## Different Ways To Use It
 
-### Write a new animation
+| Goal | Best command | What to give Claude |
+| --- | --- | --- |
+| Add new motion to an existing file | `/motion-dev` | file path + desired effect |
+| Automatically modernize an existing file | `/motion-enhance` | one or more file paths |
+| Get a report before changing anything | `/motion-audit` | one or more file paths |
+| Research new pattern ideas | `/motion-discover` | no file needed |
+| Re-rank the motion library | `/motion-refresh` | no file needed |
 
-1. Describe what you want to animate + which stack (React, Vue, CSS, vanilla)
-2. Use `/motion-dev` (triggers auto-magically or explicitly)
-3. Get production-ready code with token comments and reduced-motion guards
+### 1. `motion-dev` for targeted implementation
 
-### Audit existing animations
-
-1. Run `/motion-audit my-file.html`
-2. Review severity report (CRITICAL/WARNING/INFO)
-3. Optionally apply auto-fixes
-
-### Modernize a site's motion
-
-1. Run `/motion-enhance my-site.html`
-2. Review which 2026 patterns apply
-3. Auto-fixes apply; manual tweaks available via `/motion-dev`
-
-### Discover new animation trends
-
-1. Run `/motion-discover`
-2. 12+ patterns generate in `.claude/motion-library/`
-3. Copy snippets into your project
-
-### Refresh pattern rankings
-
-1. Run `/motion-refresh`
-2. Review notable score and status changes
-3. Use the regenerated `scores.yaml` index in downstream skills
-
----
-
-## Directory Structure
-
-```
-.
-├── README.md                    # This file
-└── .claude/
-    ├── commands/                # Slash command definitions
-    │   ├── motion-dev.md
-    │   ├── motion-audit.md
-    │   ├── motion-discover.md
-    │   ├── motion-enhance.md
-    │   └── motion-refresh.md
-    ├── skills/                  # Production skills
-    │   ├── motion-dev/
-    │   │   ├── SKILL.md
-    │   │   └── references/      # Motion spec, tokens, guides
-    │   ├── motion-audit/
-    │   │   ├── SKILL.md
-    │   │   └── references/
-    │   ├── motion-discover/
-    │   │   ├── SKILL.md
-    │   │   └── references/
-    │   ├── motion-enhance/
-    │       ├── SKILL.md
-    │       └── references/
-    │   └── motion-refresh/
-    │       └── SKILL.md
-    ├── motion-library/          # 25 production animation patterns
-    │   ├── catalog.yaml
-    │   ├── scroll-trigger-reveal/
-    │   ├── spring-physics-interactions/
-    │   └── [22 more patterns]
-    ├── scripts/                 # Utility scripts
-    │   └── query_cost.py
-    ├── motion-tokens.md         # Standardized animation values
-    ├── motion-spec.md           # Language-neutral spec format
-    └── settings.json            # Claude Code configuration
-```
-
----
-
----
-
-## Team Reference
-
-**For animation questions:**
-
-1. **Writing new animations?** → Use `/motion-dev` (supports all stacks)
-2. **Code feels dated?** → Use `/motion-enhance` (audit + auto-fix)
-3. **Need a full review?** → Use `/motion-audit` (detailed severity report)
-4. **Want new patterns?** → Use `/motion-discover` (research 2026 trends)
-5. **Need fresh ranking data?** → Use `/motion-refresh` (rerank the library and regenerate the index)
-
-**Updating the library:**
-When patterns are added or improved, commit to `main`:
+Use this when you know what you want Claude to build.
 
 ```bash
-git add .claude/motion-library/
-git commit -m "motion-library: add new pattern [name]"
+/motion-dev src/index.html add a GSAP reveal for each .feature-card on scroll
+```
+
+```bash
+/motion-dev src/components/Hero.tsx add an intro timeline for the heading, CTA, and hero image. Keep the component structure and use the current stack.
+```
+
+```bash
+/motion-dev src/components/Hero.vue add staggered enter animations and keep it smooth on low-end devices
+```
+
+```bash
+/motion-dev src/lib/Hero.svelte make the stat cards animate in when they enter the viewport
+```
+
+### 2. `motion-enhance` for do-it-for-me modernization
+
+Use this when the file already exists and you want Claude to audit it and apply improvements automatically.
+
+```bash
+/motion-enhance src/pages/home.html
+```
+
+```bash
+/motion-enhance src/components/Hero.tsx src/components/Hero.module.css
+```
+
+```bash
+/motion-enhance src/components/Hero.vue
+```
+
+```bash
+/motion-enhance src/lib/Hero.svelte src/lib/hero.css
+```
+
+Best when the teammate wants: "just make this feel modern and fix obvious motion issues."
+
+### 3. `motion-audit` for report-first review
+
+Use this when you want findings first and code changes second.
+
+```bash
+/motion-audit src/pages/home.html
+```
+
+```bash
+/motion-audit src/components/Hero.tsx src/components/Hero.module.css
+```
+
+This is useful for PR review, QA, or when you want to compare before/after changes.
+
+### 4. Plain English also works
+
+Your team does not have to use slash commands every time. They can speak naturally as long as they reference the file.
+
+Examples:
+
+```text
+Update src/components/Hero.tsx with a more premium entrance animation. Keep the current design.
+```
+
+```text
+Inspect src/index.html and make the scroll motion feel more current, but do not redesign the section.
+```
+
+```text
+Look at src/lib/Hero.svelte and add motion that feels tactile, subtle, and mobile-safe.
+```
+
+For predictable behavior, the slash commands are still the better default.
+
+---
+
+## File-First Examples By Stack
+
+### HTML
+
+If everything is in one file, just reference that file:
+
+```bash
+/motion-dev src/index.html add a sticky storytelling section with smooth reveals
+```
+
+```bash
+/motion-enhance landing-page.html
+```
+
+### React / Next / TSX
+
+If styles are colocated in the component, give the component file only:
+
+```bash
+/motion-dev src/components/Hero.tsx add a launch-style hero intro with staggered text and image motion
+```
+
+If styles are separate, include both files:
+
+```bash
+/motion-enhance src/components/Hero.tsx src/components/Hero.module.css
+```
+
+### Vue
+
+For single-file components, one file is usually enough:
+
+```bash
+/motion-dev src/components/PricingSection.vue add scroll reveal and CTA hover motion
+```
+
+### Svelte
+
+For `.svelte` files, the same pattern works:
+
+```bash
+/motion-dev src/lib/sections/FeatureGrid.svelte add subtle enter motion for each card
+```
+
+If there is a separate stylesheet or helper file, include it too:
+
+```bash
+/motion-enhance src/lib/sections/FeatureGrid.svelte src/lib/sections/feature-grid.css
+```
+
+### Multi-file feature
+
+When the animation depends on multiple files, list them together so Claude has the right context.
+
+```bash
+/motion-enhance src/components/Hero.tsx src/components/Hero.module.css src/lib/animations.ts
+```
+
+Use this when markup, styles, and animation helpers live in different places.
+
+---
+
+## What To Tell Claude
+
+Give Claude the minimum it needs:
+
+- the file path
+- the desired effect
+- any hard constraint that really matters
+
+Useful constraints:
+
+- `use GSAP`
+- `CSS only`
+- `keep the current layout`
+- `mobile-safe`
+- `respect reduced motion`
+- `do not touch the copy`
+- `only edit this file`
+
+You usually do **not** need to tell Claude:
+
+- which selectors to use
+- how to wire imports
+- whether to update styles and markup
+- which motion tokens or easing choices to apply
+
+That is the point of the plugin.
+
+---
+
+## Recommended Team Behavior
+
+For teammates who just want results fast:
+
+1. Use `/motion-enhance` when they already have a file and want Claude to improve it automatically.
+2. Use `/motion-dev` when they know the specific effect they want.
+3. Include every relevant file if the component spans markup, styles, and helpers.
+4. Start with one section or component, not the whole app.
+5. Review the diff after Claude finishes.
+
+Good first commands:
+
+```bash
+/motion-enhance src/pages/home.html
+```
+
+```bash
+/motion-dev src/components/Hero.tsx add a premium hero entrance animation
+```
+
+```bash
+/motion-audit src/components/Hero.vue
+```
+
+---
+
+## Secondary Skills
+
+These are more useful for maintainers than day-to-day app work:
+
+### `motion-discover`
+
+Researches current motion patterns and generates new entries in `.claude/motion-library/`.
+
+### `motion-refresh`
+
+Re-ranks the motion library and regenerates the lookup index used by the other skills.
+
+---
+
+## What Ships In This Repo
+
+- 5 motion skills
+- 5 slash commands
+- 75 motion patterns in `.claude/motion-library/`
+- generator, refresh, and validation scripts in `.claude/scripts/`
+- recommended project settings in `.claude/settings.json`
+
+---
+
+## Maintainer Notes
+
+If the team updates the motion library itself:
+
+```bash
+git add .claude/motion-library/ .claude/scripts/ README.md SETUP.md
+
+git commit -m "chore: update motion design kit"
 git push
 ```
 
-Then marketplace users can pull or reinstall to get the latest patterns.
+Validate before pushing:
+
+```bash
+claude plugin validate .
+claude plugin validate .claude-plugin/plugin.json
+python .claude/scripts/validate_motion_library.py --expected-count 75
+```
 
 ---
 
-**Status:** Public GitHub marketplace
-**Skills:** 5 | **Commands:** 5 | **Patterns:** 75 | **Last updated:** March 2026
+**Skills:** 5  
+**Commands:** 5  
+**Patterns:** 75  
+**Last updated:** March 2026

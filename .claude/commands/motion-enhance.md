@@ -1,6 +1,6 @@
 ---
-description: Audit one or more files for animation issues, then automatically fix all CRITICAL and WARNING items. Single files are fixed inline (fast path — no sub-agent). Multiple files are processed in true parallel with one agent per file to prevent race conditions.
-argument-hint: path/to/file.html [path/to/another.js ...]
+description: Audit and automatically modernize HTML, React, Vue, Svelte, or related frontend files. Single files are fixed inline; multiple files are processed together when the feature spans markup, styles, or helpers.
+argument-hint: path/to/file.html [path/to/component.tsx path/to/styles.css ...]
 allowed-tools: Read, Edit, WebSearch, WebFetch, Agent, Bash
 ---
 

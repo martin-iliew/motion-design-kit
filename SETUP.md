@@ -1,100 +1,253 @@
 # Motion Design Kit Setup
 
-Get the motion plugin working in Claude Code in a couple of commands.
+This file is for teammates who want to install the plugin fast, configure Claude once per project, and then point Claude at real frontend files.
 
 ---
 
-## Installation
+## 1. Install The Plugin
 
-### Option A: Install via Marketplace (Recommended)
+Recommended: install at user scope so it is available in every project.
 
-**Step 1: Register the marketplace (one-time)**
+From a terminal:
+
+```bash
+claude plugin marketplace add --scope user martin-iliew/motion-design-kit
+claude plugin install --scope user motion-design-kit@motion-design-kit
+```
+
+Inside Claude Code, the slash-command equivalent is:
 
 ```bash
 /plugin marketplace add martin-iliew/motion-design-kit
-```
-
-**Step 2: Install the plugin**
-
-```bash
 /plugin install motion-design-kit@motion-design-kit
 ```
 
-Done. All 5 skills are active.
-
-Claude Code community distribution is currently a two-command flow. A true one-command install requires publication in Anthropic's official marketplace.
-
-### Option B: Clone & Load Locally
-
-```bash
-git clone https://github.com/martin-iliew/motion-design-kit.git
-cd motion-design-kit
-claude --work .
-```
-
-Either method works — Option A is faster if you just want to use the skills. Option B is better if you're contributing new patterns.
+After that, the motion commands are available in Claude Code.
 
 ---
 
-## Using the Skills
+## 2. Configure Claude In The Project You Want To Edit
 
-### Write animations
+In the app repo you want Claude to work on, create `.claude/settings.json`:
 
+```json
+{
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Bash(rg:*)",
+      "Bash(ls:*)",
+      "Bash(dir:*)",
+      "Bash(Get-ChildItem:*)",
+      "Bash(cat:*)",
+      "Bash(type:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git ls-files:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run test:*)",
+      "Bash(pnpm run build:*)",
+      "Bash(pnpm run lint:*)",
+      "Bash(pnpm run test:*)",
+      "Bash(yarn build:*)",
+      "Bash(yarn lint:*)",
+      "Bash(yarn test:*)",
+      "Bash(bun run build:*)",
+      "Bash(bun run lint:*)",
+      "Bash(bun run test:*)"
+    ]
+  }
+}
 ```
-/motion-dev animate a button with spring hover effect, using React + GSAP
+
+This keeps Claude from stopping constantly for normal file edits and common project checks.
+
+What still usually prompts:
+
+- package installs
+- unusual shell commands
+- pushes and other sensitive git actions
+
+---
+
+## 3. Open Claude At The Project Root
+
+```bash
+cd your-project
+claude
 ```
 
-### Audit existing code
+Then give Claude file paths relative to that project.
 
-```
-/motion-audit src/components/Hero.jsx
-```
+---
 
-### Quick fix (audit + auto-fix)
+## 4. Fastest Commands To Use
 
-```
+### If you want Claude to just improve a file automatically
+
+```bash
 /motion-enhance src/pages/home.html
 ```
 
-### Discover trends
-
-```
-/motion-discover
+```bash
+/motion-enhance src/components/Hero.tsx src/components/Hero.module.css
 ```
 
-### Refresh library rankings
+Use this when you want the AI to do most of the work.
 
+### If you know the exact effect you want
+
+```bash
+/motion-dev src/index.html add a premium scroll reveal to the pricing cards
 ```
-/motion-refresh
+
+```bash
+/motion-dev src/components/Hero.tsx add a strong intro animation for the heading, CTA, and hero image
+```
+
+```bash
+/motion-dev src/components/Hero.vue add smoother enter motion and keep it mobile-safe
+```
+
+```bash
+/motion-dev src/lib/Hero.svelte add subtle in-view card reveals
+```
+
+Use this when you want a specific outcome.
+
+### If you want a report first
+
+```bash
+/motion-audit src/components/Hero.vue
+```
+
+```bash
+/motion-audit src/components/Hero.tsx src/components/Hero.module.css
+```
+
+Use this when you want findings before edits.
+
+---
+
+## 5. The Easiest Prompt Pattern
+
+For HTML, React, Vue, Svelte, and similar frontend files, the simplest prompt is:
+
+```text
+[file path] + [desired effect] + [optional hard constraint]
+```
+
+Examples:
+
+- `src/index.html add a better scroll reveal and keep the layout`
+- `src/components/Hero.tsx make this hero feel more premium`
+- `src/components/Hero.vue add subtle motion and keep reduced-motion support`
+- `src/lib/Hero.svelte modernize this section without changing the copy`
+
+That is enough in most cases.
+
+Claude will usually handle:
+
+- reading the file
+- detecting the framework and stack
+- deciding whether GSAP, CSS, or the existing stack is the better fit
+- updating imports, hooks, styles, and component code
+- keeping the result performant and accessible
+
+---
+
+## 6. When To Include More Than One File
+
+Give multiple files when the feature spans more than one place.
+
+Examples:
+
+```bash
+/motion-enhance src/components/Hero.tsx src/components/Hero.module.css
+```
+
+```bash
+/motion-enhance src/lib/FeatureGrid.svelte src/lib/feature-grid.css src/lib/animations.ts
+```
+
+Do this when:
+
+- styles are in a separate CSS or module file
+- animation helpers live in another file
+- the component is split across markup and shared utilities
+
+---
+
+## 7. Which Command To Pick
+
+| Situation | Command |
+| --- | --- |
+| I have a file and want Claude to improve it on its own | `/motion-enhance` |
+| I know what animation I want | `/motion-dev` |
+| I want a report before changing code | `/motion-audit` |
+| I want new pattern ideas for the library itself | `/motion-discover` |
+| I want to rerank the library data | `/motion-refresh` |
+
+For most teammates, the default should be:
+
+1. `/motion-enhance` first
+2. `/motion-dev` if they want something more specific
+3. `/motion-audit` if they want review-only output
+
+---
+
+## 8. Short Examples By Stack
+
+### HTML
+
+```bash
+/motion-enhance landing-page.html
+```
+
+### React / Next / TSX
+
+```bash
+/motion-dev src/components/Hero.tsx add a launch-style intro timeline
+```
+
+### Vue
+
+```bash
+/motion-dev src/components/PricingSection.vue add scroll reveal and CTA hover motion
+```
+
+### Svelte
+
+```bash
+/motion-dev src/lib/sections/FeatureGrid.svelte add subtle enter motion for each card
 ```
 
 ---
 
-## What Each Skill Does
+## 9. What To Tell Teammates
 
-| Skill               | Use when                      | Command                  |
-| ------------------- | ----------------------------- | ------------------------ |
-| **motion-dev**      | Writing new animations        | `/motion-dev [request]`  |
-| **motion-audit**    | Reviewing existing animations | `/motion-audit [file]`   |
-| **motion-enhance**  | Modernizing old animations    | `/motion-enhance [file]` |
-| **motion-discover** | Researching 2026 trends       | `/motion-discover`       |
-| **motion-refresh**  | Refreshing pattern rankings   | `/motion-refresh`        |
+The simple rule is:
 
----
+- open Claude in the app repo
+- reference the file they want changed
+- say what motion outcome they want
+- let Claude do the implementation work
 
-## Key Files
-
-- **Motion Tokens** (`.claude/motion-tokens.md`) — Standard durations, easing, stagger values
-- **Motion Spec** (`.claude/motion-spec.md`) — Language-neutral animation format
-- **Pattern Library** (`.claude/motion-library/`) — 75 production-ready animation patterns
+They do not need to explain selectors, imports, hooks, or animation plumbing unless they want a very specific implementation.
 
 ---
 
-## Questions?
+## 10. Validation For Maintainers
 
-- **"How do I animate X?"** → Ask `/motion-dev` with your stack
-- **"Is my animation performant?"** → Run `/motion-audit [file]`
-- **"Does this follow our standards?"** → Run `/motion-enhance [file]`
+If you are updating the plugin repo itself:
+
+```bash
+claude plugin validate .
+claude plugin validate .claude-plugin/plugin.json
+python .claude/scripts/validate_motion_library.py --expected-count 75
+```
 
 ---
 
