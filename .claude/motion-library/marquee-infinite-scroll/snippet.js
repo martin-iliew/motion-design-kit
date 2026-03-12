@@ -12,7 +12,7 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
     gsap.to(track, {
       x: -totalWidth,
       duration: totalWidth / 50,  // speed: ~50px/s
-      ease: "none",               // token: scrub (linear)
+      ease: "none",               
       repeat: -1,
       modifiers: {
         x: gsap.utils.unitize(x => parseFloat(x) % totalWidth),

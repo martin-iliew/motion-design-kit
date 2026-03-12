@@ -115,7 +115,7 @@ Edit the file yourself. No sub-agents.
 Rules:
 - Fix CRITICALs and WARNINGs automatically.
 - Leave INFOs for the user to decide.
-- Annotate every token-resolved value: `duration: 0.6, // token: base`
+- Annotate every token-resolved value: `duration: 0.6,`
 - Wrap all motion code in `gsap.matchMedia("(prefers-reduced-motion: no-preference)", ...)` with a `clearProps: "all"` fallback in the `reduce` branch.
 - Remove CSS `transition` on any property that GSAP will own.
 - Use `gsap.quickTo()` for any handler that fires on `mousemove`.

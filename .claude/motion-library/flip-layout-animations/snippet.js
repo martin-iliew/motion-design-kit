@@ -33,9 +33,9 @@ mm.add(
 
           // STEP 3 & 4 — INVERT + PLAY: animate from recorded state
           Flip.from(state, {
-            duration: 0.55,          // token: fast
-            ease: "power2.inOut",    // token: transition
-            stagger: 0.05,           // token: tight
+            duration: 0.55,          
+            ease: "power2.inOut",    
+            stagger: 0.05,           
             absolute: true,       // prevents siblings snapping mid-animation
             prune: true,          // skip elements whose position hasn't changed
             onEnter: (elements) =>
@@ -43,15 +43,13 @@ mm.add(
                 elements,
                 { opacity: 0, scale: 0.85 },
                 { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.4)" }
-                //                             ^^^^^^^^^^^  token: fast
-                //                                          ^^^^^^^^^^^^^^^^  token: spring (amplitude tuned to 1.4)
               ),
             onLeave: (elements) =>
               gsap.to(elements, {
                 opacity: 0,
                 scale: 0.85,
-                duration: 0.3,      // token: fast
-                ease: "power2.in",  // token: exit
+                duration: 0.3,      
+                ease: "power2.in",  
               }),
           });
         } else {
@@ -80,8 +78,8 @@ mm.add(
         detail.classList.add("is-visible");
 
         Flip.from(state, {
-          duration: 0.65,          // token: base
-          ease: "power2.inOut",    // token: transition
+          duration: 0.65,          
+          ease: "power2.inOut",    
           nested: true,           // card contains animated children
           zIndex: 100,            // keep expanding card above siblings
         });

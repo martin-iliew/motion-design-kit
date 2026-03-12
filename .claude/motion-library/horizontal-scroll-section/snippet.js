@@ -10,7 +10,7 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
 
   gsap.to(track, {
     x: () => -(track.scrollWidth - container.offsetWidth),
-    ease: "none",   // token: scrub
+    ease: "none",   
     scrollTrigger: {
       trigger: container,
       pin: true,

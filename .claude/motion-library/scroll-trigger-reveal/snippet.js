@@ -16,8 +16,8 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
     },
     autoAlpha: 0,
     y: 48,
-    duration: 0.9,              // token: ~slow (0.9 — between base=0.6 and slow=1.0; nearest: slow)
-    ease: "power3.out",         // token: impact
+    duration: 0.9,              
+    ease: "power3.out",        
   });
 
   // ── 2. Staggered card grid reveal ────────────────────────────────────
@@ -29,9 +29,9 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
     },
     autoAlpha: 0,
     y: 40,
-    duration: 0.6,              // token: base
-    stagger: 0.09,              // token: medium
-    ease: "power2.out",         // token: entrance
+    duration: 0.6,             
+    stagger: 0.09,              
+    ease: "power2.out",         
   });
 
   // ── 3. Batch reveal — performance-optimized for many elements ────────
@@ -41,9 +41,9 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
       gsap.from(elements, {
         autoAlpha: 0,
         y: 30,
-        stagger: 0.09,          // token: medium
-        duration: 0.55,         // token: ~base (0.55 — between fast=0.3 and base=0.6; nearest: base)
-        ease: "power2.out",     // token: entrance
+        stagger: 0.09,         
+        duration: 0.55,        
+        ease: "power2.out",     
       }),
     onLeaveBack: (elements) =>
       gsap.set(elements, { autoAlpha: 0, y: 30, clearProps: false }),

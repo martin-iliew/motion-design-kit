@@ -14,7 +14,7 @@ Single source of truth for all animation values. Every skill and generated code 
 | `slow` | `1.0` | `1000ms` | Hero animations, page transitions, drawer open |
 | `epic` | `1.5` | `1500ms` | Cinematic moments, splash screens, brand intros |
 
-**Usage rule:** Always add a comment beside the value: `duration: 0.6, // token: base`
+**Usage rule:** Always add a comment beside the value: `duration: 0.6,`
 
 **Deviating from the scale:** Allowed only for scroll-scrubbed animations (where `duration` is overridden by `scrub`) or physics-driven interactions where period/amplitude control pacing. Document the reason inline.
 
@@ -33,7 +33,7 @@ Single source of truth for all animation values. Every skill and generated code 
 | `scrub` | `none` | `linear` | Scroll-tied scrub animations only |
 | `brand` | `CustomEase("brand", "...")` | Define per project | Branded motion signature |
 
-**Usage rule:** Add a comment beside the value: `ease: "power2.out", // token: entrance`
+**Usage rule:** Add a comment beside the value: `ease: "power2.out", `
 
 **GSAP elastic customization:** `elastic.out(amplitude, period)` — amplitude `1` = proportional overshoot, period `0.3` = tight/fast oscillation. Increase period (e.g., `0.5`) for looser wobble. Never increase amplitude above `1.5` for UI elements.
 
@@ -49,7 +49,7 @@ Single source of truth for all animation values. Every skill and generated code 
 | `medium` | `0.09s` | List items, batch scroll reveals, icon groups |
 | `loose` | `0.13s` | Cards, grid sections, feature blocks |
 
-**Usage rule:** `stagger: { each: 0.09, from: "start" }, // token: medium`
+**Usage rule:** `stagger: { each: 0.09, from: "start" },`
 
 **GSAP stagger options:**
 - `from: "start"` — left-to-right, top-to-bottom (default reveals)
@@ -113,13 +113,13 @@ Single source of truth for all animation values. Every skill and generated code 
 ```js
 element.addEventListener("mouseenter", () => {
   element.style.willChange = "transform, opacity";
-  gsap.to(element, { scale: 1.05, duration: 0.3, ease: "power2.out" }); // token: fast / entrance
+  gsap.to(element, { scale: 1.05, duration: 0.3, ease: "power2.out" }); 
 });
 element.addEventListener("mouseleave", () => {
   gsap.to(element, {
     scale: 1,
     duration: 0.3,
-    ease: "power2.out", // token: fast / entrance
+    ease: "power2.out", 
     onComplete: () => { element.style.willChange = "auto"; }
   });
 });

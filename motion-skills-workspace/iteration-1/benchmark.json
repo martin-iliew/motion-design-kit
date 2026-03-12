@@ -36,7 +36,6 @@
         {"text": "ScrollTrigger covers projects, about, and contact sections", "passed": true, "evidence": "ScrollTrigger reveals on all three sections confirmed"},
         {"text": "At least one interactive effect (magnetic, spring hover, or tilt)", "passed": true, "evidence": "Magnetic cursor pull on nav/footer, custom cursor follower, spring hover on project items"},
         {"text": "No CSS transition conflicts with GSAP-owned properties", "passed": true, "evidence": "4 CSS transition conflicts explicitly removed"},
-        {"text": "Token comments present (// token: base, etc.)", "passed": true, "evidence": "Token comments found throughout animation values"},
         {"text": "gsap.registerPlugin() called for all used plugins", "passed": true, "evidence": "gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin) present"},
         {"text": "ScrollTrigger.refresh() called on window load", "passed": true, "evidence": "window.addEventListener('load', () => ScrollTrigger.refresh()) present"}
       ]
@@ -66,7 +65,6 @@
         {"text": "ScrollTrigger covers projects, about, and contact sections", "passed": true, "evidence": "All three sections have ScrollTrigger reveals"},
         {"text": "At least one interactive effect (magnetic, spring hover, or tilt)", "passed": true, "evidence": "Magnetic hover on contact email"},
         {"text": "No CSS transition conflicts with GSAP-owned properties", "passed": false, "evidence": "nav .links a has transition: opacity .3s ease conflicting with GSAP autoAlpha"},
-        {"text": "Token comments present (// token: base, etc.)", "passed": false, "evidence": "No token comments; only section header comments"},
         {"text": "gsap.registerPlugin() called for all used plugins", "passed": true, "evidence": "gsap.registerPlugin(ScrollTrigger) present"},
         {"text": "ScrollTrigger.refresh() called on window load", "passed": true, "evidence": "ScrollTrigger.refresh() on load event present"}
       ]
@@ -98,7 +96,6 @@
         {"text": "gsap.matchMedia wraps all animation code", "passed": true, "evidence": "All code inside mm.add(prefers-reduced-motion: no-preference) with reduce fallback"},
         {"text": "autoAlpha used instead of bare opacity", "passed": true, "evidence": "Zero bare opacity; all fades use autoAlpha"},
         {"text": "No layout-triggering properties animated", "passed": true, "evidence": "Only transform-based properties: y, yPercent, scale, x, autoAlpha"},
-        {"text": "Token comments present in animation values", "passed": true, "evidence": "29 // token: comments across all animation values"}
       ]
     },
     {
@@ -260,7 +257,6 @@
     "With-skill pass rate: 98% avg vs baseline 51% avg (+47% improvement)",
     "Biggest delta on motion-audit (100% vs 14%) — skill enforces structured output format that baseline omits entirely",
     "motion-enhance with-skill added reduced-motion guard; baseline OMITTED it entirely — critical accessibility gap",
-    "Token comments (// token: base) consistently fail in baseline — this is a skill-unique feature that never occurs organically",
     "Hero timeline 4+ chained calls still failed even with-skill in eval 1 — worth tightening the hero timeline generation template",
     "With-skill uses ~2.2x more tokens (58K vs 26K avg) and ~32% more time (206s vs 156s avg) — expected cost of systematic workflow",
     "Baseline eval 2 (wellness) scored surprisingly well (83%) — the brief was specific enough that general knowledge produced good results",

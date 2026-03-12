@@ -34,11 +34,11 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
   tl.fromTo(
     ".hero-title",
     { autoAlpha: 0, y: 40 },
-    { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" } // token: base / entrance
+    { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" } 
   ).fromTo(
     ".hero-subtitle",
     { autoAlpha: 0, y: 24 },
-    { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" }, // token: base / entrance
+    { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" }, 
     "-=0.3"
   );
   // ── End animation code ────────────────────────────────────────
@@ -97,9 +97,9 @@ export function AnimatedSection({ items }: Props) {
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.6,    // token: base
-            ease: "power2.out", // token: entrance
-            stagger: { each: 0.09, from: "start" }, // token: medium
+            duration: 0.6,    
+            ease: "power2.out", 
+            stagger: { each: 0.09, from: "start" }, 
           }
         );
         return () => gsap.killTweensOf(".item");
@@ -172,9 +172,9 @@ onMounted(() => {
         {
           opacity: 1,
           y: 0,
-          duration: 0.6,        // token: base
-          ease: "power2.out",   // token: entrance
-          stagger: { each: 0.09, from: "start" }, // token: medium
+          duration: 0.6,        
+          ease: "power2.out",   
+          stagger: { each: 0.09, from: "start" }, 
           scrollTrigger: {
             trigger: containerRef.value,
             start: "top 80%",
@@ -398,9 +398,9 @@ Requires the token config extension from [motion-tokens.md](../../motion-tokens.
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.6,        // token: base
-            ease: "power2.out",   // token: entrance
-            stagger: { each: 0.09, from: "start" }, // token: medium
+            duration: 0.6,        
+            ease: "power2.out",   
+            stagger: { each: 0.09, from: "start" }, 
             scrollTrigger: {
               trigger: containerEl,
               start: "top 80%",
@@ -499,11 +499,11 @@ Requires the token config extension from [motion-tokens.md](../../motion-tokens.
     tl.fromTo(
       ".hero-title",
       { autoAlpha: 0, y: 40 },
-      { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" } // token: base / entrance
+      { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" } 
     ).fromTo(
       ".hero-subtitle",
       { autoAlpha: 0, y: 24 },
-      { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" }, // token: base / entrance
+      { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" }, 
       "-=0.3"
     );
 
@@ -535,7 +535,7 @@ Requires the token config extension from [motion-tokens.md](../../motion-tokens.
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       gsap.fromTo(".content",
         { autoAlpha: 0, y: 24 },
-        { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" } // token: base / entrance
+        { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" } 
       );
     });
     mm.add("(prefers-reduced-motion: reduce)", () => {

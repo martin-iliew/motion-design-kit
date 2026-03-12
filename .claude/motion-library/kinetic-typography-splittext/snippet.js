@@ -28,14 +28,14 @@ function initKineticHeadline(triggerEl) {
         end: "bottom 20%",
         toggleActions: "play none none reverse",
       },
-      defaults: { ease: "power3.out", duration: 0.75 },  // token: impact / token: ~base (0.75 — between fast=0.3 and base=0.6; nearest: base)
+      defaults: { ease: "power3.out", duration: 0.75 },  
     });
 
     // Line stagger — each line enters as a block
     tl.from(splitInstance.lines, {
       autoAlpha: 0,
       y: 60,
-      stagger: { each: 0.13, from: "start" },  // token: loose
+      stagger: { each: 0.13, from: "start" },  
     });
 
     // Word-level reveal inside each line (clip-mask effect via mask:"lines")
@@ -45,9 +45,9 @@ function initKineticHeadline(triggerEl) {
       {
         yPercent: 100,
         autoAlpha: 0,
-        stagger: { each: 0.05, from: "start" },  // token: tight
-        duration: 0.6,                            // token: base
-        ease: "power2.out",                       // token: entrance
+        stagger: { each: 0.05, from: "start" },  
+        duration: 0.6,                           
+        ease: "power2.out",                      
       },
       "<0.05" // overlap with the line animation for fluidity
     );
@@ -72,7 +72,7 @@ function initCharStagger(el) {
   });
 
   const tl = gsap.timeline({
-    defaults: { ease: "power3.out", duration: 0.55 },  // token: impact / token: ~base (0.55 — between fast=0.3 and base=0.6; nearest: base)
+    defaults: { ease: "power3.out", duration: 0.55 },  
   });
 
   tl.from(split.chars, {
@@ -80,7 +80,7 @@ function initCharStagger(el) {
     y: 40,
     rotationX: -90,      // perspective flip from below
     transformOrigin: "50% 100%",
-    stagger: { each: 0.025, from: "start" },  // token: tight
+    stagger: { each: 0.025, from: "start" },  
   });
 
   return () => {

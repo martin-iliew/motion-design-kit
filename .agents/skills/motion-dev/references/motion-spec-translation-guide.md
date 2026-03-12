@@ -157,11 +157,11 @@ to block   → second argument (vars object)
   opacity → direct GSAP property
   autoAlpha → use instead of opacity when visibility toggling is needed
 
-timing.duration → duration: [resolved value]  // add comment: // token: base
-timing.easing   → ease: "[resolved GSAP string]"  // add comment: // token: entrance
+timing.duration → duration: [resolved value]  
+timing.easing   → ease: "[resolved GSAP string]" 
 timing.delay    → delay: [value]
 
-stagger.tier → stagger: { each: [resolved value], from: "[stagger.from]" }  // token: medium
+stagger.tier → stagger: { each: [resolved value], from: "[stagger.from]" }  
 
 trigger.type:
   load   → no scrollTrigger, tween fires immediately (optionally wrap in window DOMContentLoaded)
@@ -199,8 +199,8 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
     {
       opacity: [to.opacity],
       y: [to.y],
-      duration: [resolved duration], // token: [timing.duration]
-      ease: "[resolved ease]",       // token: [timing.easing]
+      duration: [resolved duration], 
+      ease: "[resolved ease]",      
       stagger: { each: [resolved stagger], from: "[stagger.from]" }, // if group
       scrollTrigger: { ... }, // if scroll trigger
     }

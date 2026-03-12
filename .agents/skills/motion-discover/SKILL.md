@@ -197,7 +197,7 @@ easing:   entrance=power2.out  impact=power3.out  spring=back.out(1.7)  exit=pow
 stagger:  tight=0.05  medium=0.09  loose=0.13
 
 RULES:
-- Use token values above for all durations, easings, and stagger delays — add // token: <name> comments
+- Use token values above for all durations, easings, and stagger delays 
 - No import statements in any file
 - snippet extension: .css for CSS-only patterns, .js for GSAP/JS patterns
 - Reduced-motion guard required in all GSAP snippets (gsap.matchMedia)

@@ -19,7 +19,6 @@
         "ScrollTrigger scroll reveals cover projects, about, and contact sections",
         "At least one interactive effect exists (magnetic buttons, spring hover, or tilt)",
         "No CSS transition conflicts with GSAP-owned properties",
-        "Token comments are present (e.g. // token: base, // token: entrance)",
         "gsap.registerPlugin() is called for all used plugins",
         "ScrollTrigger.refresh() is called on window load"
       ]

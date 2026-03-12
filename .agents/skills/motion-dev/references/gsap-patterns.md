@@ -30,9 +30,9 @@ Use for hero sections with badge, heading, body, CTAs, and supporting notes. Cre
 gsap.registerPlugin(ScrollTrigger);
 const mm = gsap.matchMedia();
 mm.add("(prefers-reduced-motion: no-preference)", () => {
-  const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } }); // token: impact
+  const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } }); 
   heroTl
-    .fromTo(".hero-badge",   { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.6 })  // token: base
+    .fromTo(".hero-badge",   { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.6 })  
     .fromTo(".hero-heading", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.8 }, "-=0.3")
     .fromTo(".hero-body",    { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.6 }, "-=0.4")
     .fromTo(".hero-ctas",    { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.5 }, "-=0.3")
@@ -57,9 +57,9 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
     start: "top top",
     onUpdate: (self) => {
       if (self.direction === 1) {
-        gsap.to("nav", { yPercent: -100, duration: 0.3, ease: "power2.in" }); // token: fast / exit
+        gsap.to("nav", { yPercent: -100, duration: 0.3, ease: "power2.in" }); 
       } else {
-        gsap.to("nav", { yPercent: 0, duration: 0.3, ease: "power2.out" }); // token: fast / entrance
+        gsap.to("nav", { yPercent: 0, duration: 0.3, ease: "power2.out" }); 
       }
     }
   });
@@ -77,7 +77,7 @@ Use for primary CTA buttons that follow cursor on hover. Desktop-only with touch
 const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 if (!isTouch) {
   document.querySelectorAll(".btn-primary, [data-magnetic]").forEach(btn => {
-    const xTo = gsap.quickTo(btn, "x", { duration: 0.4, ease: "power3.out" }); // token: fast / impact
+    const xTo = gsap.quickTo(btn, "x", { duration: 0.4, ease: "power3.out" }); 
     const yTo = gsap.quickTo(btn, "y", { duration: 0.4, ease: "power3.out" });
     btn.addEventListener("mousemove", e => {
       const { left, top, width, height } = btn.getBoundingClientRect();
@@ -104,9 +104,9 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
       { autoAlpha: 0, y: 40 },
       {
         autoAlpha: 1, y: 0,
-        duration: 0.6,      // token: base
-        ease: "power3.out", // token: impact
-        delay: i * 0.09,    // token: medium stagger
+        duration: 0.6,      
+        ease: "power3.out", 
+        delay: i * 0.09,    
         scrollTrigger: { trigger: card, start: "top 85%", toggleActions: "play none none none" }
       }
     );
@@ -131,7 +131,7 @@ if (!isTouch) {
   mm.add("(prefers-reduced-motion: no-preference)", () => {
     gsap.to(".hero-glow, .hero-bg", {
       yPercent: -20,
-      ease: "none",  // token: scrub
+      ease: "none",  
       scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: 1.5 }
     });
   });
@@ -152,8 +152,8 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
       { autoAlpha: 0, y: 30 },
       {
         autoAlpha: 1, y: 0,
-        duration: 0.65,     // token: base
-        ease: "power3.out", // token: impact
+        duration: 0.65,     
+        ease: "power3.out", 
         scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" }
       }
     );
@@ -174,13 +174,13 @@ Use for any card that should lift and scale slightly on hover with spring easing
 document.querySelectorAll(".card, .feature-card").forEach(card => {
   card.addEventListener("mouseenter", () => {
     card.style.willChange = "transform";
-    gsap.to(card, { y: -8, scale: 1.02, duration: 0.3, ease: "back.out(1.7)" }); // token: fast / spring
+    gsap.to(card, { y: -8, scale: 1.02, duration: 0.3, ease: "back.out(1.7)" }); 
   });
   card.addEventListener("mouseleave", () => {
     gsap.to(card, {
       y: 0, scale: 1,
-      duration: 0.3,       // token: fast
-      ease: "power2.out",  // token: entrance
+      duration: 0.3,       
+      ease: "power2.out", 
       onComplete: () => { card.style.willChange = "auto"; }
     });
   });
@@ -200,8 +200,8 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
     { autoAlpha: 0, y: 40 },
     {
       autoAlpha: 1, y: 0,
-      duration: 0.8,      // token: base
-      ease: "power2.out", // token: entrance
+      duration: 0.8,      
+      ease: "power2.out", 
       scrollTrigger: { trigger: "footer", start: "top 95%" }
     }
   );
@@ -244,9 +244,9 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
       tl.from(s.words, {
         yPercent: 110,
         autoAlpha: 0,
-        duration: 0.8,      // token: ~slow
-        ease: "power3.out", // token: impact
-        stagger: { each: 0.05, from: "start" }, // token: tight
+        duration: 0.8,      
+        ease: "power3.out", 
+        stagger: { each: 0.05, from: "start" },
       });
     }
     buildTl(split);
@@ -277,7 +277,7 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
       { autoAlpha: 0 },
       {
         autoAlpha: 1,
-        duration: 1.2,     // token: slow
+        duration: 1.2,    
         ease: "none",
         scrambleText: {
           text: finalText,
@@ -308,9 +308,9 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
     onEnter: (elements) => {
       gsap.to(elements, {
         autoAlpha: 1, y: 0,
-        duration: 0.6,        // token: base
-        ease: "power2.out",   // token: entrance
-        stagger: 0.09,        // token: medium
+        duration: 0.6,        
+        ease: "power2.out",  
+        stagger: 0.09,        
         overwrite: true,
       });
     },
@@ -344,9 +344,9 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
   });
 
   tl.fromTo(".step-1", { autoAlpha: 1 }, { autoAlpha: 0, duration: 1 })
-    .fromTo(".step-2", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 1, ease: "power2.out" }) // token: base / entrance
+    .fromTo(".step-2", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 1, ease: "power2.out" }) 
     .fromTo(".step-2", { autoAlpha: 1 }, { autoAlpha: 0, duration: 1 })
-    .fromTo(".step-3", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 1, ease: "power2.out" }); // token: base / entrance
+    .fromTo(".step-3", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 1, ease: "power2.out" }); 
 
   return () => { tl.kill(); ScrollTrigger.getAll().forEach(t => t.kill()); };
 });
@@ -375,9 +375,9 @@ function filterItems(category) {
   });
 
   Flip.from(state, {
-    duration: 0.6,            // token: base
-    ease: "power2.inOut",     // token: transition
-    stagger: 0.05,            // token: tight
+    duration: 0.6,            
+    ease: "power2.inOut",    
+    stagger: 0.05,            
     absolute: true,
     onEnter: elements =>
       gsap.fromTo(elements, { autoAlpha: 0, scale: 0.8 }, { autoAlpha: 1, scale: 1, duration: 0.6 }),
@@ -401,8 +401,8 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
       { innerText: 0 },
       {
         innerText: parseInt(el.dataset.target),
-        duration: 1.5,          // token: epic
-        ease: "power2.out",     // token: entrance
+        duration: 1.5,          
+        ease: "power2.out",     
         snap: { innerText: 1 },
         scrollTrigger: {
           trigger: el.closest("section") || el,
@@ -435,9 +435,9 @@ if (!isTouch) {
   const dot = document.querySelector(".cursor-dot");
   const ring = document.querySelector(".cursor-ring");
 
-  const xTo = gsap.quickTo(dot, "x", { duration: 0.15, ease: "power2.out" });   // token: micro
+  const xTo = gsap.quickTo(dot, "x", { duration: 0.15, ease: "power2.out" });  
   const yTo = gsap.quickTo(dot, "y", { duration: 0.15, ease: "power2.out" });
-  const ringX = gsap.quickTo(ring, "x", { duration: 0.35, ease: "power2.out" }); // lagging ring
+  const ringX = gsap.quickTo(ring, "x", { duration: 0.35, ease: "power2.out" }); 
   const ringY = gsap.quickTo(ring, "y", { duration: 0.35, ease: "power2.out" });
 
   window.addEventListener("mousemove", (e) => {
@@ -447,10 +447,10 @@ if (!isTouch) {
 
   document.querySelectorAll("a, button").forEach(el => {
     el.addEventListener("mouseenter", () =>
-      gsap.to(ring, { scale: 2, duration: 0.3, ease: "back.out(1.7)" }) // token: fast / spring
+      gsap.to(ring, { scale: 2, duration: 0.3, ease: "back.out(1.7)" }) 
     );
     el.addEventListener("mouseleave", () =>
-      gsap.to(ring, { scale: 1, duration: 0.3, ease: "power2.out" })   // token: fast / entrance
+      gsap.to(ring, { scale: 1, duration: 0.3, ease: "power2.out" })   
     );
   });
 }
@@ -485,8 +485,8 @@ if (!isTouch) {
       gsap.to(card, {
         rotationY: x * 20,
         rotationX: y * -20,
-        duration: 0.3,              // token: fast
-        ease: "power2.out",         // token: entrance
+        duration: 0.3,             
+        ease: "power2.out",        
         transformOrigin: "center",
       });
     });
@@ -494,8 +494,8 @@ if (!isTouch) {
     card.addEventListener("mouseleave", () => {
       gsap.to(card, {
         rotationX: 0, rotationY: 0,
-        duration: 0.6,              // token: base
-        ease: "elastic.out(1, 0.3)", // token: elastic
+        duration: 0.6,           
+        ease: "elastic.out(1, 0.3)", 
       });
     });
   });
@@ -527,8 +527,8 @@ document.querySelectorAll(".ripple-btn").forEach(btn => {
     gsap.to(ripple, {
       scale: 20,
       autoAlpha: 0,
-      duration: 0.6,              // token: base
-      ease: "power2.out",         // token: entrance
+      duration: 0.6,            
+      ease: "power2.out",       
       onComplete: () => ripple.remove(),
     });
   });
