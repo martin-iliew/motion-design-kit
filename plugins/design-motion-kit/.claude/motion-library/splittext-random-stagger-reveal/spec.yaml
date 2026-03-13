@@ -1,0 +1,21 @@
+version: '1'
+type: tween
+id: splittext-random-stagger-reveal
+target:
+  selector: '[data-motion="splittext-random-stagger-reveal"]'
+  type: group
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: load
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- splittext
+config:
+  root: '[data-motion="splittext-random-stagger-reveal"]'
+  items: '[data-motion="splittext-random-stagger-reveal"] [data-motion-item]'
+  target: '[data-motion="splittext-random-stagger-reveal"] [data-motion-target]'
+  path: '[data-motion="splittext-random-stagger-reveal"] [data-motion-path]'

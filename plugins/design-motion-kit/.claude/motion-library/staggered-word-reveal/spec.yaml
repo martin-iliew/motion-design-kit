@@ -1,0 +1,93 @@
+version: "1"
+id: staggered-word-reveal
+name: Staggered Word Reveal Animation
+type: tween
+category: typography
+framework: GSAP
+description: Sequential word-level entrance animation with staggered timing and easing
+
+# Accessibility notes
+a11y: |
+  Original text is preserved in the DOM for screen readers.
+  Animation is decorative; content is accessible without JavaScript.
+  Respects prefers-reduced-motion; disables animation for users requesting reduced motion.
+  ARIA labels contain unanimated text for screen reader clarity.
+
+# Animation state from-to
+from:
+  opacity: 0
+  y: 10  # Slight vertical offset
+  x: 0
+
+to:
+  opacity: 1
+  y: 0
+  x: 0
+
+# Timing and stagger configuration
+timing:
+  duration: "0.8s"  # Duration per word
+  delay: "0s"
+  easing: "power2.out"
+  stagger: 0.07  # 70ms between words
+  staggerType: "default"  # start | sequence (all at once vs. one by one)
+
+# Stagger calculation options
+stagger:
+  # Base delay between words in seconds
+  amount: 0.07
+
+  # Alternative stagger by percent
+  percentBased: false
+
+  # From which direction to stagger
+  direction: "start"  # start | end | center
+
+  # Maximum total delay
+  maxDelay: null
+
+# Word-level animation trigger
+trigger:
+  type: scroll-entry
+  options:
+    start: "top 80%"
+    end: "bottom 20%"
+    scrub: false
+    once: true
+
+# Animation variants
+variants:
+  # Slide in from left
+  slideIn:
+    x: -20
+    opacity: 0
+
+  # Fade only
+  fadeOnly:
+    y: 0
+    x: 0
+
+  # Rotate + scale entrance
+  rotateScale:
+    rotation: -5
+    scale: 0.9
+    opacity: 0
+
+  # Bottom-up reveal
+  bottomUp:
+    y: 20
+    opacity: 0
+
+# Word split behavior
+wordSplit:
+  # Include tags in word splitting
+  preserveTags: true
+
+  # Split on spaces and punctuation
+  splitOn: "spaces"  # spaces | words | chars
+
+  # Wrap each word in span
+  wrapWords: true
+
+  # Class name for word wrappers
+  wordClass: "word-reveal"

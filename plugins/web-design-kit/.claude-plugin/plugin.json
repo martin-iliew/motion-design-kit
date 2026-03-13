@@ -1,0 +1,34 @@
+{
+  "name": "web-design-kit",
+  "version": "0.1.1",
+  "description": "Deprecated compatibility package for the legacy web-design surface. Use design-motion-kit for all new work.",
+  "author": {
+    "name": "Martin Iliew",
+    "url": "https://github.com/martin-iliew"
+  },
+  "homepage": "https://github.com/martin-iliew/web-design-kit",
+  "repository": "https://github.com/martin-iliew/web-design-kit",
+  "license": "Apache-2.0",
+  "keywords": [
+    "claude-code",
+    "plugin",
+    "landing-page",
+    "web-design",
+    "conversion",
+    "frontend"
+  ],
+  "commands": [
+    "./.claude/commands/web-build.md",
+    "./.claude/commands/web-upgrade.md",
+    "./.claude/commands/web-audit.md",
+    "./.claude/commands/web-discover.md",
+    "./.claude/commands/web-refresh.md"
+  ],
+  "skills": [
+    "./.claude/skills/web-build",
+    "./.claude/skills/web-upgrade",
+    "./.claude/skills/web-audit",
+    "./.claude/skills/web-discover",
+    "./.claude/skills/web-refresh"
+  ]
+}

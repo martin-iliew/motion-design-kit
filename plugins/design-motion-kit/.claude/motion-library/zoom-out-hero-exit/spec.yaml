@@ -1,0 +1,22 @@
+version: '1'
+type: tween
+id: zoom-out-hero-exit
+target:
+  selector: '[data-motion="zoom-out-hero-exit"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: scroll
+  scroll_start: top 85%
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- scrolltrigger
+config:
+  root: '[data-motion="zoom-out-hero-exit"]'
+  items: '[data-motion="zoom-out-hero-exit"] [data-motion-item]'
+  target: '[data-motion="zoom-out-hero-exit"] [data-motion-target]'
+  path: '[data-motion="zoom-out-hero-exit"] [data-motion-path]'

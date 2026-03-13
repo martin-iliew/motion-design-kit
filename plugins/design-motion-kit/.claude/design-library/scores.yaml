@@ -1,0 +1,164 @@
+hero:
+  saas:
+  - grid-led-hero
+  - product-ui-showcase
+  ai:
+  - grid-led-hero
+  - product-ui-showcase
+  - customer-story-metrics
+  enterprise:
+  - grid-led-hero
+  - security-compliance-block
+  developer-tools:
+  - grid-led-hero
+  - product-ui-showcase
+  - integration-logo-ecosystem
+  any:
+  - grid-led-hero
+  - product-ui-showcase
+proof:
+  saas:
+  - sticky-proof-strip
+  - customer-story-metrics
+  - outcome-testimonial-wall
+  ai:
+  - sticky-proof-strip
+  - customer-story-metrics
+  - security-compliance-block
+  enterprise:
+  - security-compliance-block
+  - sticky-proof-strip
+  - customer-story-metrics
+  developer-tools:
+  - integration-logo-ecosystem
+  - sticky-proof-strip
+  - customer-story-metrics
+  ecommerce:
+  - sticky-proof-strip
+  - outcome-testimonial-wall
+  any:
+  - sticky-proof-strip
+  - customer-story-metrics
+  - outcome-testimonial-wall
+metrics:
+  saas:
+  - customer-story-metrics
+  - sticky-proof-strip
+  ai:
+  - customer-story-metrics
+  - sticky-proof-strip
+  enterprise:
+  - customer-story-metrics
+  - security-compliance-block
+  any:
+  - customer-story-metrics
+  - sticky-proof-strip
+product:
+  saas:
+  - product-ui-showcase
+  - modular-feature-grid
+  ai:
+  - product-ui-showcase
+  - modular-feature-grid
+  developer-tools:
+  - product-ui-showcase
+  - integration-logo-ecosystem
+  any:
+  - product-ui-showcase
+  - modular-feature-grid
+features:
+  saas:
+  - modular-feature-grid
+  - product-ui-showcase
+  ai:
+  - modular-feature-grid
+  - product-ui-showcase
+  developer-tools:
+  - modular-feature-grid
+  - product-ui-showcase
+  ecommerce:
+  - modular-feature-grid
+  any:
+  - modular-feature-grid
+  - product-ui-showcase
+integrations:
+  saas:
+  - integration-logo-ecosystem
+  ai:
+  - integration-logo-ecosystem
+  enterprise:
+  - integration-logo-ecosystem
+  - security-compliance-block
+  developer-tools:
+  - integration-logo-ecosystem
+  any:
+  - integration-logo-ecosystem
+pricing:
+  saas:
+  - comparison-pricing-matrix
+  - risk-reversal-cta-band
+  ai:
+  - comparison-pricing-matrix
+  - risk-reversal-cta-band
+  enterprise:
+  - comparison-pricing-matrix
+  - security-compliance-block
+  developer-tools:
+  - comparison-pricing-matrix
+  any:
+  - comparison-pricing-matrix
+  - risk-reversal-cta-band
+testimonial:
+  saas:
+  - customer-story-metrics
+  - outcome-testimonial-wall
+  ai:
+  - customer-story-metrics
+  - outcome-testimonial-wall
+  enterprise:
+  - customer-story-metrics
+  - outcome-testimonial-wall
+  ecommerce:
+  - outcome-testimonial-wall
+  any:
+  - customer-story-metrics
+  - outcome-testimonial-wall
+security:
+  enterprise:
+  - security-compliance-block
+  saas:
+  - security-compliance-block
+  - sticky-proof-strip
+  ai:
+  - security-compliance-block
+  developer-tools:
+  - security-compliance-block
+  any:
+  - security-compliance-block
+faq:
+  saas:
+  - objection-handling-faq
+  ai:
+  - objection-handling-faq
+  enterprise:
+  - objection-handling-faq
+  - security-compliance-block
+  ecommerce:
+  - objection-handling-faq
+  any:
+  - objection-handling-faq
+cta:
+  saas:
+  - risk-reversal-cta-band
+  - sticky-proof-strip
+  ai:
+  - risk-reversal-cta-band
+  - sticky-proof-strip
+  enterprise:
+  - risk-reversal-cta-band
+  - security-compliance-block
+  ecommerce:
+  - risk-reversal-cta-band
+  any:
+  - risk-reversal-cta-band
+  - sticky-proof-strip

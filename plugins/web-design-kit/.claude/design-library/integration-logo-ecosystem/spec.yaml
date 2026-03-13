@@ -1,0 +1,14 @@
+version: "1"
+id: integration-logo-ecosystem
+intent: prove compatibility and workflow fit
+surfaces: [integrations, proof]
+structure:
+  desktop: grouped logo rows with short explanatory copy
+  mobile: compact stacked groups
+proof:
+  above_fold: false
+  type: logo-plus-workflow
+cta:
+  primary: optional-inline-link
+responsive:
+  stack_at: 840px

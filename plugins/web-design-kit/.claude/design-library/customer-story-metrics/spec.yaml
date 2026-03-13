@@ -1,0 +1,14 @@
+version: "1"
+id: customer-story-metrics
+intent: connect customer proof to measurable business outcomes
+surfaces: [metrics, testimonial, proof]
+structure:
+  desktop: split quote and metric cards
+  mobile: quote followed by metrics stack
+proof:
+  above_fold: false
+  type: quantified-customer-outcome
+cta:
+  primary: optional-inline-link
+responsive:
+  stack_at: 760px

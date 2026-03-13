@@ -1,7 +1,7 @@
 {
   "name": "motion-design-kit",
-  "version": "1.2.0",
-  "description": "Claude Code motion design toolkit with five animation skills, including canonical motion-build and motion-upgrade workflows, plus a 75-pattern motion library.",
+  "version": "1.2.1",
+  "description": "Deprecated compatibility package for the legacy motion-only surface. Use design-motion-kit for all new work.",
   "author": {
     "name": "Martin Iliew",
     "url": "https://github.com/martin-iliew"

@@ -1,0 +1,14 @@
+version: "1"
+id: security-compliance-block
+intent: reassure security, IT, and procurement stakeholders
+surfaces: [security, proof]
+structure:
+  desktop: short intro plus 3-4 trust items or badges
+  mobile: stacked trust list
+proof:
+  above_fold: false
+  type: compliance-and-governance
+cta:
+  primary: optional-sales-path
+responsive:
+  stack_at: 760px

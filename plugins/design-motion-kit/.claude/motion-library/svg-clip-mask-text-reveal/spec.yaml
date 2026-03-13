@@ -1,0 +1,20 @@
+version: '1'
+type: tween
+id: svg-clip-mask-text-reveal
+target:
+  selector: '[data-motion="svg-clip-mask-text-reveal"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: load
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+config:
+  root: '[data-motion="svg-clip-mask-text-reveal"]'
+  items: '[data-motion="svg-clip-mask-text-reveal"] [data-motion-item]'
+  target: '[data-motion="svg-clip-mask-text-reveal"] [data-motion-target]'
+  path: '[data-motion="svg-clip-mask-text-reveal"] [data-motion-path]'

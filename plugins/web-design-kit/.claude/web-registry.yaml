@@ -1,0 +1,72 @@
+skills:
+  canonical:
+    - web-build
+    - web-upgrade
+    - web-audit
+    - web-discover
+    - web-refresh
+
+commands:
+  canonical:
+    web-build: web-build
+    web-upgrade: web-upgrade
+    web-audit: web-audit
+    web-discover: web-discover
+    web-refresh: web-refresh
+
+plugin:
+  commands:
+    - web-build
+    - web-upgrade
+    - web-audit
+    - web-discover
+    - web-refresh
+  skills:
+    - web-build
+    - web-upgrade
+    - web-audit
+    - web-discover
+    - web-refresh
+
+execution_modes:
+  default: balanced
+  supported:
+    fast:
+      page_selection: compiled-only
+      page_scores_fallback: false
+      trends_overview: false
+      live_trend_research: false
+      enrichment: obvious-high-value-only
+      section_reordering: conservative
+      summary: concise
+    balanced:
+      page_selection: compiled-first
+      page_scores_fallback: conditional
+      trends_overview: conditional
+      live_trend_research: false
+      enrichment: all-relevant-non-conflicting
+      section_reordering: selective
+      summary: concise
+    premium:
+      page_selection: compiled-first
+      page_scores_fallback: conditional
+      trends_overview: conditional
+      live_trend_research: false
+      enrichment: richer-composition
+      section_reordering: assertive
+      summary: slightly-richer
+
+budgets:
+  canonical:
+    web-build-section:
+      label: single-section or hero web-build
+      live_max: 2500
+      out_max: 1800
+    web-build-page:
+      label: page-level web-build
+      live_max: 5000
+      out_max: 3200
+    web-upgrade-page:
+      label: page-level web-upgrade
+      live_max: 6000
+      out_max: 2600

@@ -1,0 +1,23 @@
+version: '1'
+type: procedural
+id: gooey-blob-morph
+target:
+  selector: '[data-motion="gooey-blob-morph"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: load
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- morphsvg
+config:
+  root: '[data-motion="gooey-blob-morph"]'
+  items: '[data-motion="gooey-blob-morph"] [data-motion-item]'
+  target: '[data-motion="gooey-blob-morph"] [data-motion-target]'
+  path: '[data-motion="gooey-blob-morph"] [data-motion-path]'
+behavior: Gooey Blob Morph is a GSAP pattern for svg, icon surfaces that morphs SVG
+  shapes through a branded sequence.

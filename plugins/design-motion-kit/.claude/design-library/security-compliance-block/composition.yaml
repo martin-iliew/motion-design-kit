@@ -1,0 +1,22 @@
+layout:
+  desktop: scannable trust section pairing claims, badges, and governance notes
+  mobile: stacked trust cards with short evidence labels
+blocks:
+  - id: section-heading
+    role: trust framing
+    required: true
+  - id: compliance-grid
+    role: badges, standards, and deployment notes
+    required: true
+component_inventory:
+  - compliance-grid
+  - trust-card
+  - badge-list
+motion_ready:
+  targets:
+    - id: compliance-grid
+      role: reveal-sequence
+      allowed_families: [scroll-trigger-reveal, number-counter-pulse]
+      intensity: low
+notes:
+  - Trust signals must feel calm and procurement-safe.

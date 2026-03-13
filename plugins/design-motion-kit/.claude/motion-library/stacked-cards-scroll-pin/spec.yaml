@@ -1,0 +1,22 @@
+version: '1'
+type: tween
+id: stacked-cards-scroll-pin
+target:
+  selector: '[data-motion="stacked-cards-scroll-pin"]'
+  type: group
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: scroll
+  scroll_start: top 85%
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- scrolltrigger
+config:
+  root: '[data-motion="stacked-cards-scroll-pin"]'
+  items: '[data-motion="stacked-cards-scroll-pin"] [data-motion-item]'
+  target: '[data-motion="stacked-cards-scroll-pin"] [data-motion-target]'
+  path: '[data-motion="stacked-cards-scroll-pin"] [data-motion-path]'

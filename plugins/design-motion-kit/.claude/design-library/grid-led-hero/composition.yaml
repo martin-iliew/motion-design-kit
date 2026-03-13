@@ -1,0 +1,45 @@
+layout:
+  desktop: 12-column split with copy on the left and product media on the right
+  mobile: single-column stack with proof directly below the CTA cluster
+blocks:
+  - id: eyebrow
+    role: optional context label
+    required: false
+  - id: headline
+    role: primary promise
+    required: true
+  - id: supporting-copy
+    role: audience and outcome framing
+    required: true
+  - id: cta-group
+    role: primary and secondary actions
+    required: true
+  - id: proof-strip
+    role: logos, metrics, or trust line
+    required: true
+  - id: product-frame
+    role: UI or product illustration
+    required: true
+component_inventory:
+  - hero-shell
+  - cta-button-primary
+  - cta-button-secondary
+  - proof-chip
+  - product-frame
+motion_ready:
+  targets:
+    - id: hero-copy
+      role: entrance
+      allowed_families: [kinetic-typography-splittext, scroll-trigger-reveal]
+      intensity: medium
+    - id: cta-group
+      role: emphasis
+      allowed_families: [morphing-button-states, marker-underline-draw]
+      intensity: low
+    - id: product-frame
+      role: focal-object
+      allowed_families: [parallax-depth-layers, 3d-tilt-parallax-card]
+      intensity: medium
+notes:
+  - Keep proof visible above the fold.
+  - Product framing may move, but the copy must stay dominant.

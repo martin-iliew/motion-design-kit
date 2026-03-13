@@ -1,0 +1,61 @@
+{
+  "color": {
+    "brand": {
+      "500": {
+        "$value": "#165DFF",
+        "$type": "color"
+      }
+    },
+    "surface": {
+      "base": {
+        "$value": "#F8FAFC",
+        "$type": "color"
+      }
+    },
+    "text": {
+      "strong": {
+        "$value": "#0F172A",
+        "$type": "color"
+      }
+    }
+  },
+  "space": {
+    "4": {
+      "$value": "1rem",
+      "$type": "dimension"
+    },
+    "6": {
+      "$value": "1.5rem",
+      "$type": "dimension"
+    }
+  },
+  "radius": {
+    "card": {
+      "$value": "1.25rem",
+      "$type": "borderRadius"
+    }
+  },
+  "shadow": {
+    "card": {
+      "$value": "0 20px 45px rgba(15, 23, 42, 0.12)",
+      "$type": "shadow"
+    }
+  },
+  "typography": {
+    "body": {
+      "$value": {
+        "fontFamily": "\"Sora\", sans-serif",
+        "fontSize": "1rem",
+        "fontWeight": "400",
+        "lineHeight": "1.6"
+      },
+      "$type": "typography"
+    }
+  },
+  "duration": {
+    "base": {
+      "$value": 600,
+      "$type": "duration"
+    }
+  }
+}

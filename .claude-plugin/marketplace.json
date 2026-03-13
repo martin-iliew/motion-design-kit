@@ -1,18 +1,46 @@
 {
-  "name": "motion-design-kit",
+  "name": "design-motion-kit",
   "owner": {
     "name": "Martin Iliew",
     "url": "https://github.com/martin-iliew"
   },
   "metadata": {
-    "description": "Claude Code marketplace for modern web animation workflows, including five motion skills and a 75-pattern library.",
-    "version": "1.2.0"
+    "description": "Claude Code marketplace for the merged design-motion-kit plugin plus temporary compatibility packages.",
+    "version": "1.0.0"
   },
   "plugins": [
     {
+      "name": "design-motion-kit",
+      "description": "Canonical merged plugin with mirrored design and motion command families, a non-code design library, a motion library, and a DTCG to Tailwind v4 pipeline.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Martin Iliew",
+        "url": "https://github.com/martin-iliew"
+      },
+      "homepage": "https://github.com/martin-iliew/design-motion-kit",
+      "repository": "https://github.com/martin-iliew/design-motion-kit",
+      "license": "Apache-2.0",
+      "keywords": [
+        "claude-code",
+        "plugin",
+        "design-system",
+        "motion-design",
+        "tailwind-v4",
+        "frontend"
+      ],
+      "category": "frontend",
+      "tags": [
+        "design-system",
+        "motion",
+        "tailwind",
+        "frontend"
+      ],
+      "source": "./plugins/design-motion-kit"
+    },
+    {
       "name": "motion-design-kit",
-      "description": "Five Claude Code motion skills backed by a 75-pattern animation library for authoring, auditing, discovery, reranking, and enhancement.",
-      "version": "1.2.0",
+      "description": "Deprecated compatibility package. Use design-motion-kit for all new work.",
+      "version": "1.2.1",
       "author": {
         "name": "Martin Iliew",
         "url": "https://github.com/martin-iliew"
@@ -30,12 +58,40 @@
       ],
       "category": "frontend",
       "tags": [
+        "deprecated",
         "animation",
-        "design-system",
         "gsap",
         "frontend"
       ],
       "source": "./plugins/motion-design-kit"
+    },
+    {
+      "name": "web-design-kit",
+      "description": "Deprecated compatibility package. Use design-motion-kit for all new design work.",
+      "version": "0.1.1",
+      "author": {
+        "name": "Martin Iliew",
+        "url": "https://github.com/martin-iliew"
+      },
+      "homepage": "https://github.com/martin-iliew/web-design-kit",
+      "repository": "https://github.com/martin-iliew/web-design-kit",
+      "license": "Apache-2.0",
+      "keywords": [
+        "claude-code",
+        "plugin",
+        "landing-page",
+        "web-design",
+        "conversion",
+        "frontend"
+      ],
+      "category": "frontend",
+      "tags": [
+        "deprecated",
+        "landing-page",
+        "design-system",
+        "frontend"
+      ],
+      "source": "./plugins/web-design-kit"
     }
   ]
 }

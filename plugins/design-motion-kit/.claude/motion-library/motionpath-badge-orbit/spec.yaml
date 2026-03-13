@@ -1,0 +1,23 @@
+version: '1'
+type: procedural
+id: motionpath-badge-orbit
+target:
+  selector: '[data-motion="motionpath-badge-orbit"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: load
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- motionpath
+config:
+  root: '[data-motion="motionpath-badge-orbit"]'
+  items: '[data-motion="motionpath-badge-orbit"] [data-motion-item]'
+  target: '[data-motion="motionpath-badge-orbit"] [data-motion-target]'
+  path: '[data-motion="motionpath-badge-orbit"] [data-motion-path]'
+behavior: Motionpath Badge Orbit is a GSAP pattern for badge, path, svg surfaces that
+  moves an accent or media element along a defined path.

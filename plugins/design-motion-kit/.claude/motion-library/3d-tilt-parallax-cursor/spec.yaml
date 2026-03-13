@@ -1,0 +1,46 @@
+version: "1.0"
+id: 3d-tilt-parallax-cursor
+type: procedural
+name: 3D Tilt Parallax with Cursor Tracking
+a11y:
+  prefers_reduced_motion: true
+  keyboard_accessible: true
+  description: "3D tilt is disabled under prefers-reduced-motion. Cards remain fully interactive via keyboard. Tilt intensity can be adjusted or disabled via user settings."
+
+config:
+  tracking_mechanism: pointer_events
+  max_tilt_degrees_x: 15
+  max_tilt_degrees_y: 15
+  polling_frequency_hz: 60
+  spring_damping: 0.1
+  spring_stiffness: 0.2
+  shadow_max_blur_px: 40
+  highlight_bloom_opacity: 0.4
+
+behavior: |
+  On PointerEnter, enable cursor tracking for this element.
+  On PointerMove, calculate normalized pointer position relative to card center (-1 to 1).
+  Use atan2(deltaY, deltaX) to compute rotation angles.
+  Scale angles by max_tilt_degrees to constrain range.
+  Apply spring physics to smooth rotation easing.
+  Update CSS 3D transforms (rotateX, rotateY, perspective) in real-time.
+  Simultaneously adjust box-shadow blur and scale to amplify depth.
+  Render highlight pseudo-element with position interpolated to "hot spot" under pointer.
+  On PointerLeave, animate tilt back to neutral (0, 0) with ease-out curve.
+
+timing:
+  polling_interval_ms: 16 (60 Hz)
+  spring_duration_ms: 200-400 (spring physics)
+  reset_on_leave_ms: 300
+  reset_easing: cubic-bezier(0.34, 1.56, 0.64, 1)
+
+trigger:
+  event: pointermove
+  condition: "pointer is over element AND prefers-reduced-motion is false"
+  action: update_3d_transform
+
+visual_effects:
+  - tilt_x_and_y: "Based on pointer position"
+  - shadow_elevation: "Increases as pointer moves toward edge"
+  - highlight_bloom: "Brightens at pointer proximity, positioned under cursor"
+  - scale_minor: "Optional 2-5% scale increase on full hover"

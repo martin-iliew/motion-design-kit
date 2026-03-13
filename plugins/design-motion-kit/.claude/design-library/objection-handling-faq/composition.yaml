@@ -1,0 +1,22 @@
+layout:
+  desktop: narrow content column with grouped objection-led disclosure items
+  mobile: stacked FAQ accordion with short supporting labels
+blocks:
+  - id: section-heading
+    role: objection framing
+    required: true
+  - id: faq-list
+    role: disclosure items
+    required: true
+component_inventory:
+  - faq-shell
+  - faq-item
+  - answer-body
+motion_ready:
+  targets:
+    - id: faq-list
+      role: disclosure-feedback
+      allowed_families: [accordion-scale-reveal, marker-underline-draw]
+      intensity: low
+notes:
+  - Answers should stay legible and useful when fully static.

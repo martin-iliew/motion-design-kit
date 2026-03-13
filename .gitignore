@@ -1,6 +1,13 @@
 plugins/motion-design-kit/.claude/settings.local.json
 .agents/
-evals/
+evals/*
+!evals/fixtures/
+evals/fixtures/*
+!evals/fixtures/design-motion-kit/
+!evals/fixtures/design-motion-kit/**
 motion-skills-workspace/
 __pycache__/
 *.pyc
+.tmp-design-motion-pipeline/
+_tmp_design_motion_pipeline/
+/web-design-kit/

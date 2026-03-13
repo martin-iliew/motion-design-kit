@@ -1,0 +1,29 @@
+layout:
+  desktop: parallel plan comparison with one clearly featured plan
+  mobile: stacked plan cards with repeated feature labels
+blocks:
+  - id: section-heading
+    role: pricing setup
+    required: true
+  - id: pricing-grid
+    role: plan comparison matrix
+    required: true
+  - id: reassurance-line
+    role: optional trial or onboarding reassurance
+    required: false
+component_inventory:
+  - pricing-grid
+  - pricing-card
+  - feature-row
+motion_ready:
+  targets:
+    - id: pricing-grid
+      role: reveal-sequence
+      allowed_families: [scroll-trigger-reveal, stacked-cards-scroll-pin]
+      intensity: low
+    - id: featured-plan
+      role: emphasis
+      allowed_families: [marker-underline-draw, morphing-button-states]
+      intensity: low
+notes:
+  - The featured plan can feel stronger, but plan comparison must stay clear.

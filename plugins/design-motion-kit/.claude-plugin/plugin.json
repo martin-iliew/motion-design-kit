@@ -1,0 +1,44 @@
+{
+  "name": "design-motion-kit",
+  "version": "1.0.0",
+  "description": "Claude Code frontend design toolkit with mirrored design and motion command families, a non-code design library, a motion library, and a DTCG-to-Tailwind v4 pipeline.",
+  "author": {
+    "name": "Martin Iliew",
+    "url": "https://github.com/martin-iliew"
+  },
+  "homepage": "https://github.com/martin-iliew/design-motion-kit",
+  "repository": "https://github.com/martin-iliew/design-motion-kit",
+  "license": "Apache-2.0",
+  "keywords": [
+    "claude-code",
+    "plugin",
+    "design-system",
+    "motion-design",
+    "tailwind-v4",
+    "frontend"
+  ],
+  "commands": [
+    "./.claude/commands/design-build.md",
+    "./.claude/commands/design-upgrade.md",
+    "./.claude/commands/design-audit.md",
+    "./.claude/commands/design-discover.md",
+    "./.claude/commands/design-refresh.md",
+    "./.claude/commands/motion-build.md",
+    "./.claude/commands/motion-upgrade.md",
+    "./.claude/commands/motion-audit.md",
+    "./.claude/commands/motion-discover.md",
+    "./.claude/commands/motion-refresh.md"
+  ],
+  "skills": [
+    "./.claude/skills/design-build",
+    "./.claude/skills/design-upgrade",
+    "./.claude/skills/design-audit",
+    "./.claude/skills/design-discover",
+    "./.claude/skills/design-refresh",
+    "./.claude/skills/motion-build",
+    "./.claude/skills/motion-upgrade",
+    "./.claude/skills/motion-audit",
+    "./.claude/skills/motion-discover",
+    "./.claude/skills/motion-refresh"
+  ]
+}

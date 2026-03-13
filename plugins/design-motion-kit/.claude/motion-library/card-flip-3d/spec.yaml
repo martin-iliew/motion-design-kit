@@ -1,0 +1,65 @@
+version: "1"
+id: card-flip-3d
+name: Card Flip 3D Animation
+type: tween
+category: micro-interaction
+framework: CSS
+description: 3D card flip animation revealing back content on hover or click interaction
+
+# Accessibility notes
+a11y: |
+  Front side contains primary content; back side is supplemental.
+  Touch devices use click/tap event instead of hover for interaction.
+  Both front and back sides maintain sufficient color contrast.
+  Screen readers can access both sides if content is properly structured.
+  Flip animation respects prefers-reduced-motion media query.
+
+# Front side rotation state
+front:
+  rotateY: "0deg"
+  visibility: visible
+  opacity: 1
+
+# Back side rotation state (rotated 180 degrees)
+back:
+  rotateY: "180deg"
+  visibility: visible
+  opacity: 1
+
+# Flip animation timing
+timing:
+  duration: "0.6s"
+  easing: "ease-in-out"
+  perspective: "1000px"
+  perspectiveOrigin: "center center"
+
+# Transform configuration
+transform:
+  backfaceVisibility: "hidden"
+  transformStyle: "preserve-3d"
+  transformOrigin: "center"
+
+# Interaction triggers
+trigger:
+  primary: hover
+  secondary: click  # For touch devices
+  options:
+    holdDuration: null  # null means instant, otherwise milliseconds
+    reversible: true    # Can flip back on second interaction
+
+# Perspective and depth settings
+depth:
+  # 3D perspective distance (lower = more dramatic)
+  perspective: 1000px
+
+  # Scale when flipped (optional pop-out effect)
+  flipScale: 1
+
+  # Shadow enhancement during flip
+  shadowEnhance: true
+
+# Alternative click-based variant
+clickVariant:
+  toggleOnClick: true
+  requiresDoubleClick: false
+  resetAfterDelay: null  # null means manual reset only

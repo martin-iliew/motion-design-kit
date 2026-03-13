@@ -1,0 +1,22 @@
+version: '1'
+type: procedural
+id: cursor-image-preview-trail
+target:
+  selector: '[data-motion="cursor-image-preview-trail"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: drag
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+config:
+  root: '[data-motion="cursor-image-preview-trail"]'
+  items: '[data-motion="cursor-image-preview-trail"] [data-motion-item]'
+  target: '[data-motion="cursor-image-preview-trail"] [data-motion-target]'
+  path: '[data-motion="cursor-image-preview-trail"] [data-motion-path]'
+behavior: Cursor Image Preview Trail is a GSAP pattern for image, media surfaces that
+  uses cursor-proximate previews to enrich browsing without a click.

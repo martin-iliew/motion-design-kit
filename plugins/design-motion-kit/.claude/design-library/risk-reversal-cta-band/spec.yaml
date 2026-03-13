@@ -1,0 +1,14 @@
+version: "1"
+id: risk-reversal-cta-band
+intent: close the page with a clear next step and reassurance
+surfaces: [cta, proof]
+structure:
+  desktop: centered or split CTA band with one reassurance line
+  mobile: stacked CTA then reassurance
+proof:
+  above_fold: false
+  type: reassurance
+cta:
+  primary: explicit-next-step
+responsive:
+  stack_at: 680px

@@ -1,0 +1,22 @@
+layout:
+  desktop: ecosystem row or matrix pairing logos with short compatibility notes
+  mobile: stacked logo blocks with one line of value context
+blocks:
+  - id: section-heading
+    role: ecosystem framing
+    required: true
+  - id: integration-grid
+    role: logos plus value statements
+    required: true
+component_inventory:
+  - ecosystem-shell
+  - integration-item
+  - logo-mark
+motion_ready:
+  targets:
+    - id: integration-grid
+      role: reveal-sequence
+      allowed_families: [scroll-trigger-reveal, marquee-infinite-loop]
+      intensity: low
+notes:
+  - Logos must remain readable and non-decorative.

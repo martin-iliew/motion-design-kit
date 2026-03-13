@@ -1,0 +1,22 @@
+version: '1'
+type: tween
+id: section-progress-rail
+target:
+  selector: '[data-motion="section-progress-rail"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: scroll
+  scroll_start: top 85%
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- scrolltrigger
+config:
+  root: '[data-motion="section-progress-rail"]'
+  items: '[data-motion="section-progress-rail"] [data-motion-item]'
+  target: '[data-motion="section-progress-rail"] [data-motion-target]'
+  path: '[data-motion="section-progress-rail"] [data-motion-path]'

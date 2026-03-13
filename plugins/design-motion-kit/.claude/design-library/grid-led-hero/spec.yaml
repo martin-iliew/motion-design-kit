@@ -1,0 +1,14 @@
+version: "1"
+id: grid-led-hero
+intent: clarify the offer quickly with proof and product context
+surfaces: [hero, cta, proof, product]
+structure:
+  desktop: 12-column split with copy left and media right
+  mobile: single column with proof directly below CTA
+proof:
+  above_fold: true
+  type: logos-or-metrics
+cta:
+  primary: start-free-or-book-demo
+responsive:
+  stack_at: 960px

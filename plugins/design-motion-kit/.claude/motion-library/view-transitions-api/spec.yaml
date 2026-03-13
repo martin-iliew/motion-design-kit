@@ -1,0 +1,60 @@
+version: "1"
+type: browser-native
+id: "view-transition-root-crossfade"
+mechanism: view-transitions-api
+description: "Default root crossfade when document.startViewTransition() is called. Browser captures old and new states, crossfades via ::view-transition-old(root) and ::view-transition-new(root) pseudo-elements."
+properties:
+  - name: opacity
+    from: "1"
+    to: "0"
+    pseudo: "::view-transition-old(root)"
+  - name: opacity
+    from: "0"
+    to: "1"
+    pseudo: "::view-transition-new(root)"
+timing:
+  duration: fast           # 300ms
+  easing: transition       # cubic-bezier(0.4, 0, 0.2, 1)
+trigger:
+  type: manual
+  api: "document.startViewTransition(callback)"
+notes: "The browser handles capture and compositing automatically. The callback performs the DOM update; browser snapshots before and after."
+a11y:
+  reduced_motion: instant-final   # collapse all ::view-transition-* durations to 0.01ms
+
+---
+
+version: "1"
+type: browser-native
+id: "view-transition-shared-element"
+mechanism: view-transitions-api
+description: "Named shared-element transition — hero image morphs between list and detail states. Element has view-transition-name: hero-image on both old and new state."
+target:
+  selector: ".hero-image"
+  attribute: "view-transition-name: hero-image"
+properties:
+  - name: opacity
+    from: "1"
+    to: "0"
+    pseudo: "::view-transition-old(hero-image)"
+  - name: transform
+    from: "scale(1)"
+    to: "scale(0.95)"
+    pseudo: "::view-transition-old(hero-image)"
+  - name: opacity
+    from: "0"
+    to: "1"
+    pseudo: "::view-transition-new(hero-image)"
+  - name: transform
+    from: "scale(1.05)"
+    to: "scale(1)"
+    pseudo: "::view-transition-new(hero-image)"
+timing:
+  duration: fast           # ~350ms
+  easing: transition
+trigger:
+  type: manual
+  api: "document.startViewTransition(callback)"
+notes: "Requires view-transition-name to be set on the element in both the old and new DOM states. Clean up programmatic assignments after transition.finished resolves."
+a11y:
+  reduced_motion: instant-final

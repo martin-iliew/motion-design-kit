@@ -1,0 +1,10 @@
+{
+  "page_type": "ai",
+  "audience": "Operations teams evaluating an AI workflow product",
+  "goal": "Generate a high-clarity homepage direction with strong proof and product framing",
+  "constraints": [
+    "Use the provided DTCG tokens",
+    "Keep the page enterprise-safe",
+    "Prepare structure that can accept tasteful motion later"
+  ]
+}

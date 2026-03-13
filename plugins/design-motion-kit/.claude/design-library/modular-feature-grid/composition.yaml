@@ -1,0 +1,29 @@
+layout:
+  desktop: restrained modular grid with consistent alignment and controlled variety
+  mobile: single-column feature stack with clear grouping
+blocks:
+  - id: section-heading
+    role: features intro
+    required: true
+  - id: feature-grid
+    role: grouped feature cards
+    required: true
+  - id: supporting-proof
+    role: optional metric or proof annotations
+    required: false
+component_inventory:
+  - feature-grid
+  - feature-card
+  - feature-icon
+motion_ready:
+  targets:
+    - id: feature-grid
+      role: staggered-entry
+      allowed_families: [scroll-trigger-reveal, flip-layout-animations]
+      intensity: medium
+    - id: feature-card
+      role: hover-response
+      allowed_families: [spring-physics-interactions, 3d-tilt-parallax-card]
+      intensity: low
+notes:
+  - Keep card content scannable before adding any motion layer.

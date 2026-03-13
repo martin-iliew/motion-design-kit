@@ -1,0 +1,22 @@
+version: '1'
+type: tween
+id: sticky-media-content-sync
+target:
+  selector: '[data-motion="sticky-media-content-sync"]'
+  type: group
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: scroll
+  scroll_start: top 85%
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- scrolltrigger
+config:
+  root: '[data-motion="sticky-media-content-sync"]'
+  items: '[data-motion="sticky-media-content-sync"] [data-motion-item]'
+  target: '[data-motion="sticky-media-content-sync"] [data-motion-target]'
+  path: '[data-motion="sticky-media-content-sync"] [data-motion-path]'

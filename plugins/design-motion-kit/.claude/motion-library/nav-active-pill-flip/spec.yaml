@@ -1,0 +1,21 @@
+version: '1'
+type: tween
+id: nav-active-pill-flip
+target:
+  selector: '[data-motion="nav-active-pill-flip"]'
+  type: element
+timing:
+  duration: base
+  easing: transition
+trigger:
+  type: click
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- flip
+config:
+  root: '[data-motion="nav-active-pill-flip"]'
+  items: '[data-motion="nav-active-pill-flip"] [data-motion-item]'
+  target: '[data-motion="nav-active-pill-flip"] [data-motion-target]'
+  path: '[data-motion="nav-active-pill-flip"] [data-motion-path]'

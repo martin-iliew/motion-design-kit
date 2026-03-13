@@ -1,0 +1,40 @@
+# Enter: hover morph (CSS-driven via --btn-duration / --btn-ease)
+version: "1"
+type: tween
+id: "button-morph-enter"
+target:
+  selector: ".morph-btn"
+  type: element
+from:
+  scale: 1
+to:
+  scale: 1.02
+  y: -2
+timing:
+  duration: fast          # 300ms (--btn-duration) — resolves via motion-tokens.md
+  easing: spring          # cubic-bezier(0.34, 1.56, 0.64, 1) = spring token
+trigger:
+  type: hover
+a11y:
+  reduced_motion: skip
+---
+# Exit: hover release (CSS-driven, same transition property)
+version: "1"
+type: tween
+id: "button-morph-exit"
+target:
+  selector: ".morph-btn"
+  type: element
+from:
+  scale: 1.02
+  y: -2
+to:
+  scale: 1
+  y: 0
+timing:
+  duration: fast          # 300ms (--btn-duration)
+  easing: spring          # cubic-bezier(0.34, 1.56, 0.64, 1) = spring token
+trigger:
+  type: hover
+a11y:
+  reduced_motion: skip

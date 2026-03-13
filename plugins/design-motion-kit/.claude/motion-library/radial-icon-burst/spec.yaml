@@ -1,0 +1,20 @@
+version: '1'
+type: tween
+id: radial-icon-burst
+target:
+  selector: '[data-motion="radial-icon-burst"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: load
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+config:
+  root: '[data-motion="radial-icon-burst"]'
+  items: '[data-motion="radial-icon-burst"] [data-motion-item]'
+  target: '[data-motion="radial-icon-burst"] [data-motion-target]'
+  path: '[data-motion="radial-icon-burst"] [data-motion-path]'

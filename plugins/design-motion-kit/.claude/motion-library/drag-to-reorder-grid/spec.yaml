@@ -1,0 +1,22 @@
+version: '1'
+type: tween
+id: drag-to-reorder-grid
+target:
+  selector: '[data-motion="drag-to-reorder-grid"]'
+  type: group
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: drag
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- flip
+- draggable
+config:
+  root: '[data-motion="drag-to-reorder-grid"]'
+  items: '[data-motion="drag-to-reorder-grid"] [data-motion-item]'
+  target: '[data-motion="drag-to-reorder-grid"] [data-motion-target]'
+  path: '[data-motion="drag-to-reorder-grid"] [data-motion-path]'

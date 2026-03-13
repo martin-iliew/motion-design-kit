@@ -1,0 +1,75 @@
+skills:
+  canonical:
+    - motion-build
+    - motion-upgrade
+    - motion-audit
+    - motion-discover
+    - motion-refresh
+
+commands:
+  canonical:
+    motion-build: motion-build
+    motion-upgrade: motion-upgrade
+    motion-audit: motion-audit
+    motion-discover: motion-discover
+    motion-refresh: motion-refresh
+
+plugin:
+  commands:
+    - motion-build
+    - motion-upgrade
+    - motion-audit
+    - motion-discover
+    - motion-refresh
+  skills:
+    - motion-build
+    - motion-upgrade
+    - motion-audit
+    - motion-discover
+    - motion-refresh
+
+execution_modes:
+  default: balanced
+  supported:
+    fast:
+      page_selection: compiled-only
+      page_scores_fallback: false
+      trends_overview: false
+      live_gsap_docs: conditional
+      live_trend_research: false
+      enrichment: top-value-buckets-only
+      optional_interaction_enhancement: false
+      summary: concise
+    balanced:
+      page_selection: compiled-first
+      page_scores_fallback: conditional
+      trends_overview: conditional
+      live_gsap_docs: conditional
+      live_trend_research: false
+      enrichment: all-relevant-non-conflicting
+      optional_interaction_enhancement: one-cheap-total
+      summary: concise
+    premium:
+      page_selection: compiled-first
+      page_scores_fallback: conditional
+      trends_overview: conditional
+      live_gsap_docs: allowed
+      live_trend_research: false
+      enrichment: richer-composition
+      optional_interaction_enhancement: one-per-high-value-bucket
+      summary: slightly-richer
+
+budgets:
+  canonical:
+    motion-build-single:
+      label: simple single-element motion-build
+      live_max: 2500
+      out_max: 1800
+    motion-build-page:
+      label: page-level motion-build
+      live_max: 5500
+      out_max: 3500
+    motion-upgrade-single:
+      label: simple single-file motion-upgrade
+      live_max: 6000
+      out_max: 2500

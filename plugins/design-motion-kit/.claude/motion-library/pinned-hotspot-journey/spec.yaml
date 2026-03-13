@@ -1,0 +1,22 @@
+version: '1'
+type: tween
+id: pinned-hotspot-journey
+target:
+  selector: '[data-motion="pinned-hotspot-journey"]'
+  type: group
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: scroll
+  scroll_start: top 85%
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- scrolltrigger
+config:
+  root: '[data-motion="pinned-hotspot-journey"]'
+  items: '[data-motion="pinned-hotspot-journey"] [data-motion-item]'
+  target: '[data-motion="pinned-hotspot-journey"] [data-motion-target]'
+  path: '[data-motion="pinned-hotspot-journey"] [data-motion-path]'

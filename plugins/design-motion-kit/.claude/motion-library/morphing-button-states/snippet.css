@@ -1,0 +1,195 @@
+/* Motion Spec: morphing-button-states */
+
+/* ── Base button ─────────────────────────────────────────────── */
+.morph-btn {
+  --btn-bg: #2563eb;
+  --btn-fg: #ffffff;
+  --btn-radius: 0.5rem;
+  --btn-padding-x: 2rem;
+  --btn-padding-y: 0.75rem;
+  --btn-duration: 300ms;                                    /* token: fast */
+  --btn-ease: cubic-bezier(0.34, 1.56, 0.64, 1);           /* token: spring */
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  min-width: 9rem;
+  height: 3rem;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: none;
+  border-radius: var(--btn-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  outline-offset: 3px;
+
+  /* Only animate GPU-safe properties */
+  transition:
+    transform var(--btn-duration) var(--btn-ease),
+    border-radius var(--btn-duration) ease,
+    min-width var(--btn-duration) ease,
+    background-color var(--btn-duration) ease,
+    box-shadow var(--btn-duration) ease;
+}
+
+/* ── Hover state: subtle lift + pill rounding ─────────────────── */
+.morph-btn:hover:not(:disabled):not([data-state]) {
+  background: #1d4ed8;
+  border-radius: 2rem;          /* rounds toward pill */
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+/* ── Active / pressed state: compress ────────────────────────── */
+.morph-btn:active:not(:disabled):not([data-state]) {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+  transition-duration: 80ms;    /* token: ~micro (80ms — below micro=150ms; nearest: micro) */
+}
+
+/* ── Loading state: collapse to circle spinner ────────────────── */
+.morph-btn[data-state="loading"] {
+  min-width: 3rem;              /* collapse width to match height */
+  border-radius: 50%;
+  background: #1d4ed8;
+  transform: none;
+  box-shadow: none;
+  cursor: wait;
+  pointer-events: none;
+}
+
+/* ── Success state: green checkmark circle ────────────────────── */
+.morph-btn[data-state="success"] {
+  min-width: 3rem;
+  border-radius: 50%;
+  background: #16a34a;
+  transform: none;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+/* ── Error state: red shake ───────────────────────────────────── */
+.morph-btn[data-state="error"] {
+  background: #dc2626;
+  border-radius: var(--btn-radius);
+  min-width: 9rem;
+  animation: btn-shake 400ms ease;  /* token: ~fast (400ms — between fast=300ms and base=600ms; nearest: fast) */
+  pointer-events: none;
+}
+
+@keyframes btn-shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+/* ── Inner elements ───────────────────────────────────────────── */
+.morph-btn__label {
+  transition: opacity 200ms ease, transform 200ms ease;  /* token: ~fast (200ms — between micro=150ms and fast=300ms; nearest: fast) */
+}
+
+.morph-btn[data-state="loading"] .morph-btn__label,
+.morph-btn[data-state="success"] .morph-btn__label {
+  opacity: 0;
+  transform: scale(0.6);
+  position: absolute;           /* remove from flow without reflow */
+}
+
+/* Spinner ring */
+.morph-btn__spinner {
+  position: absolute;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 200ms 100ms ease, transform 200ms 100ms ease;  /* token: ~fast (200ms — nearest: fast) */
+  animation: none;
+}
+
+.morph-btn[data-state="loading"] .morph-btn__spinner {
+  opacity: 1;
+  transform: scale(1);
+  animation: btn-spin 700ms linear infinite;  /* token: ~base (700ms — between fast=300ms and base=600ms; nearest: base) */
+}
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg) scale(1); }
+}
+
+/* Checkmark (drawn via clip-path) */
+.morph-btn__check {
+  position: absolute;
+  width: 1.25rem;
+  height: 1.25rem;
+  opacity: 0;
+  transform: scale(0.5) rotate(-45deg);
+  transition: opacity 200ms 100ms ease, transform 200ms 100ms var(--btn-ease);  /* token: ~fast (200ms — nearest: fast) / token: spring (var(--btn-ease) = cubic-bezier(0.34, 1.56, 0.64, 1)) */
+}
+
+.morph-btn__check::before,
+.morph-btn__check::after {
+  content: "";
+  position: absolute;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.morph-btn__check::before {
+  left: 2px; bottom: 4px;
+  width: 5px; height: 2px;
+  transform: rotate(45deg);
+  transform-origin: left center;
+}
+
+.morph-btn__check::after {
+  left: 5px; bottom: 4px;
+  width: 10px; height: 2px;
+  transform: rotate(-55deg);
+  transform-origin: left center;
+}
+
+.morph-btn[data-state="success"] .morph-btn__check {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* ── Disabled state ───────────────────────────────────────────── */
+.morph-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Accessibility: prefers-reduced-motion ────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .morph-btn,
+  .morph-btn__label,
+  .morph-btn__spinner,
+  .morph-btn__check {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  /* Retain color and shape changes — only remove motion */
+  .morph-btn[data-state="loading"] .morph-btn__spinner {
+    opacity: 1;
+    transform: scale(1);
+    /* Static indicator instead of spinning ring */
+    border-top-color: rgba(255,255,255,0.3);
+    border-color: rgba(255,255,255,0.6);
+  }
+
+  .morph-btn[data-state="error"] {
+    animation: none !important;
+  }
+}

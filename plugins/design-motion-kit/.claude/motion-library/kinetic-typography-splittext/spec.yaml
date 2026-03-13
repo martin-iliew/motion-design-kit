@@ -1,0 +1,56 @@
+# Motion Spec: kinetic-headline-words
+# Primary animation — headline word-level reveal (initKineticHeadline, words layer)
+# Note: SplitText wraps text into spans; selector targets the container element
+# tagged with [data-kinetic]; the spec represents the stagger group of split words.
+version: "1"
+type: tween
+id: "kinetic-headline-words"
+target:
+  selector: "[data-kinetic]"
+  type: group   # group = SplitText split.words array
+from:
+  opacity: 0
+  yPercent: 100   # slides up from below the mask boundary (mask: "lines")
+to:
+  opacity: 1
+  yPercent: 0
+timing:
+  duration: base   # 0.6s
+  easing: entrance # power2.out
+stagger:
+  tier: tight      # each: 0.04s — word-level
+  from: start
+trigger:
+  type: scroll
+  scroll_start: "top 80%"
+  toggle_actions: "play none none reverse"
+sequence:
+  position: "<0.05"   # overlaps with the line animation for fluidity
+a11y:
+  reduced_motion: instant-final
+---
+# Secondary animation — character-level stagger (initCharStagger)
+version: "1"
+type: tween
+id: "kinetic-chars-stagger"
+target:
+  selector: "[data-kinetic-chars]"
+  type: group   # group = SplitText split.chars array
+from:
+  opacity: 0
+  y: 40
+  rotationX: -90   # perspective flip from below; requires perspective on parent
+to:
+  opacity: 1
+  y: 0
+  rotationX: 0
+timing:
+  duration_raw: 0.55   # between fast=0.3 and base=0.6; nearest token is base
+  easing: impact       # power3.out — set via timeline defaults
+stagger:
+  value_raw: 0.025   # character-level; tight tier = 0.04–0.06s, this is sub-tight
+  from: start
+trigger:
+  type: load
+a11y:
+  reduced_motion: instant-final

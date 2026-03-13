@@ -1,0 +1,73 @@
+skills:
+  canonical:
+    - design-build
+    - design-upgrade
+    - design-audit
+    - design-discover
+    - design-refresh
+
+commands:
+  canonical:
+    design-build: design-build
+    design-upgrade: design-upgrade
+    design-audit: design-audit
+    design-discover: design-discover
+    design-refresh: design-refresh
+
+plugin:
+  commands:
+    - design-build
+    - design-upgrade
+    - design-audit
+    - design-discover
+    - design-refresh
+  skills:
+    - design-build
+    - design-upgrade
+    - design-audit
+    - design-discover
+    - design-refresh
+
+execution_modes:
+  default: balanced
+  supported:
+    fast:
+      page_selection: compiled-only
+      page_scores_fallback: false
+      trends_overview: false
+      live_trend_research: false
+      enrichment: obvious-high-value-only
+      section_reordering: conservative
+      summary: concise
+    balanced:
+      page_selection: compiled-first
+      page_scores_fallback: conditional
+      trends_overview: conditional
+      live_trend_research: false
+      enrichment: all-relevant-non-conflicting
+      section_reordering: selective
+      summary: concise
+    premium:
+      page_selection: compiled-first
+      page_scores_fallback: conditional
+      trends_overview: conditional
+      live_trend_research: false
+      enrichment: richer-composition
+      section_reordering: assertive
+      summary: slightly-richer
+
+budgets:
+  canonical:
+    design-build-section:
+      label: single-section or hero design-build
+      live_max: 2500
+      out_max: 1800
+    design-build-page:
+      label: page-level design-build
+      live_max: 5000
+      out_max: 3200
+    design-upgrade-page:
+      label: page-level design-upgrade
+      live_max: 6000
+      out_max: 2600
+

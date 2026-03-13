@@ -1,0 +1,22 @@
+version: '1'
+type: tween
+id: pinned-story-panels
+target:
+  selector: '[data-motion="pinned-story-panels"]'
+  type: group
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: scroll
+  scroll_start: top 85%
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- scrolltrigger
+config:
+  root: '[data-motion="pinned-story-panels"]'
+  items: '[data-motion="pinned-story-panels"] [data-motion-item]'
+  target: '[data-motion="pinned-story-panels"] [data-motion-target]'
+  path: '[data-motion="pinned-story-panels"] [data-motion-path]'

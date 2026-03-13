@@ -1,0 +1,20 @@
+version: '1'
+type: tween
+id: 3d-cylinder-text-scroll
+target:
+  selector: '[data-motion="3d-cylinder-text-scroll"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: load
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+config:
+  root: '[data-motion="3d-cylinder-text-scroll"]'
+  items: '[data-motion="3d-cylinder-text-scroll"] [data-motion-item]'
+  target: '[data-motion="3d-cylinder-text-scroll"] [data-motion-target]'
+  path: '[data-motion="3d-cylinder-text-scroll"] [data-motion-path]'

@@ -1,0 +1,20 @@
+rising:
+- id: customer-story-metrics
+  reason: quantified customer proof blocks are increasingly used to bridge product
+    claims and buyer trust.
+- id: product-ui-showcase
+  reason: product-led homepages keep leaning on clear UI framing instead of abstract
+    illustration-only heroes.
+stable:
+- id: grid-led-hero
+- id: sticky-proof-strip
+- id: modular-feature-grid
+- id: comparison-pricing-matrix
+- id: objection-handling-faq
+- id: risk-reversal-cta-band
+- id: security-compliance-block
+watch:
+- id: modular-feature-grid
+  reason: easy to over-style; keep the layout disciplined and information-carrying.
+- id: outcome-testimonial-wall
+  reason: only works when customer identity and outcomes are specific.

@@ -1,0 +1,22 @@
+version: '1'
+type: tween
+id: image-sequence-scroll-scrub
+target:
+  selector: '[data-motion="image-sequence-scroll-scrub"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: scroll
+  scroll_start: top 85%
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- scrolltrigger
+config:
+  root: '[data-motion="image-sequence-scroll-scrub"]'
+  items: '[data-motion="image-sequence-scroll-scrub"] [data-motion-item]'
+  target: '[data-motion="image-sequence-scroll-scrub"] [data-motion-target]'
+  path: '[data-motion="image-sequence-scroll-scrub"] [data-motion-path]'

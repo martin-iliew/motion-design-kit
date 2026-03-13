@@ -1,0 +1,66 @@
+version: "1"
+type: browser-native
+id: "scroll-driven-progress-bar"
+mechanism: css-scroll-timeline
+description: "Progress bar that tracks total page scroll using animation-timeline: scroll(root block)."
+target:
+  selector: ".progress-bar"
+properties:
+  - name: transform
+    from: "scaleX(0)"
+    to: "scaleX(1)"
+timing:
+  easing: scrub            # linear required for scroll-driven animations
+trigger:
+  type: scroll
+  timeline: "scroll(root block)"
+  notes: "No duration — progress is driven by scroll position, not time."
+a11y:
+  reduced_motion: instant-final   # set animation: none and restore opacity/translate
+
+---
+
+version: "1"
+type: browser-native
+id: "scroll-driven-fade-up"
+mechanism: css-view-timeline
+description: "Fade-in with upward translate as each element enters the viewport."
+target:
+  selector: ".card"
+properties:
+  - name: opacity
+    from: "0"
+    to: "1"
+  - name: translate
+    from: "0 2rem"
+    to: "0 0"
+timing:
+  easing: scrub            # linear required for scroll-driven
+trigger:
+  type: scroll
+  timeline: "view(block)"
+  range: "entry 10% entry 50%"
+a11y:
+  reduced_motion: instant-final
+
+---
+
+version: "1"
+type: browser-native
+id: "scroll-driven-parallax"
+mechanism: css-named-scroll-timeline
+description: "Background element shifts at a slower rate than scroll using a named timeline defined on the scroll container."
+target:
+  selector: ".hero__bg"
+properties:
+  - name: translate
+    from: "0 0"
+    to: "0 -20%"
+timing:
+  easing: scrub
+trigger:
+  type: scroll
+  timeline: "--hero-scroll"
+  notes: "Named timeline defined on .hero via scroll-timeline: --hero-scroll block"
+a11y:
+  reduced_motion: instant-final

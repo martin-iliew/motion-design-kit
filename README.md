@@ -1,42 +1,34 @@
-# motion-design-kit
+# design-motion-kit
 
-Claude Code plugin for modern web motion work. It ships canonical commands for building, upgrading, auditing, discovering, and refreshing website motion with a shared trend-aware runtime layer.
+Canonical Claude Code plugin for merged design and motion work.
 
----
+It combines:
 
-## Fast Start
+- a non-code `design-library`
+- the existing `motion-library`
+- mirrored public command families
+- a DTCG JSON to Tailwind v4 `@theme` pipeline
+- internal designer, coder, and greenfield bootstrap skills
+- vendored Anthropic reference skills under `plugins/design-motion-kit/.claude/skills/vendor/anthropic/`
 
-Install at user scope:
-
-```bash
-claude plugin marketplace add --scope user martin-iliew/motion-design-kit
-claude plugin install --scope user motion-design-kit@motion-design-kit
-```
-
-Then open Claude Code at the root of the app you want to edit:
+## Install
 
 ```bash
-cd your-project
-claude
+claude plugin marketplace add --scope user martin-iliew/design-motion-kit
+claude plugin install --scope user design-motion-kit@design-motion-kit
 ```
 
-For the recommended project permissions profile, use the setup guide:
+## Public Commands
 
-- [SETUP.md](/Users/Martin/Desktop/Weband/Repositories/claude-skills/SETUP.md)
+Design:
 
----
+- `/design-build`
+- `/design-upgrade`
+- `/design-audit`
+- `/design-discover`
+- `/design-refresh`
 
-## Canonical Commands
-
-| Goal | Command | Input |
-| --- | --- | --- |
-| Add or translate motion | `/motion-build` | file path + request |
-| Audit and auto-modernize | `/motion-upgrade` | one or more file paths |
-| Review without editing | `/motion-audit` | one or more file paths |
-| Discover new pattern ideas | `/motion-discover` | trend brief or no file |
-| Rerank runtime trend data | `/motion-refresh` | no file required |
-
-Public surface is canonical:
+Motion:
 
 - `/motion-build`
 - `/motion-upgrade`
@@ -44,73 +36,45 @@ Public surface is canonical:
 - `/motion-discover`
 - `/motion-refresh`
 
----
+`/design-build`, `/design-upgrade`, `/motion-build`, and `/motion-upgrade` support `mode: fast|balanced|premium`. Default is `balanced`.
 
-## Execution Modes
+## Brief Bundle Contract
 
-`/motion-build` and `/motion-upgrade` support an optional leading mode prefix:
+Upstream scraper output is expected in `brief/`:
 
-```bash
-/motion-build mode: fast src/index.html add scroll reveal to the pricing cards
-/motion-upgrade mode: premium src/pages/home.html
-```
+- `brief/brief.json`
+- `brief/copy.md`
+- `brief/images.json`
+- `brief/tokens.dtcg.json`
 
-If no mode is provided, the default is `balanced`.
+Design workflows generate:
 
-| Mode | Use when | Behavior |
-| --- | --- | --- |
-| `fast` | you want the cheapest safe pass | compiled selector layer only, top-value buckets only |
-| `balanced` | normal production work | compiled selector first, selective fallback, concise output |
-| `premium` | showcase or premium-brand work | richer composition, limited escalation, slightly richer output |
+- `brief/theme.css`
+- `brief/token-aliases.json`
+- `brief/design-decision-pack.yaml`
+- `brief/motion-hints.yaml`
 
----
+Motion workflows consume the decision pack and motion hints when they exist.
 
-## Example Requests
-
-```bash
-/motion-build src/index.html add a GSAP reveal for each feature card on scroll
-```
+## Maintainer Validation
 
 ```bash
-/motion-build mode: fast src/components/Hero.tsx add an intro timeline for the heading and CTA
+claude plugin validate plugins/design-motion-kit
+claude plugin validate plugins/design-motion-kit/.claude-plugin/plugin.json
+python plugins/design-motion-kit/.claude/scripts/validate_design_surfaces.py
+python plugins/design-motion-kit/.claude/scripts/validate_motion_surfaces.py
+python plugins/design-motion-kit/.claude/scripts/validate_design_library.py --expected-count 11
+python plugins/design-motion-kit/.claude/scripts/validate_motion_library.py --expected-count 75
+python plugins/design-motion-kit/.claude/scripts/validate_design_pipeline.py
 ```
 
-```bash
-/motion-upgrade src/pages/home.html
-```
+## Compatibility Packages
 
-```bash
-/motion-upgrade mode: premium src/components/Hero.vue src/components/hero.css
-```
+The following packages remain in the repo for one release cycle only:
 
-```bash
-/motion-audit src/components/Hero.tsx src/components/Hero.module.css
-```
+- `motion-design-kit`
+- `web-design-kit`
 
-Plain-English prompts also work as long as you give Claude a real file path.
+They are documentation-led compatibility paths. All new development belongs in `plugins/design-motion-kit`.
 
----
-
-## What Ships
-
-- 5 canonical commands
-- 5 canonical skills
-- trend-aware runtime selectors under `plugins/motion-design-kit/.claude/motion-library/`
-- validation and refresh scripts under `plugins/motion-design-kit/.claude/scripts/`
-
-Marketplace installs resolve from `plugins/motion-design-kit`, so repo-only development assets do not ship with the plugin payload.
-
----
-
-## Maintainer Notes
-
-Validate before publishing:
-
-```bash
-claude plugin validate plugins/motion-design-kit
-claude plugin validate plugins/motion-design-kit/.claude-plugin/plugin.json
-python plugins/motion-design-kit/.claude/scripts/validate_motion_surfaces.py
-python plugins/motion-design-kit/.claude/scripts/validate_motion_library.py --expected-count 75
-```
-
-**Last updated:** March 2026
+**Last updated:** March 13, 2026

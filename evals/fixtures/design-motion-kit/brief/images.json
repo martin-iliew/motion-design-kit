@@ -1,0 +1,10 @@
+{
+  "images": [
+    {
+      "id": "hero-ui",
+      "type": "product-ui",
+      "alt": "Dashboard view showing workflow approvals and automations",
+      "path": "images/hero-ui.png"
+    }
+  ]
+}

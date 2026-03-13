@@ -1,30 +1,24 @@
-# Motion Design Kit Setup
+# design-motion-kit Setup
 
-Setup and maintainer guide for `motion-design-kit`.
-
----
+Setup and maintainer guide for `design-motion-kit`.
 
 ## Install
 
-Install at user scope:
-
 ```bash
-claude plugin marketplace add --scope user martin-iliew/motion-design-kit
-claude plugin install --scope user motion-design-kit@motion-design-kit
+claude plugin marketplace add --scope user martin-iliew/design-motion-kit
+claude plugin install --scope user design-motion-kit@design-motion-kit
 ```
 
 Inside Claude Code, the slash-command equivalent is:
 
 ```bash
-/plugin marketplace add martin-iliew/motion-design-kit
-/plugin install motion-design-kit@motion-design-kit
+/plugin marketplace add martin-iliew/design-motion-kit
+/plugin install design-motion-kit@design-motion-kit
 ```
-
----
 
 ## Project Permissions Profile
 
-In the app repo Claude will edit, create `.claude/settings.json` with this profile:
+Create `.claude/settings.json` in the target app repo:
 
 ```json
 {
@@ -58,21 +52,22 @@ In the app repo Claude will edit, create `.claude/settings.json` with this profi
 }
 ```
 
-This is the same profile stored in [plugins/motion-design-kit/.claude/settings.json](/Users/Martin/Desktop/Weband/Repositories/claude-skills/plugins/motion-design-kit/.claude/settings.json).
+## Runtime Model
 
----
+The public command surface is:
 
-## Canonical Runtime Model
-
-The only public command surface is:
-
+- `/design-build`
+- `/design-upgrade`
+- `/design-audit`
+- `/design-discover`
+- `/design-refresh`
 - `/motion-build`
 - `/motion-upgrade`
 - `/motion-audit`
 - `/motion-discover`
 - `/motion-refresh`
 
-`/motion-build` and `/motion-upgrade` support an optional leading mode prefix:
+Build and upgrade commands support:
 
 - `mode: fast`
 - `mode: balanced`
@@ -80,50 +75,39 @@ The only public command surface is:
 
 Default mode is `balanced`.
 
-The shipped plugin payload at `plugins/motion-design-kit/.claude` is the source of truth for:
+## Brief Bundle
 
-- skill behavior
-- runtime selector logic
-- execution modes
-- guardrails
-- output contracts
+The canonical upstream input is a repo-local `brief/` directory containing:
 
-`.agents` exists only for local compatibility wrappers and is not part of the shipped plugin payload.
+- `brief.json`
+- `copy.md`
+- `images.json`
+- `tokens.dtcg.json`
 
----
+Generated downstream artifacts:
+
+- `theme.css`
+- `token-aliases.json`
+- `design-decision-pack.yaml`
+- `motion-hints.yaml`
 
 ## Validation
 
-Run before publishing or after changing commands, skills, or runtime data:
+Run after changing commands, skills, library contracts, or the design-system transformer:
 
 ```bash
-claude plugin validate plugins/motion-design-kit
-claude plugin validate plugins/motion-design-kit/.claude-plugin/plugin.json
-python plugins/motion-design-kit/.claude/scripts/validate_motion_surfaces.py
-python plugins/motion-design-kit/.claude/scripts/validate_motion_library.py --expected-count 75
-python plugins/motion-design-kit/.claude/scripts/validate_runtime_trends.py
+claude plugin validate plugins/design-motion-kit
+claude plugin validate plugins/design-motion-kit/.claude-plugin/plugin.json
+python plugins/design-motion-kit/.claude/scripts/validate_design_surfaces.py
+python plugins/design-motion-kit/.claude/scripts/validate_motion_surfaces.py
+python plugins/design-motion-kit/.claude/scripts/validate_design_library.py --expected-count 11
+python plugins/design-motion-kit/.claude/scripts/validate_motion_library.py --expected-count 75
+python plugins/design-motion-kit/.claude/scripts/validate_runtime_trends.py
+python plugins/design-motion-kit/.claude/scripts/validate_design_pipeline.py
 ```
 
----
+## Compatibility Policy
 
-## Library Maintenance
+`motion-design-kit` and `web-design-kit` remain in the repo as deprecated compatibility packages for one release cycle. Do not add new features there.
 
-Use:
-
-- `/motion-discover` to add new pattern folders and `catalog.yaml` entries
-- `/motion-refresh` to rescore the catalog and regenerate:
-  - `scores.yaml`
-  - `site-baselines.yaml`
-  - `trend-watchlist.yaml`
-
-Normal `motion-build` and `motion-upgrade` runs should consume the compiled runtime layer. They should not do live trend research.
-
----
-
-## Eval Maintenance
-
-Keep evaluation metadata aligned with the canonical surface and maintain mode-aware examples in build and upgrade coverage.
-
-If benchmark artifacts are regenerated, keep the labels aligned with the canonical names and mode coverage.
-
-**Last updated:** March 2026
+**Last updated:** March 13, 2026

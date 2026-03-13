@@ -1,0 +1,77 @@
+version: "1"
+id: number-counter-easing
+name: Number Counter with Easing
+type: tween
+category: typography
+framework: GSAP
+description: Animated numeric counters with easing, formatting, and locale support
+
+# Accessibility notes
+a11y: |
+  Final numeric value is always present in the DOM for screen readers and data scrapers.
+  Animation is optional; prefers-reduced-motion users see final value immediately.
+  Use aria-label or aria-describedby to clarify counter context if needed.
+  Ensure sufficient color contrast between counter and background.
+
+# Tween configuration
+from:
+  value: 0
+
+to:
+  value: null  # Set dynamically based on target attribute
+
+# Timing specification
+timing:
+  duration: "2s"
+  delay: "0s"
+  easing: "power2.out"
+  iteration: "once"
+
+# Configuration for number formatting
+config:
+  # Decimal places to display
+  decimals: 0
+
+  # Thousands separator (e.g., "," for 1,000)
+  separator: ","
+
+  # Prefix for counter (e.g., "$" or "+")
+  prefix: ""
+
+  # Suffix for counter (e.g., "%" or "k")
+  suffix: ""
+
+  # Locale for Intl.NumberFormat (e.g., "en-US", "de-DE")
+  locale: "en-US"
+
+  # Currency code if using currency formatting
+  currency: null
+
+  # Minimum integer digits
+  minimumIntegerDigits: 1
+
+  # Whether to round intermediate values
+  roundIntermediate: true
+
+# Counter animation triggers
+trigger:
+  # Trigger when counter element enters viewport
+  type: scroll-entry
+
+  # Options for scroll trigger
+  options:
+    start: "top center"
+    end: "bottom center"
+    scrub: false
+    once: true  # Only animate once per page load
+
+# Easing options (choose one)
+easing_variants:
+  - name: power2.out
+    description: Fast start, slow finish (default)
+  - name: power3.out
+    description: Faster start, slower finish
+  - name: quart.out
+    description: Slowest start, fastest finish
+  - name: power1.inOut
+    description: Balanced ease in and out

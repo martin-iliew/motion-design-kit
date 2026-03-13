@@ -1,0 +1,51 @@
+version: "1.0"
+id: variable-font-morphing
+type: tween
+name: Variable Font Morphing
+a11y:
+  prefers_reduced_motion: true
+  contrast_maintained: true
+  readability_tested: true
+  description: "Font axis animations respect reduced-motion preference. Minimum contrast is maintained at all axis values. Animations are tested for readability at extreme values."
+
+from:
+  font-variation-settings: '"wght" 400, "wdth" 100'
+  opacity: 1
+
+to:
+  font-variation-settings: '"wght" 700, "wdth" 110'
+  opacity: 1
+
+timing:
+  duration_ms: 400-600
+  easing: cubic-bezier(0.34, 1.56, 0.64, 1)
+  delay_ms: 0
+
+trigger:
+  event: hover
+  condition: "element is in viewport AND prefers-reduced-motion is false"
+  action: morph_axes
+
+properties:
+  - name: wght (weight axis)
+    min: 100
+    max: 900
+    step: 1
+    description: "Typographic weight, typically from 100 (thin) to 900 (black)"
+
+  - name: wdth (width axis)
+    min: 75
+    max: 125
+    step: 1
+    description: "Typographic width, typically from 75% (condensed) to 125% (expanded)"
+
+  - name: slnt (slant axis)
+    min: -15
+    max: 0
+    step: 0.5
+    description: "Italic slant, typically from -15 degrees (italic) to 0 (upright)"
+
+notes:
+  - "Use font-display: swap to prevent FOIT (flash of invisible text)"
+  - "Test axis ranges at extreme values for readability and contrast"
+  - "Provide CSS variable fallbacks for older browsers"

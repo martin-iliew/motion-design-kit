@@ -1,0 +1,70 @@
+/* Motion Spec: css-scroll-driven-animations */
+
+/* ─── Progressive Enhancement Guard ─── */
+@supports (animation-timeline: scroll()) {
+
+  /* ── 1. Reading progress bar (scroll timeline) ── */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(to right, #6366f1, #8b5cf6);
+    transform-origin: left;
+    animation: grow-bar linear both;
+    animation-timeline: scroll(root block);
+  }
+
+  @keyframes grow-bar {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  /* ── 2. Fade-in on entry (view timeline) ── */
+  .card {
+    opacity: 0;
+    translate: 0 2rem;
+    animation: fade-up linear both;
+    animation-timeline: view(block);
+    animation-range: entry 10% entry 50%;
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      translate: 0 2rem;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  /* ── 3. Parallax background (named scroll timeline) ── */
+  .hero {
+    overflow-y: scroll;
+    scroll-timeline: --hero-scroll block;
+  }
+
+  .hero__bg {
+    animation: parallax-shift linear both;
+    animation-timeline: --hero-scroll;
+  }
+
+  @keyframes parallax-shift {
+    from { translate: 0 0; }
+    to   { translate: 0 -20%; }
+  }
+}
+
+/* ─── Accessibility: Respect Reduced-Motion Preference ─── */
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar,
+  .card,
+  .hero__bg {
+    animation: none;
+    opacity: 1;
+    translate: 0 0;
+  }
+}

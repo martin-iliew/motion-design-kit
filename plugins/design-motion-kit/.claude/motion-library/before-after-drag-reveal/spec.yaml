@@ -1,0 +1,23 @@
+version: '1'
+type: procedural
+id: before-after-drag-reveal
+target:
+  selector: '[data-motion="before-after-drag-reveal"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: drag
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- draggable
+config:
+  root: '[data-motion="before-after-drag-reveal"]'
+  items: '[data-motion="before-after-drag-reveal"] [data-motion-item]'
+  target: '[data-motion="before-after-drag-reveal"] [data-motion-target]'
+  path: '[data-motion="before-after-drag-reveal"] [data-motion-path]'
+behavior: Before After Drag Reveal is a GSAP pattern for gallery, carousel surfaces
+  that lets a draggable handle reveal two media states inside one frame.

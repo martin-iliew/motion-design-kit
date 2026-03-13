@@ -1,0 +1,29 @@
+layout:
+  desktop: split block pairing a quote, customer identity, and quantified outcomes
+  mobile: customer quote first, metric stack second
+blocks:
+  - id: customer-quote
+    role: customer voice
+    required: true
+  - id: metrics-stack
+    role: quantified outcomes
+    required: true
+  - id: implementation-context
+    role: short proof caption
+    required: false
+component_inventory:
+  - story-shell
+  - quote-block
+  - metric-item
+motion_ready:
+  targets:
+    - id: metrics-stack
+      role: quantified-entry
+      allowed_families: [number-counter-pulse, scroll-trigger-reveal]
+      intensity: low
+    - id: quote-block
+      role: reveal-sequence
+      allowed_families: [scroll-trigger-reveal, text-scramble-decode]
+      intensity: low
+notes:
+  - Keep customer identity explicit and measurable.

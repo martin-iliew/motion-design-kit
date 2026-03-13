@@ -1,0 +1,21 @@
+version: '1'
+type: tween
+id: stacked-testimonial-rotator
+target:
+  selector: '[data-motion="stacked-testimonial-rotator"]'
+  type: group
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: drag
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- flip
+config:
+  root: '[data-motion="stacked-testimonial-rotator"]'
+  items: '[data-motion="stacked-testimonial-rotator"] [data-motion-item]'
+  target: '[data-motion="stacked-testimonial-rotator"] [data-motion-target]'
+  path: '[data-motion="stacked-testimonial-rotator"] [data-motion-path]'

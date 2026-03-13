@@ -1,0 +1,14 @@
+version: "1"
+id: product-ui-showcase
+intent: explain product value through a real interface and short callouts
+surfaces: [product, features, hero]
+structure:
+  desktop: media-led section with adjacent or overlay callouts
+  mobile: stacked image then concise callout list
+proof:
+  above_fold: false
+  type: optional-metric-chip
+cta:
+  primary: optional-inline
+responsive:
+  stack_at: 960px

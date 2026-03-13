@@ -1,0 +1,29 @@
+layout:
+  desktop: large product frame paired with concise explanatory callouts
+  mobile: product frame first, then compact callout stack
+blocks:
+  - id: section-heading
+    role: product framing statement
+    required: true
+  - id: product-frame
+    role: primary interface image
+    required: true
+  - id: callout-list
+    role: value explanation around the interface
+    required: true
+component_inventory:
+  - showcase-shell
+  - product-frame
+  - callout-chip
+motion_ready:
+  targets:
+    - id: product-frame
+      role: focal-object
+      allowed_families: [parallax-depth-layers, observer-section-slider]
+      intensity: medium
+    - id: callout-list
+      role: reveal-sequence
+      allowed_families: [scroll-trigger-reveal, staggered-word-reveal]
+      intensity: low
+notes:
+  - The interface itself must remain legible without motion.

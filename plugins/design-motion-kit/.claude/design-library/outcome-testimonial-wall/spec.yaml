@@ -1,0 +1,14 @@
+version: "1"
+id: outcome-testimonial-wall
+intent: reinforce trust with customer-specific outcomes
+surfaces: [testimonial, proof]
+structure:
+  desktop: 2 or 3 testimonial cards with visible attribution
+  mobile: stacked cards with short quotes
+proof:
+  above_fold: false
+  type: customer-outcome
+cta:
+  primary: optional-secondary-link
+responsive:
+  stack_at: 760px

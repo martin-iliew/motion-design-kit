@@ -1,0 +1,21 @@
+version: '1'
+type: tween
+id: toast-stack-dismiss
+target:
+  selector: '[data-motion="toast-stack-dismiss"]'
+  type: element
+timing:
+  duration: base
+  easing: transition
+trigger:
+  type: click
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- flip
+config:
+  root: '[data-motion="toast-stack-dismiss"]'
+  items: '[data-motion="toast-stack-dismiss"] [data-motion-item]'
+  target: '[data-motion="toast-stack-dismiss"] [data-motion-target]'
+  path: '[data-motion="toast-stack-dismiss"] [data-motion-path]'

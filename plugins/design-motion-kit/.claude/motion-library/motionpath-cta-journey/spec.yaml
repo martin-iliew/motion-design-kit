@@ -1,0 +1,23 @@
+version: '1'
+type: procedural
+id: motionpath-cta-journey
+target:
+  selector: '[data-motion="motionpath-cta-journey"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: load
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- motionpath
+config:
+  root: '[data-motion="motionpath-cta-journey"]'
+  items: '[data-motion="motionpath-cta-journey"] [data-motion-item]'
+  target: '[data-motion="motionpath-cta-journey"] [data-motion-target]'
+  path: '[data-motion="motionpath-cta-journey"] [data-motion-path]'
+behavior: Motionpath CTA Journey is a GSAP pattern for path, svg, cta surfaces that
+  moves an accent or media element along a defined path.

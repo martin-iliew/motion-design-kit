@@ -1,0 +1,23 @@
+version: '1'
+type: procedural
+id: orbital-loader-dots
+target:
+  selector: '[data-motion="orbital-loader-dots"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: load
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- motionpath
+config:
+  root: '[data-motion="orbital-loader-dots"]'
+  items: '[data-motion="orbital-loader-dots"] [data-motion-item]'
+  target: '[data-motion="orbital-loader-dots"] [data-motion-target]'
+  path: '[data-motion="orbital-loader-dots"] [data-motion-path]'
+behavior: Orbital Loader Dots is a GSAP pattern for loader, icon surfaces that moves
+  an accent or media element along a defined path.

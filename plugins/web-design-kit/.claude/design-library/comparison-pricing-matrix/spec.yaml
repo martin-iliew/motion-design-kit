@@ -1,0 +1,14 @@
+version: "1"
+id: comparison-pricing-matrix
+intent: help buyers compare plans with low friction
+surfaces: [pricing, cta]
+structure:
+  desktop: 3-column comparison with visible key differences
+  mobile: stacked cards with repeated feature labels
+proof:
+  above_fold: false
+  type: optional-trust-line
+cta:
+  primary: per-plan
+responsive:
+  stack_at: 900px

@@ -1,0 +1,14 @@
+version: "1"
+id: modular-feature-grid
+intent: package multiple features in a scannable modular system
+surfaces: [features, proof]
+structure:
+  desktop: 2x2 or 3x2 grid with one optional larger anchor card
+  mobile: single-column stack with consistent spacing
+proof:
+  above_fold: false
+  type: optional-metric-or-logo-chip
+cta:
+  primary: optional-footer-link
+responsive:
+  stack_at: 900px

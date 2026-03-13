@@ -1,0 +1,50 @@
+# Primary: staggered card grid reveal (Example 2)
+version: "1"
+type: tween
+id: "scroll-reveal-cards"
+target:
+  selector: ".card"
+  type: group
+from:
+  opacity: 0
+  y: 40
+to:
+  opacity: 1
+  y: 0
+timing:
+  duration: base        # 0.6s — resolves via motion-tokens.md
+  easing: entrance      # power2.out
+stagger:
+  tier: medium          # each: 0.1s (within medium range 0.08–0.10s)
+  from: start
+trigger:
+  type: scroll
+  scroll_start: "top 80%"
+  toggle_actions: "play none none none"
+a11y:
+  reduced_motion: instant-final
+---
+# Secondary: single element reveal (Example 1)
+version: "1"
+type: tween
+id: "scroll-reveal-hero-heading"
+target:
+  selector: ".hero-heading"
+  type: element
+from:
+  opacity: 0
+  y: 48
+to:
+  opacity: 1
+  y: 0
+timing:
+  duration_raw: 0.9     # ~slow, between base=0.6 and slow=1.0; nearest: slow
+  easing: impact        # power3.out
+trigger:
+  type: scroll
+  scroll_start: "top 85%"
+  toggle_actions: "play none none reverse"
+a11y:
+  reduced_motion: instant-final
+# Note: the scrubbed timeline (Example 4) cannot be IR'd directly —
+# scrub ties animation progress to scroll position with no fixed duration.

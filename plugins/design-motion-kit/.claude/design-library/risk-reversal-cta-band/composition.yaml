@@ -1,0 +1,25 @@
+layout:
+  desktop: full-width closing CTA band with reassurance and next-step clarity
+  mobile: stacked CTA block with reassurance immediately below the action
+blocks:
+  - id: headline
+    role: closing prompt
+    required: true
+  - id: reassurance-copy
+    role: risk reversal or onboarding detail
+    required: true
+  - id: cta-group
+    role: primary and optional secondary action
+    required: true
+component_inventory:
+  - cta-band
+  - cta-button-primary
+  - reassurance-copy
+motion_ready:
+  targets:
+    - id: cta-group
+      role: emphasis
+      allowed_families: [morphing-button-states, text-highlight-sweep]
+      intensity: low
+notes:
+  - Keep the close practical, not theatrical.

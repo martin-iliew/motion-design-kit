@@ -1,0 +1,101 @@
+saas:
+  required_sections:
+  - hero
+  - proof
+  - product
+  - features
+  - pricing
+  - faq
+  - cta
+  preferred_proof:
+  - logos
+  - metrics
+  - customer-story
+  tone: clear, product-led, concise
+  avoid:
+  - brutalism
+  - anti-grid
+  - novelty-collage
+ai:
+  required_sections:
+  - hero
+  - proof
+  - product
+  - features
+  - faq
+  - cta
+  preferred_proof:
+  - metrics
+  - logos
+  - workflow-example
+  tone: clear, confident, outcome-first
+  avoid:
+  - speculative-art-direction
+  - vague-future-copy
+  - novelty-collage
+enterprise:
+  required_sections:
+  - hero
+  - proof
+  - security
+  - product
+  - pricing
+  - faq
+  - cta
+  preferred_proof:
+  - logos
+  - compliance
+  - customer-story
+  tone: credible, calm, procurement-safe
+  avoid:
+  - brutalism
+  - anti-grid
+  - playful-chaos
+developer-tools:
+  required_sections:
+  - hero
+  - proof
+  - product
+  - features
+  - integrations
+  - pricing
+  - cta
+  preferred_proof:
+  - logos
+  - ecosystem
+  - usage-metrics
+  tone: technical, direct, product-led
+  avoid:
+  - oversized-marketing-fluff
+  - vague-brand-copy
+  - novelty-collage
+ecommerce:
+  required_sections:
+  - hero
+  - proof
+  - product
+  - testimonial
+  - faq
+  - cta
+  preferred_proof:
+  - logos
+  - outcomes
+  - trust-badges
+  tone: clear, persuasive, visually anchored
+  avoid:
+  - editorial-chaos
+  - low-contrast-type
+  - novelty-collage
+any:
+  required_sections:
+  - hero
+  - proof
+  - cta
+  preferred_proof:
+  - logos
+  - metrics
+  tone: clear, direct
+  avoid:
+  - brutalism
+  - anti-grid
+  - novelty-collage

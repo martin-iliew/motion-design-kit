@@ -1,0 +1,20 @@
+version: '1'
+type: tween
+id: modal-depth-intro
+target:
+  selector: '[data-motion="modal-depth-intro"]'
+  type: element
+timing:
+  duration: base
+  easing: transition
+trigger:
+  type: click
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+config:
+  root: '[data-motion="modal-depth-intro"]'
+  items: '[data-motion="modal-depth-intro"] [data-motion-item]'
+  target: '[data-motion="modal-depth-intro"] [data-motion-target]'
+  path: '[data-motion="modal-depth-intro"] [data-motion-path]'

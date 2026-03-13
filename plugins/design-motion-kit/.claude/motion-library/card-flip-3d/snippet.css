@@ -1,0 +1,143 @@
+/* Card Flip 3D Animation */
+
+/* Card container with perspective */
+.card-flip-3d {
+  perspective: 1000px;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+/* Inner card that performs the flip */
+.card-flip-3d-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease-in-out;
+  transform-style: preserve-3d;
+}
+
+/* Flip state when hovering or active */
+.card-flip-3d:hover .card-flip-3d-inner,
+.card-flip-3d.flipped .card-flip-3d-inner {
+  transform: rotateY(180deg);
+}
+
+/* Front and back face styling */
+.card-flip-3d-front,
+.card-flip-3d-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  border-radius: 12px;
+}
+
+/* Front face (visible by default) */
+.card-flip-3d-front {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+/* Back face (initially hidden, rotated 180 degrees) */
+.card-flip-3d-back {
+  background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
+  color: white;
+  z-index: 1;
+  transform: rotateY(180deg);
+}
+
+/* Text content styling */
+.card-flip-3d-front h3,
+.card-flip-3d-back h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.card-flip-3d-front p,
+.card-flip-3d-back p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Shadow effect during flip */
+.card-flip-3d {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.card-flip-3d:hover,
+.card-flip-3d.flipped {
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Variant: Subtle flip with scale */
+.card-flip-3d.with-scale:hover .card-flip-3d-inner,
+.card-flip-3d.with-scale.flipped .card-flip-3d-inner {
+  transform: rotateY(180deg) scale(1.05);
+}
+
+/* Variant: Smooth click-based toggle (no hover) */
+.card-flip-3d.click-toggle:hover .card-flip-3d-inner {
+  transform: none;
+}
+
+.card-flip-3d.click-toggle.flipped .card-flip-3d-inner {
+  transform: rotateY(180deg);
+}
+
+/* Variant: Blue gradient faces */
+.card-flip-3d.blue-theme .card-flip-3d-front {
+  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+}
+
+.card-flip-3d.blue-theme .card-flip-3d-back {
+  background: linear-gradient(135deg, #357abd 0%, #2196f3 100%);
+}
+
+/* Variant: Warm orange/red gradient */
+.card-flip-3d.warm-theme .card-flip-3d-front {
+  background: linear-gradient(135deg, #f5a623 0%, #d84315 100%);
+}
+
+.card-flip-3d.warm-theme .card-flip-3d-back {
+  background: linear-gradient(135deg, #d84315 0%, #ff6f00 100%);
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .card-flip-3d-inner {
+    transition: none;
+  }
+
+  .card-flip-3d:hover .card-flip-3d-inner,
+  .card-flip-3d.flipped .card-flip-3d-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+/* Touch device fallback: larger tap target */
+@media (hover: none) and (pointer: coarse) {
+  .card-flip-3d {
+    cursor: pointer;
+  }
+
+  /* Hide hover state on touch devices */
+  .card-flip-3d:hover .card-flip-3d-inner {
+    transform: none;
+  }
+
+  /* Use .flipped class via JavaScript click handler on touch */
+}

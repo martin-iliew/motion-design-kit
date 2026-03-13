@@ -1,0 +1,73 @@
+version: "1"
+id: ripple-wave-click
+name: Ripple Wave Click Animation
+type: procedural
+category: micro-interaction
+framework: GSAP
+description: Expanding concentric ripples emanating from click position with decreasing opacity
+
+# Accessibility notes
+a11y: |
+  Ripple animation is purely decorative feedback and should be paired with other interaction indicators.
+  Does not interfere with focus management or keyboard navigation.
+  Respects prefers-reduced-motion; ripples can be disabled for users requesting reduced motion.
+  Color contrast of ripples should be tested against all background colors.
+
+# Configuration for ripple behavior
+config:
+  # Duration of a single ripple animation in milliseconds
+  duration: 600
+
+  # Maximum spread radius in pixels
+  maxRadius: 300
+
+  # Initial ripple opacity (0-1)
+  initialOpacity: 0.6
+
+  # Final ripple opacity at end of animation
+  finalOpacity: 0
+
+  # Number of concentric waves per click (1-3)
+  waveCount: 1
+
+  # Delay between waves if waveCount > 1
+  waveDelay: 100
+
+  # Ripple color (CSS color value or variable reference)
+  color: "rgba(255, 255, 255, 0.6)"
+
+  # Alternative dark ripple color
+  darkModeColor: "rgba(255, 255, 255, 0.4)"
+
+# Behavior specification
+behavior:
+  # Trigger on click or touch
+  trigger: click
+
+  # Position ripple at click coordinates
+  fromClickPoint: true
+
+  # Easing function for radius expansion
+  easing: power1.out
+
+  # Scale easing for opacity fade
+  opacityEasing: power2.out
+
+  # Cleanup: remove ripple DOM after animation
+  autoCleanup: true
+
+  # Allow multiple ripples to stack
+  allowStacking: true
+
+  # Maximum ripples allowed per second (prevent spam)
+  rateLimit: 5
+
+# Transform timing curve
+timing:
+  duration: "600ms"
+  easing: "cubic-bezier(0.65, 0, 0.35, 1)"
+
+# Visual containment
+constraints:
+  clipping: overflow-hidden
+  zIndex: 1

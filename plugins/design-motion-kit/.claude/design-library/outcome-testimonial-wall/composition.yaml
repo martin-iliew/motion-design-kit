@@ -1,0 +1,22 @@
+layout:
+  desktop: testimonial wall with outcome-forward cards and customer identity
+  mobile: stacked testimonial cards with clear result labels
+blocks:
+  - id: section-heading
+    role: trust framing
+    required: true
+  - id: testimonial-grid
+    role: customer outcomes
+    required: true
+component_inventory:
+  - testimonial-grid
+  - testimonial-card
+  - customer-meta
+motion_ready:
+  targets:
+    - id: testimonial-grid
+      role: reveal-sequence
+      allowed_families: [scroll-trigger-reveal, stacked-testimonial-rotator]
+      intensity: low
+notes:
+  - Outcome clarity matters more than decorative card choreography.

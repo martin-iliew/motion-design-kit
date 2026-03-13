@@ -1,0 +1,23 @@
+version: '1'
+type: procedural
+id: morphsvg-logo-sequence
+target:
+  selector: '[data-motion="morphsvg-logo-sequence"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: load
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- morphsvg
+config:
+  root: '[data-motion="morphsvg-logo-sequence"]'
+  items: '[data-motion="morphsvg-logo-sequence"] [data-motion-item]'
+  target: '[data-motion="morphsvg-logo-sequence"] [data-motion-target]'
+  path: '[data-motion="morphsvg-logo-sequence"] [data-motion-path]'
+behavior: MorphSVG Logo Sequence is a GSAP pattern for logo, icon, svg surfaces that
+  morphs SVG shapes through a branded sequence.

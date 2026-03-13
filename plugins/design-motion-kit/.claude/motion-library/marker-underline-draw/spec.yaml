@@ -1,0 +1,21 @@
+version: '1'
+type: tween
+id: marker-underline-draw
+target:
+  selector: '[data-motion="marker-underline-draw"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: load
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- drawsvg
+config:
+  root: '[data-motion="marker-underline-draw"]'
+  items: '[data-motion="marker-underline-draw"] [data-motion-item]'
+  target: '[data-motion="marker-underline-draw"] [data-motion-target]'
+  path: '[data-motion="marker-underline-draw"] [data-motion-path]'

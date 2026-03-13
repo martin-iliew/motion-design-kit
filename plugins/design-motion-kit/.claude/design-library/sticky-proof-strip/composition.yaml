@@ -1,0 +1,25 @@
+layout:
+  desktop: full-width horizontal proof rail directly after the hero CTA cluster
+  mobile: stacked trust row with compressed spacing and repeated labels
+blocks:
+  - id: section-label
+    role: optional proof intro
+    required: false
+  - id: metric-or-logo-items
+    role: trust signals or outcomes
+    required: true
+  - id: reassurance-copy
+    role: short qualifier for the trust line
+    required: false
+component_inventory:
+  - proof-rail
+  - logo-item
+  - metric-item
+motion_ready:
+  targets:
+    - id: proof-items
+      role: staggered-entry
+      allowed_families: [scroll-trigger-reveal, number-counter-pulse]
+      intensity: low
+notes:
+  - Keep the rail compact and immediately adjacent to the hero.

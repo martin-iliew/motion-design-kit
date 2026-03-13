@@ -1,0 +1,14 @@
+version: "1"
+id: objection-handling-faq
+intent: remove buying friction by answering real objections
+surfaces: [faq, proof]
+structure:
+  desktop: one or two-column FAQ list
+  mobile: single-column accordion or stacked list
+proof:
+  above_fold: false
+  type: reassurance
+cta:
+  primary: follow-up-cta-below
+responsive:
+  stack_at: 760px

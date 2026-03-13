@@ -1,0 +1,23 @@
+version: '1'
+type: procedural
+id: circular-text-orbit-scroll
+target:
+  selector: '[data-motion="circular-text-orbit-scroll"]'
+  type: element
+timing:
+  duration: base
+  easing: entrance
+trigger:
+  type: load
+a11y:
+  reduced_motion: instant-final
+plugins:
+- llms
+- motionpath
+config:
+  root: '[data-motion="circular-text-orbit-scroll"]'
+  items: '[data-motion="circular-text-orbit-scroll"] [data-motion-item]'
+  target: '[data-motion="circular-text-orbit-scroll"] [data-motion-target]'
+  path: '[data-motion="circular-text-orbit-scroll"] [data-motion-path]'
+behavior: Circular Text Orbit Scroll is a GSAP pattern for text surfaces that moves
+  an accent or media element along a defined path.

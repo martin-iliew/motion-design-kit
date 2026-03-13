@@ -1,0 +1,14 @@
+version: "1"
+id: sticky-proof-strip
+intent: reduce early skepticism with compact proof near the hero
+surfaces: [proof, metrics, cta]
+structure:
+  desktop: single row of logos, metrics, or trust bullets
+  mobile: wrapped row or stacked short list
+proof:
+  above_fold: true
+  type: logos-metrics-or-trust
+cta:
+  primary: inherited-from-hero
+responsive:
+  stack_at: 720px

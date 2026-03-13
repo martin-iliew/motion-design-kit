@@ -1,0 +1,212 @@
+version: "1"
+patterns:
+  - id: grid-led-hero
+    name: Grid-Led Hero
+    category: hero
+    framework: neutral-spec
+    surfaces: [hero, cta, proof, product]
+    site_contexts: [saas, ai, enterprise, developer-tools]
+    folder: grid-led-hero
+    composition: composition.yaml
+    description: Structured hero with left-aligned copy, visible product context, proof, and a clear CTA group.
+    trend_score: 10
+    status: core
+    conversion_signal: high
+    last_reviewed: 2026-03
+    sources:
+      - https://stripe.com/
+      - https://linear.app/
+      - https://vercel.com/
+    manual_override: false
+    notes: March 13, 2026 baseline for serious product-company heroes.
+  - id: sticky-proof-strip
+    name: Sticky Proof Strip
+    category: proof
+    framework: neutral-spec
+    surfaces: [proof, metrics, cta]
+    site_contexts: [saas, ai, enterprise, ecommerce]
+    folder: sticky-proof-strip
+    composition: composition.yaml
+    description: Compact row of trust signals, metrics, or logos placed immediately after the hero CTA cluster.
+    trend_score: 9
+    status: core
+    conversion_signal: high
+    last_reviewed: 2026-03
+    sources:
+      - https://www.shopify.com/
+      - https://www.notion.com/
+      - https://www.intercom.com/
+    manual_override: false
+    notes: Keeps proof above the fold without turning the page into a logo dump.
+  - id: product-ui-showcase
+    name: Product UI Showcase
+    category: product
+    framework: neutral-spec
+    surfaces: [product, features, hero]
+    site_contexts: [saas, ai, developer-tools, enterprise]
+    folder: product-ui-showcase
+    composition: composition.yaml
+    description: Large product frame paired with concise callouts that explain how the interface creates value.
+    trend_score: 9
+    status: core
+    conversion_signal: high
+    last_reviewed: 2026-03
+    sources:
+      - https://linear.app/
+      - https://www.notion.com/
+      - https://vercel.com/
+    manual_override: false
+    notes: Strong default for product-led homepages and platform pages.
+  - id: modular-feature-grid
+    name: Modular Feature Grid
+    category: features
+    framework: neutral-spec
+    surfaces: [features, proof]
+    site_contexts: [saas, ai, developer-tools, ecommerce]
+    folder: modular-feature-grid
+    composition: composition.yaml
+    description: Restrained card grid with clear feature groups, concise copy, and controlled visual variety.
+    trend_score: 9
+    status: core
+    conversion_signal: high
+    last_reviewed: 2026-03
+    sources:
+      - https://webflow.com/
+      - https://www.intercom.com/
+      - https://www.notion.com/
+    manual_override: false
+    notes: Good modern default when the team wants a bento feel without trend excess.
+  - id: integration-logo-ecosystem
+    name: Integration Logo Ecosystem
+    category: integrations
+    framework: neutral-spec
+    surfaces: [integrations, proof]
+    site_contexts: [saas, ai, enterprise, developer-tools]
+    folder: integration-logo-ecosystem
+    composition: composition.yaml
+    description: Ecosystem section that pairs logos with short compatibility or workflow value statements.
+    trend_score: 8
+    status: evergreen
+    conversion_signal: high
+    last_reviewed: 2026-03
+    sources:
+      - https://vercel.com/
+      - https://www.intercom.com/
+      - https://stripe.com/
+    manual_override: false
+    notes: Strong for platform trust and workflow fit, especially when pure logo rows feel too thin.
+  - id: comparison-pricing-matrix
+    name: Comparison Pricing Matrix
+    category: pricing
+    framework: neutral-spec
+    surfaces: [pricing, cta]
+    site_contexts: [saas, ai, enterprise, developer-tools]
+    folder: comparison-pricing-matrix
+    composition: composition.yaml
+    description: Parallel plan comparison with visible differences, anchored CTA, and minimal scanning friction.
+    trend_score: 9
+    status: core
+    conversion_signal: high
+    last_reviewed: 2026-03
+    sources:
+      - https://vercel.com/
+      - https://stripe.com/
+      - https://www.shopify.com/
+    manual_override: false
+    notes: Remains more effective than hidden comparison or progressive-disclosure-heavy pricing.
+  - id: outcome-testimonial-wall
+    name: Outcome Testimonial Wall
+    category: testimonial
+    framework: neutral-spec
+    surfaces: [testimonial, proof]
+    site_contexts: [saas, ai, enterprise, ecommerce]
+    folder: outcome-testimonial-wall
+    composition: composition.yaml
+    description: Testimonial section that centers measurable customer outcomes instead of generic praise.
+    trend_score: 8
+    status: evergreen
+    conversion_signal: medium
+    last_reviewed: 2026-03
+    sources:
+      - https://www.shopify.com/
+      - https://webflow.com/
+      - https://www.intercom.com/
+    manual_override: false
+    notes: Works best when identity and result are explicit.
+  - id: objection-handling-faq
+    name: Objection-Handling FAQ
+    category: faq
+    framework: neutral-spec
+    surfaces: [faq, proof]
+    site_contexts: [saas, ai, enterprise, ecommerce]
+    folder: objection-handling-faq
+    composition: composition.yaml
+    description: FAQ block that answers buying objections rather than dumping support trivia.
+    trend_score: 8
+    status: evergreen
+    conversion_signal: high
+    last_reviewed: 2026-03
+    sources:
+      - https://webflow.com/
+      - https://www.shopify.com/
+      - https://stripe.com/
+    manual_override: false
+    notes: Especially useful when pricing or trust questions block the sale.
+  - id: risk-reversal-cta-band
+    name: Risk-Reversal CTA Band
+    category: cta
+    framework: neutral-spec
+    surfaces: [cta, proof]
+    site_contexts: [saas, ai, enterprise, ecommerce]
+    folder: risk-reversal-cta-band
+    composition: composition.yaml
+    description: Closing CTA band that combines the next step with reassurance such as trial terms, support, or onboarding help.
+    trend_score: 8
+    status: evergreen
+    conversion_signal: high
+    last_reviewed: 2026-03
+    sources:
+      - https://www.notion.com/
+      - https://www.intercom.com/
+      - https://www.shopify.com/
+    manual_override: false
+    notes: Keeps the final section practical instead of decorative.
+  - id: security-compliance-block
+    name: Security Compliance Block
+    category: security
+    framework: neutral-spec
+    surfaces: [security, proof]
+    site_contexts: [enterprise, saas, ai, developer-tools]
+    folder: security-compliance-block
+    composition: composition.yaml
+    description: Trust section that frames compliance, governance, and deployment readiness in a scannable way.
+    trend_score: 8
+    status: evergreen
+    conversion_signal: high
+    last_reviewed: 2026-03
+    sources:
+      - https://stripe.com/
+      - https://www.intercom.com/
+      - https://vercel.com/
+    manual_override: false
+    notes: Important when the page expects evaluation by security or procurement stakeholders.
+  - id: customer-story-metrics
+    name: Customer Story Metrics
+    category: case-study
+    framework: neutral-spec
+    surfaces: [metrics, testimonial, proof]
+    site_contexts: [saas, ai, enterprise]
+    folder: customer-story-metrics
+    composition: composition.yaml
+    description: Mini case-study block pairing a customer quote with quantified outcomes and implementation context.
+    trend_score: 9
+    status: core
+    conversion_signal: high
+    last_reviewed: 2026-03
+    sources:
+      - https://stripe.com/
+      - https://www.shopify.com/
+      - https://webflow.com/
+    manual_override: false
+    notes: High-value proof pattern for mid-page trust building.
+
