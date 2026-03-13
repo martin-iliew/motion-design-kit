@@ -14,7 +14,15 @@ LIB_DIR = ROOT / ".claude" / "motion-library"
 CATALOG_PATH = LIB_DIR / "catalog.yaml"
 SCORES_PATH = LIB_DIR / "scores.yaml"
 OVERVIEW_PATH = LIB_DIR / "trends-overview.md"
+SITE_BASELINES_PATH = LIB_DIR / "site-baselines.yaml"
+TREND_WATCHLIST_PATH = LIB_DIR / "trend-watchlist.yaml"
 GENERATOR_PATH = ROOT / ".claude" / "scripts" / "generate_motion_library.py"
+SCRIPT_DIR = Path(__file__).resolve().parent
+
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+from runtime_trend_compiler import validate_runtime_payloads
 
 REQUIRED_SCORE_BUCKETS = [
     "menu",
@@ -50,6 +58,8 @@ def validate(expected_count: int | None) -> dict:
     catalog = load_yaml(CATALOG_PATH)["patterns"]
     scores = load_yaml(SCORES_PATH)
     overview = OVERVIEW_PATH.read_text(encoding="utf-8")
+    baselines = load_yaml(SITE_BASELINES_PATH) if SITE_BASELINES_PATH.exists() else {}
+    watchlist = load_yaml(TREND_WATCHLIST_PATH) if TREND_WATCHLIST_PATH.exists() else {}
 
     ids = [entry["id"] for entry in catalog]
     id_set = set(ids)
@@ -88,6 +98,11 @@ def validate(expected_count: int | None) -> dict:
     if overview_count != len(catalog):
         issues.append(f"trends-overview count {overview_count} != catalog count {len(catalog)}")
 
+    if not SITE_BASELINES_PATH.exists():
+        issues.append("site-baselines.yaml is missing")
+    if not TREND_WATCHLIST_PATH.exists():
+        issues.append("trend-watchlist.yaml is missing")
+
     score_ids = set()
     for bucket, contexts in scores.items():
         if bucket == "site_contexts":
@@ -122,6 +137,8 @@ def validate(expected_count: int | None) -> dict:
         missing_generated = [pattern_id for pattern_id in generated_ids if pattern_id not in id_set]
         if missing_generated:
             issues.append(f"catalog is missing generator-defined ids: {missing_generated[:5]}")
+
+    issues.extend(validate_runtime_payloads(catalog, baselines, watchlist))
 
     return {
         "ok": not issues,

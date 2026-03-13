@@ -1,4 +1,4 @@
-# Live Sources — motion-dev
+# Live Sources — motion-build
 
 This file lists the official and high-signal live sources to fetch when local references are not enough.
 

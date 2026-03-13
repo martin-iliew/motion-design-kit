@@ -4,6 +4,7 @@ from collections import OrderedDict
 from datetime import date
 from importlib.machinery import SourceFileLoader
 from pathlib import Path
+import sys
 
 import yaml
 
@@ -14,6 +15,12 @@ CATALOG_PATH = LIB_DIR / "catalog.yaml"
 SCORES_PATH = LIB_DIR / "scores.yaml"
 OVERVIEW_PATH = LIB_DIR / "trends-overview.md"
 GENERATOR_PATH = ROOT / ".claude" / "scripts" / "generate_motion_library.py"
+SCRIPT_DIR = Path(__file__).resolve().parent
+
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+from runtime_trend_compiler import write_runtime_trend_files
 
 TODAY_MONTH = date.today().strftime("%Y-%m")
 
@@ -228,9 +235,11 @@ def main() -> None:
     generator.write_catalog(refreshed)
     OVERVIEW_PATH.write_text(generator.overview_markdown(decorated), encoding="utf-8")
     generator.write_scores(refreshed, {entry["id"]: entry["_contexts"] for entry in decorated})
+    write_runtime_trend_files(refreshed)
 
     print(f"Refreshed {len(refreshed)} patterns.")
     print(f"Changed score/status entries: {len(changed)}")
+    print("Runtime trend files regenerated: site-baselines.yaml, trend-watchlist.yaml")
     if changed:
         print("Notable changes:")
         for pattern_id in changed[:12]:

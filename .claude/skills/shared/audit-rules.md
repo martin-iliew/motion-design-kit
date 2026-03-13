@@ -1,10 +1,10 @@
 # Shared Audit Rules — Motion Skills
 
-Unified reference for motion-dev (element audit + code generation) and motion-audit (quality review). Load the parts you need:
+Unified reference for motion-build (element audit + code generation), motion-upgrade (audit + enrich), and motion-audit (quality review). Load the parts you need:
 
-- **motion-dev** → Parts A, C, D, E
+- **motion-build** → Parts A, C, D, E
 - **motion-audit** → Parts B, C, E
-- **motion-enhance** → Parts B, C, E
+- **motion-upgrade** → Parts B, C, E
 
 ---
 
@@ -27,7 +27,7 @@ Scan HTML top-to-bottom. For each element, apply the matching GSAP pattern. **NE
 | Hero `<h1>` / `<h2>` static on load | "hero heading", "page title" | Hero entrance timeline — Pattern 1 | `prefersReduced` | 4+ chained `.fromTo` calls |
 | Hero badge / label / subtext | "hero badge", "hero label" | Add to hero timeline stagger | `prefersReduced` | Part of Pattern 1 timeline |
 | Primary CTA button (desktop only) | "hero cta", "main button" | Magnetic quickTo — Pattern 3 | `isTouch` | Desktop-only with touch guard |
-| Hero background / glow element | "hero background", "hero glow" | Parallax scrub — Pattern 5 | `isTouch + prefersReduced` | Moves on scroll; desktop-only |
+| Hero background / glow element | "hero background", "hero glow" | Parallax scrub — Pattern 5 | `isTouch + prefersReduced + min-width:1024px` | Moves on scroll; **must be wrapped in both reduced-motion AND min-width:1024px matchMedia condition** — parallax on mobile causes scroll jank |
 | Feature cards / grid | "cards", "features", "grid" | Stagger scroll reveal — Pattern 4 | `prefersReduced` | Stagger 0.09s per card (token: medium) |
 | Pricing cards | "pricing", "plans", "tiers" | Stagger scroll reveal — Pattern 4 | `prefersReduced` | Same as feature cards |
 | Section labels / headings | "section-label", "section-heading" | Section reveal — Pattern 6 | `prefersReduced` | Reveals as you scroll into view |

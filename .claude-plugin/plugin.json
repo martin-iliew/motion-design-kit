@@ -1,7 +1,7 @@
 {
   "name": "motion-design-kit",
   "version": "1.2.0",
-  "description": "Claude Code motion design toolkit with five animation skills, slash commands, and a 75-pattern motion library.",
+  "description": "Claude Code motion design toolkit with five animation skills, including canonical motion-build and motion-upgrade workflows, plus a 75-pattern motion library.",
   "author": {
     "name": "Martin Iliew",
     "url": "https://github.com/martin-iliew"
@@ -18,17 +18,17 @@
     "frontend"
   ],
   "commands": [
-    "./.claude/commands/motion-dev.md",
+    "./.claude/commands/motion-build.md",
+    "./.claude/commands/motion-upgrade.md",
     "./.claude/commands/motion-audit.md",
     "./.claude/commands/motion-discover.md",
-    "./.claude/commands/motion-enhance.md",
     "./.claude/commands/motion-refresh.md"
   ],
   "skills": [
-    "./.claude/skills/motion-dev",
+    "./.claude/skills/motion-build",
+    "./.claude/skills/motion-upgrade",
     "./.claude/skills/motion-audit",
     "./.claude/skills/motion-discover",
-    "./.claude/skills/motion-enhance",
     "./.claude/skills/motion-refresh"
   ]
 }

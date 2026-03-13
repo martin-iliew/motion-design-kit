@@ -1,44 +1,42 @@
 ---
 name: motion-audit
 description: >
-  Use this skill whenever the task involves auditing or reviewing existing animation code
-  and producing a report — without automatically applying fixes. Trigger on: "audit my
-  animations", "check my GSAP code", "review this animation", "animation health check",
-  "/motion-audit", or any request to analyze web animation or micro-interaction code for
-  quality, performance, conflicts, and consistency. Also trigger for: diagnosing animation
-  jank or flickering; checking if animations will cause layout thrashing or paint issues;
-  verifying prefers-reduced-motion / reduced-motion handling; checking if CSS transitions
-  and GSAP are conflicting; "tell me what's wrong before I fix it". DO NOT trigger when
-  the user wants fixes applied automatically (use motion-enhance) or wants new animations
-  added (use motion-dev).
+  Use this skill whenever the task is to analyze or review existing animation code and
+  produce a written report — with no code changes made. Trigger on: "audit my animations",
+  "check my GSAP code", "animation health check", or any request to inspect web animation
+  or micro-interaction code for quality, performance, conflicts, and consistency. Also
+  trigger for: diagnosing animation jank or flickering; detecting layout-thrashing or
+  paint-triggering properties; verifying prefers-reduced-motion / accessibility compliance;
+  checking whether CSS transitions and GSAP conflict on the same elements; any "tell me
+  what's wrong before I fix it" framing; animation-related accessibility reviews described
+  as report-only. DO NOT trigger when: the user wants fixes applied automatically after
+  the audit (use motion-upgrade); the user wants new animations added (use motion-build);
+  the request ends with "then fix X" or "then apply the changes" even if it starts as an
+  audit — that is motion-upgrade territory; or the request mixes animation audit with
+  non-animation refactoring or logic changes.
 ---
 
 # motion-audit
 
-Professional animation audit skill for analyzing web animation code across five quality dimensions.
+Canonical report-first audit skill for analyzing web animation code across five quality dimensions.
+This surface does not edit files.
 
----
+## 0. Load shared policy first
 
-## Workflow: Audit
+Before auditing, load:
 
-When `/motion-audit [file]` triggers (or the user asks to review/check animation code), follow this workflow:
+- `.claude/skills/shared/audit-rules.md`
+- `.claude/skills/shared/output-contracts.md`
 
-### Pre-flight — Start timer
+Use `.claude/skills/shared/audit-rules.md` Parts B, C, and E for the audit rubric, hard rules, and token reference.
 
-Run via Bash and save the output as `TASK_START`:
-```
-TASK_START=$(python .claude/scripts/query_cost.py --stamp)
-```
-
-### Step 1: Read and Parse
+## 1. Read and parse
 
 Read the target file. If it exceeds 400 lines, process it in sections: structure/HTML first, then CSS, then JS/GSAP.
 
-Load `.claude/skills/shared/audit-rules.md` Parts B, C, E — you need them for the five audit dimensions, hard rules, and token reference.
+## 2. Analyze the five dimensions
 
-### Step 2: Analyze Five Dimensions
-
-Evaluate every animation and transition against:
+Evaluate every animation and transition against the shared audit rubric:
 
 **DEPENDENCIES** — Will the page actually load its animation libraries?
 
@@ -72,27 +70,7 @@ Evaluate every animation and transition against:
 - Look for: inconsistent durations (0.2s, 0.3s, 0.8s, 1.2s all used without a system)
 - Look for: stagger values that don't follow a pattern
 
-### Step 3: Output Severity Table
-
-```
-## Audit Report: [filename]
-
-| # | Issue | Severity | Location | Fix |
-|---|-------|----------|----------|-----|
-| 1 | ...   | CRITICAL | line 42  | ... |
-| 2 | ...   | WARNING  | line 88  | ... |
-| 3 | ...   | INFO     | line 103 | ... |
-
-**Summary:** N critical, N warnings, N info
-```
-
-### Metrics
-
-Run via Bash:
-```
-python .claude/scripts/query_cost.py --since "$TASK_START"
-```
-Output the result line directly. If unavailable: _Metrics unavailable — run `python .claude/scripts/query_cost.py --since <start-timestamp>` manually._
+## 3. Output the audit report
 
 Severity definitions:
 
@@ -100,7 +78,9 @@ Severity definitions:
 - **WARNING**: Suboptimal — hurts performance or creates inconsistency
 - **INFO**: Stylistic improvement opportunity
 
-### Step 4: Proposed Changes
+Use the `motion-audit` contract from `.claude/skills/shared/output-contracts.md`.
+
+## 4. Proposed changes
 
 For every CRITICAL and WARNING item, show a concrete patch:
 
@@ -116,21 +96,15 @@ For every CRITICAL and WARNING item, show a concrete patch:
 **Why:** [1-sentence explanation]
 ```
 
-### Step 5: Feedback Loop
+## 5. Handoff rules
 
-After the full report, ask:
+Stop after the report.
 
-> "Want me to apply all CRITICAL fixes directly to `[filename]`? I'll make the changes and re-run the audit to confirm they're resolved."
+- Do not edit the target file in `motion-audit`.
+- If the user wants automatic fixes applied, redirect to `/motion-upgrade`.
+- If the user wants targeted new motion, translation, or selective implementation work, redirect to `/motion-build`.
 
-If yes:
-
-1. Apply each CRITICAL fix to the file
-2. Re-run the audit (Steps 1-3 only)
-3. Confirm: "All CRITICAL issues resolved. Remaining: N warnings, N info."
-
-If no: end the audit and let the user decide what to apply manually.
-
-### Step 5.5: Self-Clarity Check
+## 6. Self-clarity check
 
 Before finalizing the report, verify mentally (no tool calls needed):
 
@@ -143,12 +117,15 @@ Before finalizing the report, verify mentally (no tool calls needed):
 
 ---
 
-## General Rules
+## General rules
 
 - Always respect `prefers-reduced-motion`. Any generated GSAP code must include a matchMedia guard.
 - Never animate layout-triggering properties (`width`, `height`, `top`, `left`, `margin`). Only animate `transform` and `opacity` for GPU-composited performance.
 - When generating code, use `gsap.context()` for React/component cleanup.
 - Easing vocabulary: use `power2.out` for entrances, `power2.inOut` for transitions, `elastic.out(1, 0.3)` for playful micro-interactions, `CustomEase` for branded motion.
+- Do not mutate files from `motion-audit`.
+
+Do not print query-cost metrics unless the user, a maintainer workflow, or a benchmark task explicitly asks for them.
 
 ---
 

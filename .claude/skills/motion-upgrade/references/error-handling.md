@@ -1,6 +1,6 @@
-# Error Handling — motion-enhance
+# Error Handling — motion-upgrade
 
-Structured guide for handling edge cases and failures in the motion-enhance workflow.
+Structured guide for handling edge cases and failures in the motion-upgrade workflow.
 
 ## File Reading Errors
 

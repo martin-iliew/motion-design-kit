@@ -2,7 +2,7 @@
 
 A **Motion Spec** is a stack-agnostic YAML document that fully describes a single animation unit. It captures animation intent in a language-neutral way that any output target can read: vanilla CSS, GSAP, Web Animations API, Rive, Lottie, WebGL, or anything else.
 
-Motion Spec is used by the `motion-dev` skill when translating animations between stacks, and by the `motion-discover` command when generating new pattern files. You can ask "show me the spec" for any animation to get the canonical representation.
+Motion Spec is used by the `motion-build` skill when translating animations between stacks, and by the `motion-discover` command when generating new pattern files. You can ask "show me the spec" for any animation to get the canonical representation.
 
 All token values (`duration`, `easing`, `stagger.tier`) resolve against [motion-tokens.md](./motion-tokens.md).
 
@@ -13,7 +13,7 @@ All token values (`duration`, `easing`, `stagger.tier`) resolve against [motion-
 - **Language-neutral**: A Motion Spec describes _what_ animates, not _how_ a specific library does it. Anyone familiar with web animation — CSS or GSAP or anything else — should be able to read it.
 - **Flexible field model**: Include what applies, skip what doesn't. Fields are optional and context-dependent. Only four fields are universally required.
 - **Open type system**: The `type` field is a free-form string. Known conventions are `tween`, `procedural`, and `browser-native`, but `webgl`, `rive`, `lottie`, `houdini`, and any future type are valid without a schema update.
-- **Extensible**: New fields can be freely added for new pattern types. An `motion-dev` translator that encounters an unknown field should pass it through or ignore it gracefully.
+- **Extensible**: New fields can be freely added for new pattern types. A `motion-build` translator that encounters an unknown field should pass it through or ignore it gracefully.
 
 ---
 
@@ -305,7 +305,7 @@ The `from` and `to` blocks accept **only** properties from the GPU-safe allow-li
 
 ## Translation Targets Summary
 
-Full translation rules live in `skills/motion-dev/references/motion-spec-translation-guide.md`. This table shows which spec fields each target uses:
+Full translation rules live in `skills/motion-build/references/motion-spec-translation-guide.md`. This table shows which spec fields each target uses:
 
 | Spec field                | Vanilla CSS                               | Tailwind                   | GSAP HTML            | GSAP React            | GSAP Vue             |
 | ------------------------- | ----------------------------------------- | -------------------------- | -------------------- | --------------------- | -------------------- |

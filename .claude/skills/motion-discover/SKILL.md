@@ -1,155 +1,96 @@
 ---
 name: motion-discover
 description: >
-  Use this skill whenever the user wants to discover, research, or document web
-  animation trends. Trigger on: "find animation trends", "what motion patterns are
-  modern in 2026", "document animation trends", "/motion-discover", or any request
-  involving discovering, researching, or generating web motion patterns and trends.
+  Use this skill whenever the task involves discovering, researching, or cataloging web
+  animation trends and patterns for a motion library — not for implementing animations on
+  a specific page or site. Trigger on: "find animation trends", "expand my motion library",
+  "research current animation patterns", "catalog this technique", "document the View
+  Transitions API pattern", "/motion-discover", or any request to research live web animation
+  trends and write new pattern entries to the catalog. Also trigger when the user wants to
+  document specific animation techniques or APIs (e.g., scroll-driven animations, View
+  Transitions) as library entries, or asks what browser-native animation APIs are gaining
+  traction. DO NOT trigger for: requests to add animations to a specific page or site (use
+  motion-build or motion-upgrade); requests asking "what should I add to my site?" without
+  clear library catalog intent; rescoring or reranking existing catalog patterns (use
+  motion-refresh); auditing animation code (use motion-audit). The core signal is intent to
+  expand the shared motion pattern catalog, not to implement animations on the user's site.
 ---
 
 # motion-discover
 
-Professional discovery and documentation skill for researching, batching, and cataloging modern web animation patterns.
+Canonical discovery skill for researching, batching, and cataloging modern web animation patterns.
+This skill owns research-only trend discovery and library expansion. Ordinary implementation requests should use `motion-build` and consume the refreshed runtime layer.
 
----
+## Workflow
 
-## Workflow: Discovery
+### 1. Research candidates in batches
 
-When `/motion-discover` triggers, follow this workflow.
+1. Load `.claude/skills/motion-discover/references/trend-criteria.md`.
+2. Use **WebSearch** and **WebFetch** to research current trends — this is live research, not knowledge retrieval. Search for recent GSAP showcases, Awwwards/Codrops posts, and browser-native animation API updates from the last 6 months.
+3. Research candidates in 10-15 pattern batches.
+4. Start with official GSAP references first.
+5. Use recent community examples only as validation that a pattern still feels current.
 
-### Pre-flight — Start timer
+### 2. Deduplicate against the catalog
 
-Run via Bash and save the output as `TASK_START`:
-```
-TASK_START=$(python .claude/scripts/query_cost.py --stamp)
-```
+Before generating folders:
 
-### Step 1: Research by batch
+1. Read `.claude/motion-library/catalog.yaml` if it exists.
+2. Skip exact duplicates and obvious near-duplicates.
+3. Note declining patterns that have a clearer modern replacement.
 
-Research the next batch of motion patterns before writing files.
+### 3. Generate only the missing patterns
 
-Rules:
-- Work in batches of **10-15 candidate patterns** at a time. Never hardcode the total library size.
-- Start with **official GSAP references first**: `https://gsap.com/llms.txt` plus the specific plugin pages relevant to the batch.
-- Use recent design-community examples second (Codrops, Awwwards-adjacent examples, strong agency references) only to validate that a pattern still feels current.
-- Before evaluating trends, load `.claude/skills/motion-discover/references/trend-criteria.md` and apply the 4 Core Principles plus the Quality Checklist.
+- 1-2 new patterns: generate inline
+- 3-15 new patterns: parallelize one agent per pattern
+- 16+ new patterns: split into multiple 10-15 pattern batches
 
-Typical batch mixes:
-- Scroll storytelling / pinned narratives
-- Typography / SplitText / text treatment
-- Navigation / UI state / forms
-- Media / gallery / drag interactions
-- SVG / path / icon / loader motion
+Use `.claude/skills/motion-discover/references/catalog-contract.md` for the folder and metadata contract.
 
-### Step 2: Duplicate detection
+### 4. Refresh only when immediate usability matters
 
-Before generating patterns:
+If the user expects the new patterns to be usable right away by `motion-build` or `motion-upgrade`, run `/motion-refresh` after generation.
 
-1. Check whether `.claude/motion-library/catalog.yaml` exists.
-2. If it exists, compare each candidate against `catalog.yaml` entries with `status: trending | evergreen | emerging`.
-3. Skip exact duplicates or obvious near-duplicates that solve the same interaction with the same technique.
-4. If a declining pattern has a clear modern replacement, flag that relationship in your notes.
+Discovery writes:
 
-### Step 3: Route by remaining count
+- new pattern folders under `.claude/motion-library/`
+- new or merged entries in `.claude/motion-library/catalog.yaml`
 
-After duplicate detection:
+Discovery does not hand-edit:
 
-- **1-2 new patterns:** Fast path. Write the folders inline in this conversation.
-- **3-15 new patterns:** One agent per pattern, all spawned in parallel.
-- **16+ new patterns:** Split into multiple 10-15 pattern batches and process each batch independently.
+- `scores.yaml`
+- `site-baselines.yaml`
+- `trend-watchlist.yaml`
 
-### Step 4: Pattern folder contract
+### 5. Validate before stopping
 
-Each new pattern folder must be `.claude/motion-library/<pattern-id>/` and contain exactly 3 files:
+Run:
 
-1. `index.md`
-2. `spec.yaml`
-3. `snippet.css` or `snippet.js`
-
-Rules:
-- `index.md` is prose only. No code fences.
-- `spec.yaml` is a Motion Spec document. `type` is free-form, but every spec must include `version`, `type`, `id`, and `a11y.reduced_motion`.
-- `snippet.*` is pure behavior code only: no imports, no CDN tags, no HTML, no setup boilerplate.
-- Every GSAP snippet must use `gsap.matchMedia()` with a reduced-motion branch.
-- Only animate GPU-safe properties unless the specific pattern truly depends on a plugin-specific vector/path API.
-
-### Step 5: Catalog schema
-
-After writing the folders, add or merge each new pattern into `.claude/motion-library/catalog.yaml` using the live schema below.
-
-Every catalog entry must include:
-
-```yaml
-- id: kebab-case-id
-  name: "Human Name"
-  type: tween | procedural | browser-native | any future type
-  category: scroll | typography | micro-interaction | transition | ambient | cursor | svg
-  framework: GSAP | CSS | Tailwind | Mixed
-  triggers: [scroll, hover, click]
-  components: [hero, card, nav]
-  folder: kebab-case-id
-  snippet: snippet.js
-  description: "One-line description"
-  trend_score: 1-10 | null
-  status: trending | evergreen | emerging | declining
-  popularity_signal: high | medium | low | null
-  last_reviewed: YYYY-MM
-  sources: [https://...]
-  manual_override: false
-  notes: "Why this entry exists or what replaced it"
+```bash
+python .claude/scripts/validate_motion_library.py --expected-count <current-catalog-size>
 ```
 
-Important:
-- Keep `type` open-ended. Do not coerce new pattern types into a smaller enum.
-- `catalog.yaml` is the authoritative metadata store.
-- `scores.yaml` is an auto-generated inverted index. Do **not** hand-edit it here.
+If validation fails, fix the corpus before reporting success.
 
-### Step 6: Refresh immediately when usability matters
+## Final response
 
-If the user wants the new patterns to be usable right away by `motion-dev` or `motion-enhance`, run `/motion-refresh` in the same pass after generation.
+Write a `catalog-additions.md` file to `.claude/motion-library/` listing all new patterns added in this run. This serves as the handoff record for `/motion-refresh` and for auditing what changed.
 
-Use this rule:
-- If you added patterns and the user expects the library to be immediately consumable, refresh now.
-- If the user only asked for raw discovery artifacts, it is acceptable to stop after updating `catalog.yaml` and tell them refresh is still required.
+Then output a concise table:
 
-### Step 7: Output
-
-After each batch, output:
-
-```
+```md
 ## Motion Library Generated
 
 | Pattern | Framework | Folder | Snippet |
-|---------|-----------|--------|---------|
-| ...     | ...       | ...    | ...     |
+| --- | --- | --- | --- |
+| ... | ... | ... | ... |
 
 Total new patterns: N
 Current catalog size: M
+
+catalog-additions.md written to .claude/motion-library/
 ```
 
-Before closing the task, validate the corpus:
-```
-python .claude/scripts/validate_motion_library.py --expected-count <current-catalog-size>
-```
-If it fails, fix the corpus before reporting success.
-
-### Metrics
-
-Run via Bash:
-```
-python .claude/scripts/query_cost.py --since "$TASK_START"
-```
-Output the result line directly. If unavailable: _Metrics unavailable — run `python .claude/scripts/query_cost.py --since <start-timestamp>` manually._
-
----
-
-## General Rules
-
-- Prefer official GSAP sources first, then recent community validation.
-- Respect `prefers-reduced-motion` in every generated snippet.
-- Never animate layout-triggering properties when a transform-based alternative exists.
-- Keep counts dynamic. Do not write instructions that assume a fixed catalog size, fixed template count, or fixed number of pattern folders.
-
----
+Do not print metrics unless the user or a benchmark workflow explicitly asks for them.
 
 *Licensed under the Apache 2.0 License. See LICENSE.txt in the repository root.*

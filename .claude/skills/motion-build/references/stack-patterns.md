@@ -10,7 +10,7 @@ The canonical pattern for all non-framework projects.
 
 ```html
 <!-- Include GSAP before closing </body> -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/gsap.min.js"></script>
 <!-- Add plugin scripts as needed: ScrollTrigger, SplitText, Flip, etc. -->
 ```
 
@@ -168,9 +168,9 @@ onMounted(() => {
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       gsap.fromTo(
         ".item",
-        { opacity: 0, y: 24 },
+        { autoAlpha: 0, y: 24 },
         {
-          opacity: 1,
+          autoAlpha: 1,
           y: 0,
           duration: 0.6,        
           ease: "power2.out",   

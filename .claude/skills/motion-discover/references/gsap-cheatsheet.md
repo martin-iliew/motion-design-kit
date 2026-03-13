@@ -12,20 +12,20 @@ Source: https://gsap.com/llms.txt (fetched and curated for 2026 patterns)
 gsap.registerPlugin(ScrollTrigger, SplitText, Flip, CustomEase);
 
 // Basic tweens
-gsap.to(".el", { x: 100, opacity: 1, duration: 0.6, ease: "power2.out" });
-gsap.from(".el", { y: 40, opacity: 0, duration: 0.6, ease: "power2.out" });
-gsap.fromTo(".el", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6 });
-gsap.set(".el", { opacity: 0, y: 40 }); // instant set, no animation
+gsap.to(".el", { x: 100, autoAlpha: 1, duration: 0.6, ease: "power2.out" });
+gsap.fromTo(".el", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" });
+gsap.fromTo(".el", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.6 });
+gsap.set(".el", { autoAlpha: 0, y: 40 }); // instant set, no animation
 
 // Timelines
 const tl = gsap.timeline({ defaults: { ease: "power2.out", duration: 0.6 } });
-tl.from(".heading", { opacity: 0, y: 30 })
-  .from(".subheading", { opacity: 0, y: 20 }, "-=0.3")  // overlap by 0.3s
-  .from(".cta", { opacity: 0, scale: 0.9 }, "<0.2");     // 0.2s after prev starts
+tl.fromTo(".heading", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0 })
+  .fromTo(".subheading", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0 }, "-=0.3")  // overlap by 0.3s
+  .fromTo(".cta", { autoAlpha: 0, scale: 0.9 }, { autoAlpha: 1, scale: 1 }, "<0.2"); // 0.2s after prev starts
 
 // Stagger
-gsap.from(".card", { opacity: 0, y: 30, stagger: 0.1, duration: 0.5 });
-gsap.from(".word", { opacity: 0, y: 20, stagger: { each: 0.05, from: "start" } });
+gsap.fromTo(".card", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, stagger: 0.1, duration: 0.5 });
+gsap.fromTo(".word", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, stagger: { each: 0.05, from: "start" } });
 ```
 
 ---
@@ -34,15 +34,18 @@ gsap.from(".word", { opacity: 0, y: 20, stagger: { each: 0.05, from: "start" } }
 
 ```js
 // Basic scroll reveal
-gsap.from(".section", {
+gsap.fromTo(".section", {
+  autoAlpha: 0,
+  y: 60
+}, {
   scrollTrigger: {
     trigger: ".section",
     start: "top 80%",
     end: "bottom 20%",
     toggleActions: "play none none reverse"
   },
-  opacity: 0,
-  y: 60,
+  autoAlpha: 1,
+  y: 0,
   duration: 0.8
 });
 
@@ -68,12 +71,12 @@ const tl = gsap.timeline({
     invalidateOnRefresh: true
   }
 });
-tl.from(".panel-1", { opacity: 0, x: -100 })
-  .from(".panel-2", { opacity: 0, x: 100 }, "<");
+tl.fromTo(".panel-1", { autoAlpha: 0, x: -100 }, { autoAlpha: 1, x: 0 })
+  .fromTo(".panel-2", { autoAlpha: 0, x: 100 }, { autoAlpha: 1, x: 0 }, "<");
 
 // Batch (performance optimized for many elements)
 ScrollTrigger.batch(".card", {
-  onEnter: (elements) => gsap.from(elements, { opacity: 0, y: 40, stagger: 0.1 }),
+  onEnter: (elements) => gsap.fromTo(elements, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, stagger: 0.1 }),
   start: "top 85%"
 });
 ```
@@ -86,19 +89,26 @@ ScrollTrigger.batch(".card", {
 const split = new SplitText(".headline", { type: "chars,words,lines" });
 
 // Chars stagger in
-gsap.from(split.chars, {
-  opacity: 0,
+gsap.fromTo(split.chars, {
+  autoAlpha: 0,
   y: 40,
   rotationX: -90,
+}, {
+  autoAlpha: 1,
+  y: 0,
+  rotationX: 0,
   stagger: 0.02,
   duration: 0.6,
   ease: "power3.out"
 });
 
 // Words reveal with clip
-gsap.from(split.words, {
-  opacity: 0,
+gsap.fromTo(split.words, {
+  autoAlpha: 0,
   yPercent: 100,
+}, {
+  autoAlpha: 1,
+  yPercent: 0,
   stagger: 0.05,
   duration: 0.7,
   ease: "power2.out"
@@ -147,7 +157,7 @@ const mm = gsap.matchMedia();
 
 mm.add("(prefers-reduced-motion: no-preference)", () => {
   // All animation code here
-  gsap.from(".hero-title", { opacity: 0, y: 40, duration: 1 });
+  gsap.fromTo(".hero-title", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 1 });
 
   // Return cleanup function
   return () => {
@@ -157,7 +167,7 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
 
 mm.add("(prefers-reduced-motion: reduce)", () => {
   // Optional: instant state without animation
-  gsap.set(".hero-title", { opacity: 1 });
+  gsap.set(".hero-title", { autoAlpha: 1, clearProps: "y" });
 });
 ```
 

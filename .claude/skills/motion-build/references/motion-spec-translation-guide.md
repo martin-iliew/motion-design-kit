@@ -149,13 +149,13 @@ Requires keyframe definitions in `tailwind.config.js`. See motion-tokens.md Tail
 ## Translation: Motion Spec → GSAP HTML (Vanilla JS)
 
 ```
-from block → first argument of gsap.fromTo() or gsap.from()
+from block → first argument of gsap.fromTo() or a preceding gsap.set() when the element starts hidden
 to block   → second argument (vars object)
   x, y, xPercent, yPercent → direct GSAP properties
   scale, scaleX, scaleY → direct GSAP properties
   rotation, rotationX, rotationY → direct GSAP properties
-  opacity → direct GSAP property
-  autoAlpha → use instead of opacity when visibility toggling is needed
+  opacity → translate to autoAlpha for entrances and visibility toggles; use raw opacity only when visibility must stay untouched
+  autoAlpha → preferred GSAP property for visibility state changes
 
 timing.duration → duration: [resolved value]  
 timing.easing   → ease: "[resolved GSAP string]"  
@@ -179,8 +179,8 @@ a11y.reduced_motion:
     mm.add("(prefers-reduced-motion: no-preference)", () => { /* tween */ return () => { /* cleanup */ }; });
     mm.add("(prefers-reduced-motion: reduce)", () => { gsap.set(selector, { clearProps: "all" }); });
     (if skip: don't add reduce branch — purely decorative)
-    (if instant-final: gsap.set(selector, { opacity:to.opacity, y:to.y, ... }))
-    (if instant-start: gsap.set(selector, { opacity:from.opacity, y:from.y, ... }))
+    (if instant-final: gsap.set(selector, { autoAlpha:to.opacity, y:to.y, ... }))
+    (if instant-start: gsap.set(selector, { autoAlpha:from.opacity, y:from.y, ... }))
 
 sequence.position → use as 3rd argument in timeline:
   tl.to(selector, vars, "[sequence.position]")
@@ -195,9 +195,9 @@ const mm = gsap.matchMedia();
 mm.add("(prefers-reduced-motion: no-preference)", () => {
   gsap.fromTo(
     "[target.selector]",
-    { opacity: [from.opacity], y: [from.y] },
+    { autoAlpha: [from.opacity], y: [from.y] },
     {
-      opacity: [to.opacity],
+      autoAlpha: [to.opacity],
       y: [to.y],
       duration: [resolved duration], 
       ease: "[resolved ease]",       
@@ -209,7 +209,7 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
 });
 
 mm.add("(prefers-reduced-motion: reduce)", () => {
-  gsap.set("[target.selector]", { opacity: 1, clearProps: "y" }); // instant-final
+  gsap.set("[target.selector]", { autoAlpha: 1, clearProps: "y" }); // instant-final
 });
 ```
 
@@ -258,7 +258,7 @@ export function [ComponentName]() {
         return () => gsap.killTweensOf("[target.selector]");
       });
       mm.add("(prefers-reduced-motion: reduce)", () => {
-        gsap.set("[target.selector]", { opacity: 1, clearProps: "y" });
+        gsap.set("[target.selector]", { autoAlpha: 1, clearProps: "y" });
       });
     },
     { scope: containerRef }
@@ -307,7 +307,7 @@ onMounted(() => {
       return () => gsap.killTweensOf("[target.selector]");
     });
     mm.add("(prefers-reduced-motion: reduce)", () => {
-      gsap.set("[target.selector]", { opacity: 1, clearProps: "y" });
+      gsap.set("[target.selector]", { autoAlpha: 1, clearProps: "y" });
     });
   }, containerRef.value);
 });
