@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(claude plugin:*)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(python .claude/scripts/validate_motion_surfaces.py)",
+      "Bash(python .claude/scripts/validate_motion_library.py --expected-count 75)",
+      "Bash(python .claude/scripts/validate_runtime_trends.py)",
+      "Bash(python -c \"import json; d=json.load\\(open\\(''evals/evals.json''\\)\\); print\\(f''{len\\(d[\"\"evals\"\"]\\)} evals, skills: {[e[\"\"skill\"\"] for e in d[\"\"evals\"\"]]}''\\)\")",
+      "Read(//c/Users/Martin/.claude/plugins/cache/claude-plugins-official/skill-creator/205b6e0b3036/skills/skill-creator/**)",
+      "Bash(python -m scripts.aggregate_benchmark \"c:\\\\Users\\\\Martin\\\\Desktop\\\\Weband\\\\Repositories\\\\claude-skills\\\\motion-skills-workspace\\\\iteration-1\" --skill-name \"motion-design-kit\")",
+      "Bash(python -c \":*)",
+      "Bash(python -m scripts.run_loop --help)",
+      "Bash(python3 -c \":*)"
+    ]
+  }
+}

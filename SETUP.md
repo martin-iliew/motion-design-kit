@@ -58,7 +58,7 @@ In the app repo Claude will edit, create `.claude/settings.json` with this profi
 }
 ```
 
-This is the same profile stored in [`.claude/settings.json`](./.claude/settings.json).
+This is the same profile stored in [plugins/motion-design-kit/.claude/settings.json](/Users/Martin/Desktop/Weband/Repositories/claude-skills/plugins/motion-design-kit/.claude/settings.json).
 
 ---
 
@@ -80,7 +80,7 @@ The only public command surface is:
 
 Default mode is `balanced`.
 
-`.claude` is the source of truth for:
+The shipped plugin payload at `plugins/motion-design-kit/.claude` is the source of truth for:
 
 - skill behavior
 - runtime selector logic
@@ -88,7 +88,7 @@ Default mode is `balanced`.
 - guardrails
 - output contracts
 
-`.agents` exists only for local compatibility wrappers.
+`.agents` exists only for local compatibility wrappers and is not part of the shipped plugin payload.
 
 ---
 
@@ -97,11 +97,11 @@ Default mode is `balanced`.
 Run before publishing or after changing commands, skills, or runtime data:
 
 ```bash
-claude plugin validate .
-claude plugin validate .claude-plugin/plugin.json
-python .claude/scripts/validate_motion_surfaces.py
-python .claude/scripts/validate_motion_library.py --expected-count 75
-python .claude/scripts/validate_runtime_trends.py
+claude plugin validate plugins/motion-design-kit
+claude plugin validate plugins/motion-design-kit/.claude-plugin/plugin.json
+python plugins/motion-design-kit/.claude/scripts/validate_motion_surfaces.py
+python plugins/motion-design-kit/.claude/scripts/validate_motion_library.py --expected-count 75
+python plugins/motion-design-kit/.claude/scripts/validate_runtime_trends.py
 ```
 
 ---

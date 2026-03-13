@@ -95,8 +95,10 @@ Plain-English prompts also work as long as you give Claude a real file path.
 
 - 5 canonical commands
 - 5 canonical skills
-- trend-aware runtime selectors under `.claude/motion-library/`
-- validation and refresh scripts under `.claude/scripts/`
+- trend-aware runtime selectors under `plugins/motion-design-kit/.claude/motion-library/`
+- validation and refresh scripts under `plugins/motion-design-kit/.claude/scripts/`
+
+Marketplace installs resolve from `plugins/motion-design-kit`, so repo-only development assets do not ship with the plugin payload.
 
 ---
 
@@ -105,10 +107,10 @@ Plain-English prompts also work as long as you give Claude a real file path.
 Validate before publishing:
 
 ```bash
-claude plugin validate .
-claude plugin validate .claude-plugin/plugin.json
-python .claude/scripts/validate_motion_surfaces.py
-python .claude/scripts/validate_motion_library.py --expected-count 75
+claude plugin validate plugins/motion-design-kit
+claude plugin validate plugins/motion-design-kit/.claude-plugin/plugin.json
+python plugins/motion-design-kit/.claude/scripts/validate_motion_surfaces.py
+python plugins/motion-design-kit/.claude/scripts/validate_motion_library.py --expected-count 75
 ```
 
 **Last updated:** March 2026

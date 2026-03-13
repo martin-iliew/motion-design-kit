@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Validate canonical motion command, skill, and compatibility-wrapper surfaces.
+Validate canonical motion command and skill surfaces inside the shipped plugin payload.
 
 Checks:
 - registry structure, canonical names, and execution modes
@@ -9,7 +9,6 @@ Checks:
 - query_cost budget names
 - removal of old canonical entrypoints
 - canonical build/upgrade skills load shared references instead of inlining old workflow blocks
-- .agents motion skills remain thin wrappers over .claude
 - no stray deprecated canonical references inside .claude
 """
 
@@ -27,7 +26,6 @@ import yaml
 SCRIPT_PATH = Path(__file__).resolve()
 REPO_ROOT = SCRIPT_PATH.parents[2]
 CLAUDE_DIR = REPO_ROOT / ".claude"
-AGENTS_DIR = REPO_ROOT / ".agents"
 PLUGIN_PATH = REPO_ROOT / ".claude-plugin" / "plugin.json"
 REGISTRY_PATH = CLAUDE_DIR / "motion-registry.yaml"
 COMMANDS_DIR = CLAUDE_DIR / "commands"
@@ -120,14 +118,6 @@ FORBIDDEN_INLINE_MARKERS = {
         "Want me to apply all CRITICAL fixes directly",
         "Apply each CRITICAL fix to the file",
     ],
-}
-
-AGENT_WRAPPERS = {
-    "motion-dev": ".claude/skills/motion-build/SKILL.md",
-    "motion-enhance": ".claude/skills/motion-upgrade/SKILL.md",
-    "motion-audit": ".claude/skills/motion-audit/SKILL.md",
-    "motion-discover": ".claude/skills/motion-discover/SKILL.md",
-    "motion-refresh": ".claude/skills/motion-refresh/SKILL.md",
 }
 
 REFERENCE_EXPECTATIONS = {
@@ -284,21 +274,6 @@ def validate_audit_surface(errors: list[str]) -> None:
         errors.append(f"{rel(output_contracts_path)} still treats motion-audit as a mutating follow-up flow")
 
 
-def validate_agent_wrappers(errors: list[str]) -> None:
-    for wrapper_name, canonical_path in AGENT_WRAPPERS.items():
-        wrapper_path = AGENTS_DIR / "skills" / wrapper_name / "SKILL.md"
-        if not wrapper_path.exists():
-            errors.append(f"Missing .agents compatibility wrapper: {rel(wrapper_path)}")
-            continue
-        text = wrapper_path.read_text(encoding="utf-8")
-        if canonical_path not in text:
-            errors.append(
-                f"{rel(wrapper_path)} must reference canonical workflow {canonical_path}"
-            )
-        if len(text.splitlines()) > 40:
-            errors.append(f"{rel(wrapper_path)} is too large to qualify as a thin wrapper")
-
-
 def main() -> int:
     errors: list[str] = []
 
@@ -358,7 +333,6 @@ def main() -> int:
     for skill_name in {"motion-build", "motion-upgrade", "motion-audit", "motion-discover", "motion-refresh"}:
         validate_canonical_skill(skill_name, errors)
 
-    validate_agent_wrappers(errors)
     validate_reference_examples(errors)
     validate_audit_surface(errors)
 

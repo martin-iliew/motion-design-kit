@@ -35,11 +35,7 @@
         "gsap",
         "frontend"
       ],
-      "source": {
-        "source": "github",
-        "repo": "martin-iliew/motion-design-kit",
-        "ref": "main"
-      }
+      "source": "./plugins/motion-design-kit"
     }
   ]
 }
